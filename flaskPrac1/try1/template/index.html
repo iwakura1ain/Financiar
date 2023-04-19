@@ -1,0 +1,29 @@
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script>
+            alert("{{messages[0]}}")
+        </script>
+    {% endif %}
+{% endwith %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document1</title>
+</head>
+<body>
+    <form action="/login" method=""post>
+        <p>EMAIL: <input type="text" name="email"></p>
+        <p>PW: <input type="password" name="pw"></p>
+        <p><input type="submit" value="submit"></p>
+    </form>
+    
+    <p></p>
+    <p></p>
+    <h2>show users</h2>
+    
+</body>
+</html>

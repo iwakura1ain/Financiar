@@ -1,0 +1,4529 @@
+[
+    {
+        "model": "FDRReader.Stock",
+        "pk": 0,
+        "fields": {
+            "ticker": "MMM",
+            "name": "3M",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 1,
+        "fields": {
+            "ticker": "AOS",
+            "name": "A. O. Smith",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 2,
+        "fields": {
+            "ticker": "ABT",
+            "name": "Abbott",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 3,
+        "fields": {
+            "ticker": "ABBV",
+            "name": "AbbVie",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 4,
+        "fields": {
+            "ticker": "ACN",
+            "name": "Accenture",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 5,
+        "fields": {
+            "ticker": "ATVI",
+            "name": "Activision Blizzard",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 6,
+        "fields": {
+            "ticker": "ADM",
+            "name": "ADM",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 7,
+        "fields": {
+            "ticker": "ADBE",
+            "name": "Adobe Inc.",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 8,
+        "fields": {
+            "ticker": "ADP",
+            "name": "ADP",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 9,
+        "fields": {
+            "ticker": "AES",
+            "name": "AES Corporation",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 10,
+        "fields": {
+            "ticker": "AFL",
+            "name": "Aflac",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 11,
+        "fields": {
+            "ticker": "A",
+            "name": "Agilent Technologies",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 12,
+        "fields": {
+            "ticker": "APD",
+            "name": "Air Products and Chemicals",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 13,
+        "fields": {
+            "ticker": "AKAM",
+            "name": "Akamai",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 14,
+        "fields": {
+            "ticker": "ALK",
+            "name": "Alaska Air Group",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 15,
+        "fields": {
+            "ticker": "ALB",
+            "name": "Albemarle Corporation",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 16,
+        "fields": {
+            "ticker": "ARE",
+            "name": "Alexandria Real Estate Equities",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 17,
+        "fields": {
+            "ticker": "ALGN",
+            "name": "Align Technology",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 18,
+        "fields": {
+            "ticker": "ALLE",
+            "name": "Allegion",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 19,
+        "fields": {
+            "ticker": "LNT",
+            "name": "Alliant Energy",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 20,
+        "fields": {
+            "ticker": "ALL",
+            "name": "Allstate",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 21,
+        "fields": {
+            "ticker": "GOOGL",
+            "name": "Alphabet Inc. (Class A)",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 22,
+        "fields": {
+            "ticker": "GOOG",
+            "name": "Alphabet Inc. (Class C)",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 23,
+        "fields": {
+            "ticker": "MO",
+            "name": "Altria",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 24,
+        "fields": {
+            "ticker": "AMZN",
+            "name": "Amazon",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 25,
+        "fields": {
+            "ticker": "AMCR",
+            "name": "Amcor",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 26,
+        "fields": {
+            "ticker": "AMD",
+            "name": "AMD",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 27,
+        "fields": {
+            "ticker": "AEE",
+            "name": "Ameren",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 28,
+        "fields": {
+            "ticker": "AAL",
+            "name": "American Airlines Group",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 29,
+        "fields": {
+            "ticker": "AEP",
+            "name": "American Electric Power",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 30,
+        "fields": {
+            "ticker": "AXP",
+            "name": "American Express",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 31,
+        "fields": {
+            "ticker": "AIG",
+            "name": "American International Group",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 32,
+        "fields": {
+            "ticker": "AMT",
+            "name": "American Tower",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 33,
+        "fields": {
+            "ticker": "AWK",
+            "name": "American Water Works",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 34,
+        "fields": {
+            "ticker": "AMP",
+            "name": "Ameriprise Financial",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 35,
+        "fields": {
+            "ticker": "AME",
+            "name": "Ametek",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 36,
+        "fields": {
+            "ticker": "AMGN",
+            "name": "Amgen",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 37,
+        "fields": {
+            "ticker": "APH",
+            "name": "Amphenol",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 38,
+        "fields": {
+            "ticker": "ADI",
+            "name": "Analog Devices",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 39,
+        "fields": {
+            "ticker": "ANSS",
+            "name": "Ansys",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 40,
+        "fields": {
+            "ticker": "AON",
+            "name": "Aon",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 41,
+        "fields": {
+            "ticker": "APA",
+            "name": "APA Corporation",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 42,
+        "fields": {
+            "ticker": "AAPL",
+            "name": "Apple Inc.",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 43,
+        "fields": {
+            "ticker": "AMAT",
+            "name": "Applied Materials",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 44,
+        "fields": {
+            "ticker": "APTV",
+            "name": "Aptiv",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 45,
+        "fields": {
+            "ticker": "ACGL",
+            "name": "Arch Capital Group",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 46,
+        "fields": {
+            "ticker": "ANET",
+            "name": "Arista Networks",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 47,
+        "fields": {
+            "ticker": "AJG",
+            "name": "Arthur J. Gallagher & Co.",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 48,
+        "fields": {
+            "ticker": "AIZ",
+            "name": "Assurant",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 49,
+        "fields": {
+            "ticker": "T",
+            "name": "AT&T",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 50,
+        "fields": {
+            "ticker": "ATO",
+            "name": "Atmos Energy",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 51,
+        "fields": {
+            "ticker": "ADSK",
+            "name": "Autodesk",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 52,
+        "fields": {
+            "ticker": "AZO",
+            "name": "AutoZone",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 53,
+        "fields": {
+            "ticker": "AVB",
+            "name": "AvalonBay Communities",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 54,
+        "fields": {
+            "ticker": "AVY",
+            "name": "Avery Dennison",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 55,
+        "fields": {
+            "ticker": "AXON",
+            "name": "Axon Enterprise",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 56,
+        "fields": {
+            "ticker": "BKR",
+            "name": "Baker Hughes",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 57,
+        "fields": {
+            "ticker": "BALL",
+            "name": "Ball Corporation",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 58,
+        "fields": {
+            "ticker": "BAC",
+            "name": "Bank of America",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 59,
+        "fields": {
+            "ticker": "BBWI",
+            "name": "Bath & Body Works, Inc.",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 60,
+        "fields": {
+            "ticker": "BAX",
+            "name": "Baxter International",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 61,
+        "fields": {
+            "ticker": "BDX",
+            "name": "Becton Dickinson",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 62,
+        "fields": {
+            "ticker": "WRB",
+            "name": "Berkley",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 63,
+        "fields": {
+            "ticker": "BRKB",
+            "name": "Berkshire Hathaway",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 64,
+        "fields": {
+            "ticker": "BBY",
+            "name": "Best Buy",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 65,
+        "fields": {
+            "ticker": "BIO",
+            "name": "Bio-Rad",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 66,
+        "fields": {
+            "ticker": "TECH",
+            "name": "Bio-Techne",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 67,
+        "fields": {
+            "ticker": "BIIB",
+            "name": "Biogen",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 68,
+        "fields": {
+            "ticker": "BLK",
+            "name": "BlackRock",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 69,
+        "fields": {
+            "ticker": "BK",
+            "name": "BNY Mellon",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 70,
+        "fields": {
+            "ticker": "BA",
+            "name": "Boeing",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 71,
+        "fields": {
+            "ticker": "BKNG",
+            "name": "Booking Holdings",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 72,
+        "fields": {
+            "ticker": "BWA",
+            "name": "BorgWarner",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 73,
+        "fields": {
+            "ticker": "BXP",
+            "name": "Boston Properties",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 74,
+        "fields": {
+            "ticker": "BSX",
+            "name": "Boston Scientific",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 75,
+        "fields": {
+            "ticker": "BMY",
+            "name": "Bristol Myers Squibb",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 76,
+        "fields": {
+            "ticker": "AVGO",
+            "name": "Broadcom Inc.",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 77,
+        "fields": {
+            "ticker": "BR",
+            "name": "Broadridge Financial Solutions",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 78,
+        "fields": {
+            "ticker": "BRO",
+            "name": "Brown & Brown",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 79,
+        "fields": {
+            "ticker": "BFB",
+            "name": "Brown\u2013Forman",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 80,
+        "fields": {
+            "ticker": "BG",
+            "name": "Bunge Limited",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 81,
+        "fields": {
+            "ticker": "CHRW",
+            "name": "C.H. Robinson",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 82,
+        "fields": {
+            "ticker": "CDNS",
+            "name": "Cadence Design Systems",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 83,
+        "fields": {
+            "ticker": "CZR",
+            "name": "Caesars Entertainment",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 84,
+        "fields": {
+            "ticker": "CPT",
+            "name": "Camden Property Trust",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 85,
+        "fields": {
+            "ticker": "CPB",
+            "name": "Campbell Soup Company",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 86,
+        "fields": {
+            "ticker": "COF",
+            "name": "Capital One",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 87,
+        "fields": {
+            "ticker": "CAH",
+            "name": "Cardinal Health",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 88,
+        "fields": {
+            "ticker": "KMX",
+            "name": "CarMax",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 89,
+        "fields": {
+            "ticker": "CCL",
+            "name": "Carnival",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 90,
+        "fields": {
+            "ticker": "CARR",
+            "name": "Carrier Global",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 91,
+        "fields": {
+            "ticker": "CTLT",
+            "name": "Catalent",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 92,
+        "fields": {
+            "ticker": "CAT",
+            "name": "Caterpillar Inc.",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 93,
+        "fields": {
+            "ticker": "CBOE",
+            "name": "Cboe Global Markets",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 94,
+        "fields": {
+            "ticker": "CBRE",
+            "name": "CBRE Group",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 95,
+        "fields": {
+            "ticker": "CDW",
+            "name": "CDW",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 96,
+        "fields": {
+            "ticker": "CE",
+            "name": "Celanese",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 97,
+        "fields": {
+            "ticker": "COR",
+            "name": "Cencora",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 98,
+        "fields": {
+            "ticker": "CNC",
+            "name": "Centene Corporation",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 99,
+        "fields": {
+            "ticker": "CNP",
+            "name": "CenterPoint Energy",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 100,
+        "fields": {
+            "ticker": "CDAY",
+            "name": "Ceridian",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 101,
+        "fields": {
+            "ticker": "CF",
+            "name": "CF Industries",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 102,
+        "fields": {
+            "ticker": "CRL",
+            "name": "Charles River Laboratories",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 103,
+        "fields": {
+            "ticker": "SCHW",
+            "name": "Charles Schwab Corporation",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 104,
+        "fields": {
+            "ticker": "CHTR",
+            "name": "Charter Communications",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 105,
+        "fields": {
+            "ticker": "CVX",
+            "name": "Chevron Corporation",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 106,
+        "fields": {
+            "ticker": "CMG",
+            "name": "Chipotle Mexican Grill",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 107,
+        "fields": {
+            "ticker": "CB",
+            "name": "Chubb Limited",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 108,
+        "fields": {
+            "ticker": "CHD",
+            "name": "Church & Dwight",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 109,
+        "fields": {
+            "ticker": "CI",
+            "name": "Cigna",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 110,
+        "fields": {
+            "ticker": "CINF",
+            "name": "Cincinnati Financial",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 111,
+        "fields": {
+            "ticker": "CTAS",
+            "name": "Cintas",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 112,
+        "fields": {
+            "ticker": "CSCO",
+            "name": "Cisco",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 113,
+        "fields": {
+            "ticker": "C",
+            "name": "Citigroup",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 114,
+        "fields": {
+            "ticker": "CFG",
+            "name": "Citizens Financial Group",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 115,
+        "fields": {
+            "ticker": "CLX",
+            "name": "Clorox",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 116,
+        "fields": {
+            "ticker": "CME",
+            "name": "CME Group",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 117,
+        "fields": {
+            "ticker": "CMS",
+            "name": "CMS Energy",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 118,
+        "fields": {
+            "ticker": "KO",
+            "name": "Coca-Cola Company (The)",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 119,
+        "fields": {
+            "ticker": "CTSH",
+            "name": "Cognizant",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 120,
+        "fields": {
+            "ticker": "CL",
+            "name": "Colgate-Palmolive",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 121,
+        "fields": {
+            "ticker": "CMCSA",
+            "name": "Comcast",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 122,
+        "fields": {
+            "ticker": "CMA",
+            "name": "Comerica",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 123,
+        "fields": {
+            "ticker": "CAG",
+            "name": "Conagra Brands",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 124,
+        "fields": {
+            "ticker": "COP",
+            "name": "ConocoPhillips",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 125,
+        "fields": {
+            "ticker": "ED",
+            "name": "Consolidated Edison",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 126,
+        "fields": {
+            "ticker": "STZ",
+            "name": "Constellation Brands",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 127,
+        "fields": {
+            "ticker": "CEG",
+            "name": "Constellation Energy",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 128,
+        "fields": {
+            "ticker": "COO",
+            "name": "CooperCompanies",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 129,
+        "fields": {
+            "ticker": "CPRT",
+            "name": "Copart",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 130,
+        "fields": {
+            "ticker": "GLW",
+            "name": "Corning Inc.",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 131,
+        "fields": {
+            "ticker": "CTVA",
+            "name": "Corteva",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 132,
+        "fields": {
+            "ticker": "CSGP",
+            "name": "CoStar Group",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 133,
+        "fields": {
+            "ticker": "COST",
+            "name": "Costco",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 134,
+        "fields": {
+            "ticker": "CTRA",
+            "name": "Coterra",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 135,
+        "fields": {
+            "ticker": "CCI",
+            "name": "Crown Castle",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 136,
+        "fields": {
+            "ticker": "CSX",
+            "name": "CSX",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 137,
+        "fields": {
+            "ticker": "CMI",
+            "name": "Cummins",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 138,
+        "fields": {
+            "ticker": "CVS",
+            "name": "CVS Health",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 139,
+        "fields": {
+            "ticker": "DHI",
+            "name": "D.R. Horton",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 140,
+        "fields": {
+            "ticker": "DHR",
+            "name": "Danaher Corporation",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 141,
+        "fields": {
+            "ticker": "DRI",
+            "name": "Darden Restaurants",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 142,
+        "fields": {
+            "ticker": "DVA",
+            "name": "DaVita Inc.",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 143,
+        "fields": {
+            "ticker": "DE",
+            "name": "John Deere",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 144,
+        "fields": {
+            "ticker": "DAL",
+            "name": "Delta Air Lines",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 145,
+        "fields": {
+            "ticker": "XRAY",
+            "name": "Dentsply Sirona",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 146,
+        "fields": {
+            "ticker": "DVN",
+            "name": "Devon Energy",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 147,
+        "fields": {
+            "ticker": "DXCM",
+            "name": "Dexcom",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 148,
+        "fields": {
+            "ticker": "FANG",
+            "name": "Diamondback Energy",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 149,
+        "fields": {
+            "ticker": "DLR",
+            "name": "Digital Realty",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 150,
+        "fields": {
+            "ticker": "DFS",
+            "name": "Discover Financial",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 151,
+        "fields": {
+            "ticker": "DIS",
+            "name": "Disney",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 152,
+        "fields": {
+            "ticker": "DG",
+            "name": "Dollar General",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 153,
+        "fields": {
+            "ticker": "DLTR",
+            "name": "Dollar Tree",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 154,
+        "fields": {
+            "ticker": "D",
+            "name": "Dominion Energy",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 155,
+        "fields": {
+            "ticker": "DPZ",
+            "name": "Domino's",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 156,
+        "fields": {
+            "ticker": "DOV",
+            "name": "Dover Corporation",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 157,
+        "fields": {
+            "ticker": "DOW",
+            "name": "Dow Inc.",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 158,
+        "fields": {
+            "ticker": "DTE",
+            "name": "DTE Energy",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 159,
+        "fields": {
+            "ticker": "DUK",
+            "name": "Duke Energy",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 160,
+        "fields": {
+            "ticker": "DD",
+            "name": "DuPont",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 161,
+        "fields": {
+            "ticker": "DXC",
+            "name": "DXC Technology",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 162,
+        "fields": {
+            "ticker": "EMN",
+            "name": "Eastman Chemical Company",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 163,
+        "fields": {
+            "ticker": "ETN",
+            "name": "Eaton Corporation",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 164,
+        "fields": {
+            "ticker": "EBAY",
+            "name": "eBay",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 165,
+        "fields": {
+            "ticker": "ECL",
+            "name": "Ecolab",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 166,
+        "fields": {
+            "ticker": "EIX",
+            "name": "Edison International",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 167,
+        "fields": {
+            "ticker": "EW",
+            "name": "Edwards Lifesciences",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 168,
+        "fields": {
+            "ticker": "EA",
+            "name": "Electronic Arts",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 169,
+        "fields": {
+            "ticker": "ELV",
+            "name": "Elevance Health",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 170,
+        "fields": {
+            "ticker": "LLY",
+            "name": "Eli Lilly and Company",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 171,
+        "fields": {
+            "ticker": "EMR",
+            "name": "Emerson Electric",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 172,
+        "fields": {
+            "ticker": "ENPH",
+            "name": "Enphase",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 173,
+        "fields": {
+            "ticker": "ETR",
+            "name": "Entergy",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 174,
+        "fields": {
+            "ticker": "EOG",
+            "name": "EOG Resources",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 175,
+        "fields": {
+            "ticker": "EPAM",
+            "name": "EPAM Systems",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 176,
+        "fields": {
+            "ticker": "EQT",
+            "name": "EQT",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 177,
+        "fields": {
+            "ticker": "EFX",
+            "name": "Equifax",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 178,
+        "fields": {
+            "ticker": "EQIX",
+            "name": "Equinix",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 179,
+        "fields": {
+            "ticker": "EQR",
+            "name": "Equity Residential",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 180,
+        "fields": {
+            "ticker": "ESS",
+            "name": "Essex Property Trust",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 181,
+        "fields": {
+            "ticker": "EL",
+            "name": "Est\u00e9e Lauder Companies (The)",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 182,
+        "fields": {
+            "ticker": "ETSY",
+            "name": "Etsy",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 183,
+        "fields": {
+            "ticker": "EG",
+            "name": "Everest Re",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 184,
+        "fields": {
+            "ticker": "EVRG",
+            "name": "Evergy",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 185,
+        "fields": {
+            "ticker": "ES",
+            "name": "Eversource",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 186,
+        "fields": {
+            "ticker": "EXC",
+            "name": "Exelon",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 187,
+        "fields": {
+            "ticker": "EXPE",
+            "name": "Expedia Group",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 188,
+        "fields": {
+            "ticker": "EXPD",
+            "name": "Expeditors International",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 189,
+        "fields": {
+            "ticker": "EXR",
+            "name": "Extra Space Storage",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 190,
+        "fields": {
+            "ticker": "XOM",
+            "name": "ExxonMobil",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 191,
+        "fields": {
+            "ticker": "FFIV",
+            "name": "F5, Inc.",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 192,
+        "fields": {
+            "ticker": "FDS",
+            "name": "FactSet",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 193,
+        "fields": {
+            "ticker": "FICO",
+            "name": "Fair Isaac",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 194,
+        "fields": {
+            "ticker": "FAST",
+            "name": "Fastenal",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 195,
+        "fields": {
+            "ticker": "FRT",
+            "name": "Federal Realty",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 196,
+        "fields": {
+            "ticker": "FDX",
+            "name": "FedEx",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 197,
+        "fields": {
+            "ticker": "FITB",
+            "name": "Fifth Third Bank",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 198,
+        "fields": {
+            "ticker": "FSLR",
+            "name": "First Solar",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 199,
+        "fields": {
+            "ticker": "FE",
+            "name": "FirstEnergy",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 200,
+        "fields": {
+            "ticker": "FIS",
+            "name": "FIS",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 201,
+        "fields": {
+            "ticker": "FI",
+            "name": "Fiserv",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 202,
+        "fields": {
+            "ticker": "FLT",
+            "name": "Fleetcor",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 203,
+        "fields": {
+            "ticker": "FMC",
+            "name": "FMC Corporation",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 204,
+        "fields": {
+            "ticker": "F",
+            "name": "Ford Motor Company",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 205,
+        "fields": {
+            "ticker": "FTNT",
+            "name": "Fortinet",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 206,
+        "fields": {
+            "ticker": "FTV",
+            "name": "Fortive",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 207,
+        "fields": {
+            "ticker": "FOXA",
+            "name": "Fox Corporation (Class A)",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 208,
+        "fields": {
+            "ticker": "FOX",
+            "name": "Fox Corporation (Class B)",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 209,
+        "fields": {
+            "ticker": "BEN",
+            "name": "Franklin Templeton",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 210,
+        "fields": {
+            "ticker": "FCX",
+            "name": "Freeport-McMoRan",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 211,
+        "fields": {
+            "ticker": "GRMN",
+            "name": "Garmin",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 212,
+        "fields": {
+            "ticker": "IT",
+            "name": "Gartner",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 213,
+        "fields": {
+            "ticker": "GEHC",
+            "name": "GE HealthCare",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 214,
+        "fields": {
+            "ticker": "GEN",
+            "name": "Gen Digital",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 215,
+        "fields": {
+            "ticker": "GNRC",
+            "name": "Generac",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 216,
+        "fields": {
+            "ticker": "GD",
+            "name": "General Dynamics",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 217,
+        "fields": {
+            "ticker": "GE",
+            "name": "General Electric",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 218,
+        "fields": {
+            "ticker": "GIS",
+            "name": "General Mills",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 219,
+        "fields": {
+            "ticker": "GM",
+            "name": "General Motors",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 220,
+        "fields": {
+            "ticker": "GPC",
+            "name": "Genuine Parts Company",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 221,
+        "fields": {
+            "ticker": "GILD",
+            "name": "Gilead Sciences",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 222,
+        "fields": {
+            "ticker": "GL",
+            "name": "Globe Life",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 223,
+        "fields": {
+            "ticker": "GPN",
+            "name": "Global Payments",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 224,
+        "fields": {
+            "ticker": "GS",
+            "name": "Goldman Sachs",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 225,
+        "fields": {
+            "ticker": "HAL",
+            "name": "Halliburton",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 226,
+        "fields": {
+            "ticker": "HIG",
+            "name": "Hartford (The)",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 227,
+        "fields": {
+            "ticker": "HAS",
+            "name": "Hasbro",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 228,
+        "fields": {
+            "ticker": "HCA",
+            "name": "HCA Healthcare",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 229,
+        "fields": {
+            "ticker": "PEAK",
+            "name": "Healthpeak",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 230,
+        "fields": {
+            "ticker": "HSIC",
+            "name": "Henry Schein",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 231,
+        "fields": {
+            "ticker": "HSY",
+            "name": "Hershey's",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 232,
+        "fields": {
+            "ticker": "HES",
+            "name": "Hess Corporation",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 233,
+        "fields": {
+            "ticker": "HPE",
+            "name": "Hewlett Packard Enterprise",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 234,
+        "fields": {
+            "ticker": "HLT",
+            "name": "Hilton Worldwide",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 235,
+        "fields": {
+            "ticker": "HOLX",
+            "name": "Hologic",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 236,
+        "fields": {
+            "ticker": "HD",
+            "name": "Home Depot (The)",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 237,
+        "fields": {
+            "ticker": "HON",
+            "name": "Honeywell",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 238,
+        "fields": {
+            "ticker": "HRL",
+            "name": "Hormel Foods",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 239,
+        "fields": {
+            "ticker": "HST",
+            "name": "Host Hotels & Resorts",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 240,
+        "fields": {
+            "ticker": "HWM",
+            "name": "Howmet Aerospace",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 241,
+        "fields": {
+            "ticker": "HPQ",
+            "name": "HP Inc.",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 242,
+        "fields": {
+            "ticker": "HUM",
+            "name": "Humana",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 243,
+        "fields": {
+            "ticker": "HBAN",
+            "name": "Huntington Bancshares",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 244,
+        "fields": {
+            "ticker": "HII",
+            "name": "Huntington Ingalls Industries",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 245,
+        "fields": {
+            "ticker": "IBM",
+            "name": "IBM",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 246,
+        "fields": {
+            "ticker": "IEX",
+            "name": "IDEX Corporation",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 247,
+        "fields": {
+            "ticker": "IDXX",
+            "name": "Idexx Laboratories",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 248,
+        "fields": {
+            "ticker": "ITW",
+            "name": "Illinois Tool Works",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 249,
+        "fields": {
+            "ticker": "ILMN",
+            "name": "Illumina",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 250,
+        "fields": {
+            "ticker": "INCY",
+            "name": "Incyte",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 251,
+        "fields": {
+            "ticker": "IR",
+            "name": "Ingersoll Rand",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 252,
+        "fields": {
+            "ticker": "PODD",
+            "name": "Insulet",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 253,
+        "fields": {
+            "ticker": "INTC",
+            "name": "Intel",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 254,
+        "fields": {
+            "ticker": "ICE",
+            "name": "Intercontinental Exchange",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 255,
+        "fields": {
+            "ticker": "IFF",
+            "name": "International Flavors & Fragrances",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 256,
+        "fields": {
+            "ticker": "IP",
+            "name": "International Paper",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 257,
+        "fields": {
+            "ticker": "IPG",
+            "name": "Interpublic Group of Companies (The)",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 258,
+        "fields": {
+            "ticker": "INTU",
+            "name": "Intuit",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 259,
+        "fields": {
+            "ticker": "ISRG",
+            "name": "Intuitive Surgical",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 260,
+        "fields": {
+            "ticker": "IVZ",
+            "name": "Invesco",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 261,
+        "fields": {
+            "ticker": "INVH",
+            "name": "Invitation Homes",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 262,
+        "fields": {
+            "ticker": "IQV",
+            "name": "IQVIA",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 263,
+        "fields": {
+            "ticker": "IRM",
+            "name": "Iron Mountain",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 264,
+        "fields": {
+            "ticker": "JBHT",
+            "name": "J.B. Hunt",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 265,
+        "fields": {
+            "ticker": "JKHY",
+            "name": "Jack Henry & Associates",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 266,
+        "fields": {
+            "ticker": "J",
+            "name": "Jacobs Solutions",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 267,
+        "fields": {
+            "ticker": "JNJ",
+            "name": "Johnson & Johnson",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 268,
+        "fields": {
+            "ticker": "JCI",
+            "name": "Johnson Controls",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 269,
+        "fields": {
+            "ticker": "JPM",
+            "name": "JPMorgan Chase",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 270,
+        "fields": {
+            "ticker": "JNPR",
+            "name": "Juniper Networks",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 271,
+        "fields": {
+            "ticker": "K",
+            "name": "Kellogg's",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 272,
+        "fields": {
+            "ticker": "KVUE",
+            "name": "Kenvue",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 273,
+        "fields": {
+            "ticker": "KDP",
+            "name": "Keurig Dr Pepper",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 274,
+        "fields": {
+            "ticker": "KEY",
+            "name": "KeyCorp",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 275,
+        "fields": {
+            "ticker": "KEYS",
+            "name": "Keysight",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 276,
+        "fields": {
+            "ticker": "KMB",
+            "name": "Kimberly-Clark",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 277,
+        "fields": {
+            "ticker": "KIM",
+            "name": "Kimco Realty",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 278,
+        "fields": {
+            "ticker": "KMI",
+            "name": "Kinder Morgan",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 279,
+        "fields": {
+            "ticker": "KLAC",
+            "name": "KLA Corporation",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 280,
+        "fields": {
+            "ticker": "KHC",
+            "name": "Kraft Heinz",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 281,
+        "fields": {
+            "ticker": "KR",
+            "name": "Kroger",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 282,
+        "fields": {
+            "ticker": "LHX",
+            "name": "L3Harris",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 283,
+        "fields": {
+            "ticker": "LH",
+            "name": "LabCorp",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 284,
+        "fields": {
+            "ticker": "LRCX",
+            "name": "Lam Research",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 285,
+        "fields": {
+            "ticker": "LW",
+            "name": "Lamb Weston",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 286,
+        "fields": {
+            "ticker": "LVS",
+            "name": "Las Vegas Sands",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 287,
+        "fields": {
+            "ticker": "LDOS",
+            "name": "Leidos",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 288,
+        "fields": {
+            "ticker": "LEN",
+            "name": "Lennar",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 289,
+        "fields": {
+            "ticker": "LNC",
+            "name": "Lincoln Financial",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 290,
+        "fields": {
+            "ticker": "LIN",
+            "name": "Linde plc",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 291,
+        "fields": {
+            "ticker": "LYV",
+            "name": "Live Nation Entertainment",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 292,
+        "fields": {
+            "ticker": "LKQ",
+            "name": "LKQ Corporation",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 293,
+        "fields": {
+            "ticker": "LMT",
+            "name": "Lockheed Martin",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 294,
+        "fields": {
+            "ticker": "L",
+            "name": "Loews Corporation",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 295,
+        "fields": {
+            "ticker": "LOW",
+            "name": "Lowe's",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 296,
+        "fields": {
+            "ticker": "LYB",
+            "name": "LyondellBasell",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 297,
+        "fields": {
+            "ticker": "MTB",
+            "name": "M&T Bank",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 298,
+        "fields": {
+            "ticker": "MRO",
+            "name": "Marathon Oil",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 299,
+        "fields": {
+            "ticker": "MPC",
+            "name": "Marathon Petroleum",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 300,
+        "fields": {
+            "ticker": "MKTX",
+            "name": "MarketAxess",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 301,
+        "fields": {
+            "ticker": "MAR",
+            "name": "Marriott International",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 302,
+        "fields": {
+            "ticker": "MMC",
+            "name": "Marsh McLennan",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 303,
+        "fields": {
+            "ticker": "MLM",
+            "name": "Martin Marietta Materials",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 304,
+        "fields": {
+            "ticker": "MAS",
+            "name": "Masco",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 305,
+        "fields": {
+            "ticker": "MA",
+            "name": "Mastercard",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 306,
+        "fields": {
+            "ticker": "MTCH",
+            "name": "Match Group",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 307,
+        "fields": {
+            "ticker": "MKC",
+            "name": "McCormick & Company",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 308,
+        "fields": {
+            "ticker": "MCD",
+            "name": "McDonald's",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 309,
+        "fields": {
+            "ticker": "MCK",
+            "name": "McKesson",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 310,
+        "fields": {
+            "ticker": "MDT",
+            "name": "Medtronic",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 311,
+        "fields": {
+            "ticker": "MRK",
+            "name": "Merck & Co.",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 312,
+        "fields": {
+            "ticker": "META",
+            "name": "Meta Platforms",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 313,
+        "fields": {
+            "ticker": "MET",
+            "name": "MetLife",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 314,
+        "fields": {
+            "ticker": "MTD",
+            "name": "Mettler Toledo",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 315,
+        "fields": {
+            "ticker": "MGM",
+            "name": "MGM Resorts",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 316,
+        "fields": {
+            "ticker": "MCHP",
+            "name": "Microchip Technology",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 317,
+        "fields": {
+            "ticker": "MU",
+            "name": "Micron Technology",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 318,
+        "fields": {
+            "ticker": "MSFT",
+            "name": "Microsoft",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 319,
+        "fields": {
+            "ticker": "MAA",
+            "name": "Mid-America Apartment Communities",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 320,
+        "fields": {
+            "ticker": "MRNA",
+            "name": "Moderna",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 321,
+        "fields": {
+            "ticker": "MHK",
+            "name": "Mohawk Industries",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 322,
+        "fields": {
+            "ticker": "MOH",
+            "name": "Molina Healthcare",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 323,
+        "fields": {
+            "ticker": "TAP",
+            "name": "Molson Coors Beverage Company",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 324,
+        "fields": {
+            "ticker": "MDLZ",
+            "name": "Mondelez International",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 325,
+        "fields": {
+            "ticker": "MPWR",
+            "name": "Monolithic Power Systems",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 326,
+        "fields": {
+            "ticker": "MNST",
+            "name": "Monster Beverage",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 327,
+        "fields": {
+            "ticker": "MCO",
+            "name": "Moody's Corporation",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 328,
+        "fields": {
+            "ticker": "MS",
+            "name": "Morgan Stanley",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 329,
+        "fields": {
+            "ticker": "MOS",
+            "name": "Mosaic Company (The)",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 330,
+        "fields": {
+            "ticker": "MSI",
+            "name": "Motorola Solutions",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 331,
+        "fields": {
+            "ticker": "MSCI",
+            "name": "MSCI",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 332,
+        "fields": {
+            "ticker": "NDAQ",
+            "name": "Nasdaq, Inc.",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 333,
+        "fields": {
+            "ticker": "NTAP",
+            "name": "NetApp",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 334,
+        "fields": {
+            "ticker": "NFLX",
+            "name": "Netflix",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 335,
+        "fields": {
+            "ticker": "NWL",
+            "name": "Newell Brands",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 336,
+        "fields": {
+            "ticker": "NEM",
+            "name": "Newmont",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 337,
+        "fields": {
+            "ticker": "NWSA",
+            "name": "News Corp (Class A)",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 338,
+        "fields": {
+            "ticker": "NWS",
+            "name": "News Corp (Class B)",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 339,
+        "fields": {
+            "ticker": "NEE",
+            "name": "NextEra Energy",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 340,
+        "fields": {
+            "ticker": "NKE",
+            "name": "Nike, Inc.",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 341,
+        "fields": {
+            "ticker": "NI",
+            "name": "NiSource",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 342,
+        "fields": {
+            "ticker": "NDSN",
+            "name": "Nordson Corporation",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 343,
+        "fields": {
+            "ticker": "NSC",
+            "name": "Norfolk Southern Railway",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 344,
+        "fields": {
+            "ticker": "NTRS",
+            "name": "Northern Trust",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 345,
+        "fields": {
+            "ticker": "NOC",
+            "name": "Northrop Grumman",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 346,
+        "fields": {
+            "ticker": "NCLH",
+            "name": "Norwegian Cruise Line Holdings",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 347,
+        "fields": {
+            "ticker": "NRG",
+            "name": "NRG Energy",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 348,
+        "fields": {
+            "ticker": "NUE",
+            "name": "Nucor",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 349,
+        "fields": {
+            "ticker": "NVDA",
+            "name": "Nvidia",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 350,
+        "fields": {
+            "ticker": "NVR",
+            "name": "NVR, Inc.",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 351,
+        "fields": {
+            "ticker": "NXPI",
+            "name": "NXP Semiconductors",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 352,
+        "fields": {
+            "ticker": "ORLY",
+            "name": "O'Reilly Auto Parts",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 353,
+        "fields": {
+            "ticker": "OXY",
+            "name": "Occidental Petroleum",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 354,
+        "fields": {
+            "ticker": "ODFL",
+            "name": "Old Dominion",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 355,
+        "fields": {
+            "ticker": "OMC",
+            "name": "Omnicom Group",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 356,
+        "fields": {
+            "ticker": "ON",
+            "name": "ON Semiconductor",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 357,
+        "fields": {
+            "ticker": "OKE",
+            "name": "ONEOK",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 358,
+        "fields": {
+            "ticker": "ORCL",
+            "name": "Oracle Corporation",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 359,
+        "fields": {
+            "ticker": "OGN",
+            "name": "Organon & Co.",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 360,
+        "fields": {
+            "ticker": "OTIS",
+            "name": "Otis Worldwide",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 361,
+        "fields": {
+            "ticker": "PCAR",
+            "name": "Paccar",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 362,
+        "fields": {
+            "ticker": "PKG",
+            "name": "Packaging Corporation of America",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 363,
+        "fields": {
+            "ticker": "PANW",
+            "name": "Palo Alto Networks",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 364,
+        "fields": {
+            "ticker": "PARA",
+            "name": "Paramount Global",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 365,
+        "fields": {
+            "ticker": "PH",
+            "name": "Parker Hannifin",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 366,
+        "fields": {
+            "ticker": "PAYX",
+            "name": "Paychex",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 367,
+        "fields": {
+            "ticker": "PAYC",
+            "name": "Paycom",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 368,
+        "fields": {
+            "ticker": "PYPL",
+            "name": "PayPal",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 369,
+        "fields": {
+            "ticker": "PNR",
+            "name": "Pentair",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 370,
+        "fields": {
+            "ticker": "PEP",
+            "name": "PepsiCo",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 371,
+        "fields": {
+            "ticker": "PFE",
+            "name": "Pfizer",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 372,
+        "fields": {
+            "ticker": "PCG",
+            "name": "PG&E Corporation",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 373,
+        "fields": {
+            "ticker": "PM",
+            "name": "Philip Morris International",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 374,
+        "fields": {
+            "ticker": "PSX",
+            "name": "Phillips 66",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 375,
+        "fields": {
+            "ticker": "PNW",
+            "name": "Pinnacle West",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 376,
+        "fields": {
+            "ticker": "PXD",
+            "name": "Pioneer Natural Resources",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 377,
+        "fields": {
+            "ticker": "PNC",
+            "name": "PNC Financial Services",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 378,
+        "fields": {
+            "ticker": "POOL",
+            "name": "Pool Corporation",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 379,
+        "fields": {
+            "ticker": "PPG",
+            "name": "PPG Industries",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 380,
+        "fields": {
+            "ticker": "PPL",
+            "name": "PPL Corporation",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 381,
+        "fields": {
+            "ticker": "PFG",
+            "name": "Principal Financial Group",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 382,
+        "fields": {
+            "ticker": "PG",
+            "name": "Procter & Gamble",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 383,
+        "fields": {
+            "ticker": "PGR",
+            "name": "Progressive Corporation",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 384,
+        "fields": {
+            "ticker": "PLD",
+            "name": "Prologis",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 385,
+        "fields": {
+            "ticker": "PRU",
+            "name": "Prudential Financial",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 386,
+        "fields": {
+            "ticker": "PEG",
+            "name": "Public Service Enterprise Group",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 387,
+        "fields": {
+            "ticker": "PTC",
+            "name": "PTC",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 388,
+        "fields": {
+            "ticker": "PSA",
+            "name": "Public Storage",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 389,
+        "fields": {
+            "ticker": "PHM",
+            "name": "PulteGroup",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 390,
+        "fields": {
+            "ticker": "QRVO",
+            "name": "Qorvo",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 391,
+        "fields": {
+            "ticker": "PWR",
+            "name": "Quanta Services",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 392,
+        "fields": {
+            "ticker": "QCOM",
+            "name": "Qualcomm",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 393,
+        "fields": {
+            "ticker": "DGX",
+            "name": "Quest Diagnostics",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 394,
+        "fields": {
+            "ticker": "RL",
+            "name": "Ralph Lauren Corporation",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 395,
+        "fields": {
+            "ticker": "RJF",
+            "name": "Raymond James",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 396,
+        "fields": {
+            "ticker": "RTX",
+            "name": "RTX Corporation",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 397,
+        "fields": {
+            "ticker": "O",
+            "name": "Realty Income",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 398,
+        "fields": {
+            "ticker": "REG",
+            "name": "Regency Centers",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 399,
+        "fields": {
+            "ticker": "REGN",
+            "name": "Regeneron",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 400,
+        "fields": {
+            "ticker": "RF",
+            "name": "Regions Financial Corporation",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 401,
+        "fields": {
+            "ticker": "RSG",
+            "name": "Republic Services",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 402,
+        "fields": {
+            "ticker": "RMD",
+            "name": "ResMed",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 403,
+        "fields": {
+            "ticker": "RVTY",
+            "name": "Revvity",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 404,
+        "fields": {
+            "ticker": "RHI",
+            "name": "Robert Half",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 405,
+        "fields": {
+            "ticker": "ROK",
+            "name": "Rockwell Automation",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 406,
+        "fields": {
+            "ticker": "ROL",
+            "name": "Rollins, Inc.",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 407,
+        "fields": {
+            "ticker": "ROP",
+            "name": "Roper Technologies",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 408,
+        "fields": {
+            "ticker": "ROST",
+            "name": "Ross Stores",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 409,
+        "fields": {
+            "ticker": "RCL",
+            "name": "Royal Caribbean Group",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 410,
+        "fields": {
+            "ticker": "SPGI",
+            "name": "S&P Global",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 411,
+        "fields": {
+            "ticker": "CRM",
+            "name": "Salesforce",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 412,
+        "fields": {
+            "ticker": "SBAC",
+            "name": "SBA Communications",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 413,
+        "fields": {
+            "ticker": "SLB",
+            "name": "Schlumberger",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 414,
+        "fields": {
+            "ticker": "STX",
+            "name": "Seagate Technology",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 415,
+        "fields": {
+            "ticker": "SEE",
+            "name": "Sealed Air",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 416,
+        "fields": {
+            "ticker": "SRE",
+            "name": "Sempra Energy",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 417,
+        "fields": {
+            "ticker": "NOW",
+            "name": "ServiceNow",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 418,
+        "fields": {
+            "ticker": "SHW",
+            "name": "Sherwin-Williams",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 419,
+        "fields": {
+            "ticker": "SPG",
+            "name": "Simon Property Group",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 420,
+        "fields": {
+            "ticker": "SWKS",
+            "name": "Skyworks Solutions",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 421,
+        "fields": {
+            "ticker": "SJM",
+            "name": "J.M. Smucker Company (The)",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 422,
+        "fields": {
+            "ticker": "SNA",
+            "name": "Snap-on",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 423,
+        "fields": {
+            "ticker": "SEDG",
+            "name": "SolarEdge",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 424,
+        "fields": {
+            "ticker": "SO",
+            "name": "Southern Company",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 425,
+        "fields": {
+            "ticker": "LUV",
+            "name": "Southwest Airlines",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 426,
+        "fields": {
+            "ticker": "SWK",
+            "name": "Stanley Black & Decker",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 427,
+        "fields": {
+            "ticker": "SBUX",
+            "name": "Starbucks",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 428,
+        "fields": {
+            "ticker": "STT",
+            "name": "State Street Corporation",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 429,
+        "fields": {
+            "ticker": "STLD",
+            "name": "Steel Dynamics",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 430,
+        "fields": {
+            "ticker": "STE",
+            "name": "Steris",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 431,
+        "fields": {
+            "ticker": "SYK",
+            "name": "Stryker Corporation",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 432,
+        "fields": {
+            "ticker": "SYF",
+            "name": "Synchrony Financial",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 433,
+        "fields": {
+            "ticker": "SNPS",
+            "name": "Synopsys",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 434,
+        "fields": {
+            "ticker": "SYY",
+            "name": "Sysco",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 435,
+        "fields": {
+            "ticker": "TMUS",
+            "name": "T-Mobile US",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 436,
+        "fields": {
+            "ticker": "TROW",
+            "name": "T. Rowe Price",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 437,
+        "fields": {
+            "ticker": "TTWO",
+            "name": "Take-Two Interactive",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 438,
+        "fields": {
+            "ticker": "TPR",
+            "name": "Tapestry, Inc.",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 439,
+        "fields": {
+            "ticker": "TRGP",
+            "name": "Targa Resources",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 440,
+        "fields": {
+            "ticker": "TGT",
+            "name": "Target Corporation",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 441,
+        "fields": {
+            "ticker": "TEL",
+            "name": "TE Connectivity",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 442,
+        "fields": {
+            "ticker": "TDY",
+            "name": "Teledyne Technologies",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 443,
+        "fields": {
+            "ticker": "TFX",
+            "name": "Teleflex",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 444,
+        "fields": {
+            "ticker": "TER",
+            "name": "Teradyne",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 445,
+        "fields": {
+            "ticker": "TSLA",
+            "name": "Tesla, Inc.",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 446,
+        "fields": {
+            "ticker": "TXN",
+            "name": "Texas Instruments",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 447,
+        "fields": {
+            "ticker": "TXT",
+            "name": "Textron",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 448,
+        "fields": {
+            "ticker": "TMO",
+            "name": "Thermo Fisher Scientific",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 449,
+        "fields": {
+            "ticker": "TJX",
+            "name": "TJX Companies",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 450,
+        "fields": {
+            "ticker": "TSCO",
+            "name": "Tractor Supply",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 451,
+        "fields": {
+            "ticker": "TT",
+            "name": "Trane Technologies",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 452,
+        "fields": {
+            "ticker": "TDG",
+            "name": "TransDigm Group",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 453,
+        "fields": {
+            "ticker": "TRV",
+            "name": "Travelers Companies (The)",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 454,
+        "fields": {
+            "ticker": "TRMB",
+            "name": "Trimble Inc.",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 455,
+        "fields": {
+            "ticker": "TFC",
+            "name": "Truist",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 456,
+        "fields": {
+            "ticker": "TYL",
+            "name": "Tyler Technologies",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 457,
+        "fields": {
+            "ticker": "TSN",
+            "name": "Tyson Foods",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 458,
+        "fields": {
+            "ticker": "USB",
+            "name": "U.S. Bank",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 459,
+        "fields": {
+            "ticker": "UDR",
+            "name": "UDR, Inc.",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 460,
+        "fields": {
+            "ticker": "ULTA",
+            "name": "Ulta Beauty",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 461,
+        "fields": {
+            "ticker": "UNP",
+            "name": "Union Pacific Corporation",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 462,
+        "fields": {
+            "ticker": "UAL",
+            "name": "United Airlines Holdings",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 463,
+        "fields": {
+            "ticker": "UPS",
+            "name": "United Parcel Service",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 464,
+        "fields": {
+            "ticker": "URI",
+            "name": "United Rentals",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 465,
+        "fields": {
+            "ticker": "UNH",
+            "name": "UnitedHealth Group",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 466,
+        "fields": {
+            "ticker": "UHS",
+            "name": "Universal Health Services",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 467,
+        "fields": {
+            "ticker": "VLO",
+            "name": "Valero Energy",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 468,
+        "fields": {
+            "ticker": "VTR",
+            "name": "Ventas",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 469,
+        "fields": {
+            "ticker": "VRSN",
+            "name": "Verisign",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 470,
+        "fields": {
+            "ticker": "VRSK",
+            "name": "Verisk",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 471,
+        "fields": {
+            "ticker": "VZ",
+            "name": "Verizon",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 472,
+        "fields": {
+            "ticker": "VRTX",
+            "name": "Vertex Pharmaceuticals",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 473,
+        "fields": {
+            "ticker": "VFC",
+            "name": "VF Corporation",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 474,
+        "fields": {
+            "ticker": "VTRS",
+            "name": "Viatris",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 475,
+        "fields": {
+            "ticker": "VICI",
+            "name": "Vici Properties",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 476,
+        "fields": {
+            "ticker": "V",
+            "name": "Visa Inc.",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 477,
+        "fields": {
+            "ticker": "VMC",
+            "name": "Vulcan Materials Company",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 478,
+        "fields": {
+            "ticker": "WAB",
+            "name": "Wabtec",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 479,
+        "fields": {
+            "ticker": "WBA",
+            "name": "Walgreens Boots Alliance",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 480,
+        "fields": {
+            "ticker": "WMT",
+            "name": "Walmart",
+            "sector": "Consumer Staples"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 481,
+        "fields": {
+            "ticker": "WBD",
+            "name": "Warner Bros. Discovery",
+            "sector": "Communication Services"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 482,
+        "fields": {
+            "ticker": "WM",
+            "name": "Waste Management",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 483,
+        "fields": {
+            "ticker": "WAT",
+            "name": "Waters Corporation",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 484,
+        "fields": {
+            "ticker": "WEC",
+            "name": "WEC Energy Group",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 485,
+        "fields": {
+            "ticker": "WFC",
+            "name": "Wells Fargo",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 486,
+        "fields": {
+            "ticker": "WELL",
+            "name": "Welltower",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 487,
+        "fields": {
+            "ticker": "WST",
+            "name": "West Pharmaceutical Services",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 488,
+        "fields": {
+            "ticker": "WDC",
+            "name": "Western Digital",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 489,
+        "fields": {
+            "ticker": "WRK",
+            "name": "WestRock",
+            "sector": "Materials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 490,
+        "fields": {
+            "ticker": "WY",
+            "name": "Weyerhaeuser",
+            "sector": "Real Estate"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 491,
+        "fields": {
+            "ticker": "WHR",
+            "name": "Whirlpool Corporation",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 492,
+        "fields": {
+            "ticker": "WMB",
+            "name": "Williams Companies",
+            "sector": "Energy"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 493,
+        "fields": {
+            "ticker": "WTW",
+            "name": "Willis Towers Watson",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 494,
+        "fields": {
+            "ticker": "GWW",
+            "name": "W. W. Grainger",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 495,
+        "fields": {
+            "ticker": "WYNN",
+            "name": "Wynn Resorts",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 496,
+        "fields": {
+            "ticker": "XEL",
+            "name": "Xcel Energy",
+            "sector": "Utilities"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 497,
+        "fields": {
+            "ticker": "XYL",
+            "name": "Xylem Inc.",
+            "sector": "Industrials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 498,
+        "fields": {
+            "ticker": "YUM",
+            "name": "Yum! Brands",
+            "sector": "Consumer Discretionary"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 499,
+        "fields": {
+            "ticker": "ZBRA",
+            "name": "Zebra Technologies",
+            "sector": "Information Technology"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 500,
+        "fields": {
+            "ticker": "ZBH",
+            "name": "Zimmer Biomet",
+            "sector": "Health Care"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 501,
+        "fields": {
+            "ticker": "ZION",
+            "name": "Zions Bancorporation",
+            "sector": "Financials"
+        }
+    },
+    {
+        "model": "FDRReader.Stock",
+        "pk": 502,
+        "fields": {
+            "ticker": "ZTS",
+            "name": "Zoetis",
+            "sector": "Health Care"
+        }
+    }
+]

@@ -1,0 +1,52 @@
+[
+    {
+        "ticker": "MMM",
+        "name": "3M",
+        "sector": "Industrials"
+    },
+    {
+        "ticker": "AOS",
+        "name": "A. O. Smith",
+        "sector": "Industrials"
+    },
+    {
+        "ticker": "ABT",
+        "name": "Abbott",
+        "sector": "Health Care"
+    },
+    {
+        "ticker": "ABBV",
+        "name": "AbbVie",
+        "sector": "Health Care"
+    },
+    {
+        "ticker": "ACN",
+        "name": "Accenture",
+        "sector": "Information Technology"
+    },
+    {
+        "ticker": "ATVI",
+        "name": "Activision Blizzard",
+        "sector": "Communication Services"
+    },
+    {
+        "ticker": "ADM",
+        "name": "ADM",
+        "sector": "Consumer Staples"
+    },
+    {
+        "ticker": "ADBE",
+        "name": "Adobe Inc.",
+        "sector": "Information Technology"
+    },
+    {
+        "ticker": "ADP",
+        "name": "ADP",
+        "sector": "Industrials"
+    },
+    {
+        "ticker": "AES",
+        "name": "AES Corporation",
+        "sector": "Utilities"
+    }
+]

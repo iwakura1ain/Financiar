@@ -23,9 +23,6 @@ class APIQueryAndModelMixin:
     query_function = None
     
     def query_retrieve(self, request, *args, **kwargs):
-        print("ARGS: ", args)
-        print("KWARGS: ", {**kwargs})
-
         instance = self.get_object()
         serializer = self.get_serializer(instance)
         api_data = self.query_api(request.GET, **kwargs)
@@ -33,7 +30,7 @@ class APIQueryAndModelMixin:
         return Response({**serializer.data, "data": api_data})
 
     def query_api(self, query_params, *args, **kwargs):
-        ticker = kwargs.get("ticker")
+        ticker = kwargs.get("ticker").upper()
         start = start if (start := query_params.get("start")) else "2020-01-01"
         end = end if (end := query_params.get("end")) else "2021-01-01"
         
@@ -58,8 +55,6 @@ class StockList(generics.ListAPIView):
             filter[key] = arg
 
         return queryset.filter(**filter)
-
-
     
 class StockDetail(generics.GenericAPIView, APIQueryAndModelMixin):
     queryset = Stock.objects.all()  # fixed variable names
@@ -69,8 +64,6 @@ class StockDetail(generics.GenericAPIView, APIQueryAndModelMixin):
         
     def get(self, request, *args, **kwargs):
         return self.query_retrieve(request, *args, **kwargs)
-        
-        #return self.retrieve(request, *args, **kwargs)
 
 
     

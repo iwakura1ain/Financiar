@@ -1,33 +1,28 @@
+import {useState, useEffect} from "react"
+
 import {StockInfoItem} from "./StockInfoItem.jsx"
 import {SearchBar} from "./Searchbar.jsx"
+import {StockGraphBox} from "./StockGraph.jsx"
+
+//import {StockAPIRoute} from "../APIRoutes.jsx"
 
 export function StockInfoListing() {
-    const stocks = [
-        {
-            name:"Apple",
-            ticker: "APPL",
-            rating:5,
-            info:"Electronics"
-        },
-        {
-            name:"Apple",
-            ticker: "APPL",
-            rating:5,
-            info:"Electronics"
-        },
-        {
-            name:"Apple",
-            ticker: "APPL",
-            rating:5,
-            info:"Electronics"
-        },
-        {
-            name:"3M",
-            ticker: "MMM",
-            rating:3,
-            info:"Home Appliances"
-        }
-    ]
+    const [search, setSearch] = useState("")
+    const [stocks, setStocks] = useState([])
+    const [selected, setSelected] = useState({})
+
+    useEffect(() => {
+        console.log("fetching")
+        fetch("/api/fdr/stocks", { headers:{accept: 'application/json'} })
+            .then(response => (response.json()))
+            .then(json => {
+                console.log(json)
+                return json
+            })
+            .then(setStocks)
+            .catch(console.log)
+    }, [search])
+    
     
     return (
         <>
@@ -40,11 +35,18 @@ export function StockInfoListing() {
                 <p>Industry experts mention their experience using our software and the excellent results they have achieved</p>
               </div>
 
-              <SearchBar />
+              <StockGraphBox selected={selected} setSelected={setSelected}/>
+
+              <SearchBar search={search} setSearch={setSearch}/>
               
               <div className="row">
                 {stocks.map((stock, i) => (
-                    <StockInfoItem key={i} {...stock}/>
+                    <StockInfoItem
+                      key={i}
+                      selected={selected}
+                      setSelected={setSelected}
+                      {...stock}
+                    />
                 ))}
 
               </div>

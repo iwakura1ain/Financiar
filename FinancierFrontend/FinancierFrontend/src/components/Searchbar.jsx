@@ -1,11 +1,16 @@
-export function SearchBar() {
+export function SearchBar({search, setSearch}) {
     return (
         <div className="searchbar-serch-box animated fadeInDown">
 	  <div className="searchbar-form">
 	    <div className="single-searchbar-form">
 	      <h3 className="searchbar-label">Name</h3>
 	      <form action="index.html">
-		<input type="text" placeholder="Ex: 3M, Apple, Microsoft" />
+		<input
+                  type="text"
+                  placeholder="Ex: 3M, Apple, Microsoft"
+                  onChange={(event) =>
+                      setSearch(event.target.value)
+                  }/>
 	      </form>
 	      <div className="searchbar-form-icon">
 		<i className="flaticon-list-with-dots"></i>
@@ -14,7 +19,12 @@ export function SearchBar() {
 	    <div className="single-searchbar-form">
 	      <h3 className="searchbar-label">Sector</h3>
 	      <form action="index.html">
-		<input type="text" placeholder="Ex: Electronics, Finance" />
+		<input
+                  type="text"
+                  placeholder="Ex: Electronics, Finance"
+                  onChange={(event) =>
+                      setSearch(event.target.value)
+                  }/>
 	      </form>
 	      <div className="searchbar-form-icon">
 		<i className="flaticon-gps-fixed-indicator"></i>
@@ -22,7 +32,7 @@ export function SearchBar() {
 	    </div>
 	  </div>
 	  <div className="searchbar-serch">
-	    <button className="searchbar-btn" onclick="window.location.href='#'">
+	    <button className="searchbar-btn" >
 	      search  <i data-feather="search"></i> 
 	    </button>
 	  </div>

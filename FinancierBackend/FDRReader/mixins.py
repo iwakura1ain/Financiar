@@ -36,10 +36,8 @@ class IncrementFieldMixin:
 
     def perform_update(self, serializer):
         serializer.save()
-
-
-    
-
+        
+        
 class APIQueryAndModelMixin:
     """
     Query an api and retrieve a model instance.

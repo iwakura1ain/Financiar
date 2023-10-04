@@ -15,11 +15,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+
+from .api import CommentListWrite
 
 urlpatterns = [
-    path("api/fdr/", include("FDRReader.urls")),
-    path("api/comments/", include("Comments.urls")),
-    path('admin/', admin.site.urls),
+    path("", CommentListWrite.as_view(), name="comment_list")
 ]
+
+
+
+
+
 

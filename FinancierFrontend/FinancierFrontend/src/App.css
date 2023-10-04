@@ -105,10 +105,8 @@
 .testimonial-button {
   width: 100%;
   display: flex;
-  flex-direction: column;
-  
+  flex-direction: column;  
 }
-
 
 
 .testimonial-info {
@@ -116,7 +114,6 @@
   padding-left: 20px;
   position: center;
 }
-
 
 .testimonial-box {
   background-color: #ffffff;

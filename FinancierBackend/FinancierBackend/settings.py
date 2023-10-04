@@ -40,8 +40,10 @@ INSTALLED_APPS = [
 
     "rest_framework", # drf
     "corsheaders", # django-cors-headers
+    "django_filters", # django-filter
 
-    "FDRReader.apps.FDRReaderConfig" # Financedatareader app
+    "FDRReader.apps.FDRReaderConfig", # Financedatareader app
+    "Comments.apps.CommentsConfig",
 ]
 
 MIDDLEWARE = [
@@ -109,6 +111,10 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny",
     ],
+    
+    #django-filter settings
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    
     # pagination settings
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 100,

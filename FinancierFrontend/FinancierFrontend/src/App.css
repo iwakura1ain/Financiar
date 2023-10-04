@@ -98,9 +98,25 @@
   border-bottom: 1px solid #F8F9FB;
   margin-bottom: 90px;
   padding: 90px;
-  
+  box-sizing: border-box;
   width: 100%;
 }
+
+.testimonial-button {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+
+
+.testimonial-info {
+  padding: 0px;
+  padding-left: 20px;
+  position: center;
+}
+
 
 .testimonial-box {
   background-color: #ffffff;

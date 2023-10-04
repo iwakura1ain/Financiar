@@ -19,7 +19,9 @@ export function StockInfoListing() {
                 console.log(json)
                 return json
             })
-            .then(setStocks)
+            .then(json => {
+                setStocks(json.results)
+            })
             .catch(console.log)
     }, [search])
     

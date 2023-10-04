@@ -18,17 +18,21 @@ export function StockInfoItem({
                   setSelected(ticker)
                   console.log(`selected ${ticker}`)
               }}>
-                <div className="col-md-2 col-xs-2">
-                  <div className="profile-picture review-one"></div>
+                <div className="testimonial-wrapper">
+                  <div className="col-md-2 col-xs-2 padding-none">
+                    <div className="profile-picture review-one"></div>
+                  </div>
+                  <div className="col-md-10 col-xs-10 testimonial-flex" >
+                    <div className="testimonial-name-info">
+                    <h6 className="testimonial-name">{name}</h6>
+                    {/* <span className="rating">{rating} <i className="icon ion-md-star"></i></span> */}
+                    <small className="testimonial-info">{sector} | {ticker}</small>
+                    </div>
+                  </div>
                 </div>
-                <div className="col-md-10 col-xs-10" >
-                  <h6 className="testimonial-name">{name}</h6>
-                  <span className="rating">{rating} <i className="icon ion-md-star"></i></span>
-                  <small className="testimonial-info">{sector} | {ticker}</small>
-                </div>
+                <p className="testimonial-desc">{desc}</p>
                </button>
             </div>
-            <p>{desc}</p>
           </div>
         </div>
     )

@@ -1,7 +1,8 @@
 
 from django.shortcuts import render
 from rest_framework import generics
-#from rest_framework.pagination import PageNumberPagination
+from django_filters.rest_framework import DjangoFilterBackend
+
 
 from .models import Stock
 from .serializers import StockSerializer
@@ -16,7 +17,8 @@ class StockList(generics.ListAPIView):
     queryset = Stock.objects.all()  
     serializer_class = StockSerializer
     pagination_class = StandardResultsSetPagination
-    
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['name', 'sector']    
     
 class StockRate(generics.GenericAPIView, IncrementFieldMixin):
     queryset = Stock.objects.all()  

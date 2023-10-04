@@ -11,4 +11,6 @@ class StockSerializer(serializers.ModelSerializer):
             "ticker",
             "name",
             "sector",
+            "rating",
+            "desc"
         )

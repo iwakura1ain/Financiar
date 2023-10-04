@@ -17,11 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from .api import StockDetail, StockList
+from .api import StockDetail, StockList, StockRate
 
 urlpatterns = [
     path("stocks", StockList.as_view(), name="stock_list"),
-    path("stocks/<str:ticker>", StockDetail.as_view(), name="stock_list")
+    path("stocks/<str:ticker>", StockDetail.as_view(), name="stock_list"),
+    path("stocks/<str:ticker>/rate", StockRate.as_view(), name="stock_rate")
 ]
 
 

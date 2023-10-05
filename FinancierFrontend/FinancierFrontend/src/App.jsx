@@ -8,12 +8,9 @@ import {StockInfoListing} from "./components/StockInfoListing.jsx"
 import {Footer} from "./components/Footer.jsx"
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
       <>
-        <NavBar />
-        
+        <NavBar />        
         <StockInfoListing />
         <Footer />
       </>

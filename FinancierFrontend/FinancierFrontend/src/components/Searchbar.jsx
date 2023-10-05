@@ -1,4 +1,4 @@
-export function SearchBar({search, setSearch}) {
+export function SearchBar({name, setName, sector, setSector}) {
     return (
         <div className="searchbar-serch-box animated fadeInDown">
 	  <div className="searchbar-form">
@@ -9,7 +9,7 @@ export function SearchBar({search, setSearch}) {
                   type="text"
                   placeholder="Ex: 3M, Apple, Microsoft"
                   onChange={(event) =>
-                      setSearch(event.target.value)
+                      setName(event.target.value)
                   }/>
 	      </form>
 	      <div className="searchbar-form-icon">
@@ -23,7 +23,7 @@ export function SearchBar({search, setSearch}) {
                   type="text"
                   placeholder="Ex: Electronics, Finance"
                   onChange={(event) =>
-                      setSearch(event.target.value)
+                      setSector(event.target.value)
                   }/>
 	      </form>
 	      <div className="searchbar-form-icon">

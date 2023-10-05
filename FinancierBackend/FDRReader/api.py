@@ -2,6 +2,7 @@
 from django.shortcuts import render
 from rest_framework import generics
 from django_filters.rest_framework import DjangoFilterBackend
+from django.db.models.query import QuerySet
 
 
 from .models import Stock
@@ -17,8 +18,29 @@ class StockList(generics.ListAPIView):
     queryset = Stock.objects.all()  
     serializer_class = StockSerializer
     pagination_class = StandardResultsSetPagination
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['name', 'sector']    
+    # filter_backends = [DjangoFilterBackend]
+    # filterset_fields = ['name', 'sector']
+
+    def get_queryset(self):
+        assert self.queryset is not None, (
+            "'%s' should either include a `queryset` attribute, "
+            "or override the `get_queryset()` method."
+            % self.__class__.__name__
+        )
+        
+        queryset = self.queryset
+        if isinstance(queryset, QuerySet):
+            # Ensure queryset is re-evaluated on each request.
+            queryset = queryset.all()
+
+        if (name := self.request.query_params.get("name")) is not None:
+            queryset = queryset.filter(name__icontains=name)
+
+        if (sector := self.request.query_params.get("sector")) is not None:
+            queryset = queryset.filter(sector__icontains=sector)
+            
+        return queryset
+
     
 class StockRate(generics.GenericAPIView, IncrementFieldMixin):
     queryset = Stock.objects.all()  

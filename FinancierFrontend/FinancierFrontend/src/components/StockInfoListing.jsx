@@ -4,27 +4,89 @@ import {StockInfoItem} from "./StockInfoItem.jsx"
 import {SearchBar} from "./Searchbar.jsx"
 import {StockGraphBox} from "./StockGraph.jsx"
 
-//import {StockAPIRoute} from "../APIRoutes.jsx"
 
 export function StockInfoListing() {
-    const [search, setSearch] = useState("")
+    const [searchName, setSearchName] = useState("")
+    const [searchSector, setSearchSector] = useState("")
     const [stocks, setStocks] = useState([])
     const [selected, setSelected] = useState({})
 
+    const [paginateNext, setPaginateNext] = useState("")
+    const [paginatePrev, setPaginatePrev] = useState("")
+    const [pressedNext, setPressedNext] = useState(false)
+    const [pressedPrev, setPressedPrev] = useState(false)
+
+    
+    const baseUrl="/api/fdr/stocks"
     useEffect(() => {
         console.log("fetching")
-        fetch("/api/fdr/stocks", { headers:{accept: 'application/json'} })
+
+        let fetchUrl = `${baseUrl}?name=${searchName}&sector=${searchSector}`
+        fetch(fetchUrl, { headers:{accept: 'application/json'} })
             .then(response => (response.json()))
             .then(json => {
                 console.log(json)
                 return json
             })
             .then(json => {
+                setPaginateNext(json.next)
+                setPaginatePrev(json.previous)
                 setStocks(json.results)
             })
             .catch(console.log)
-    }, [search])
-    
+
+    }, [searchSector, searchName])
+
+    useEffect(() => {
+        if (!pressedNext || paginateNext == null)
+            return
+        setPressedNext(false)
+        
+        let nextUrl = new URL(paginateNext);
+        let nextPage = nextUrl.searchParams.get("page")
+        
+        console.log(`fetching ${nextPage}`)
+        let fetchUrl = `${baseUrl}?name=${searchName}&sector=${searchSector}`
+        fetch(`${fetchUrl}&page=${nextPage}`, { headers:{accept: 'application/json'} })
+            .then(response => (response.json()))
+            .then(json => {
+                console.log(json)
+                return json
+            })
+            .then(json => {
+                setPaginateNext(json.next)
+                setPaginatePrev(json.previous)
+                setStocks(json.results)
+            })
+            .catch(console.log)
+
+    }, [pressedNext])
+
+    useEffect(() => {
+        if (!pressedPrev || paginatePrev == null)
+            return
+        setPressedPrev(false)
+        
+        let prevUrl = new URL(paginatePrev);
+        let prevPage = prevUrl.searchParams.get("page")
+        if (prevPage == null)
+            prevPage = 1
+        
+        console.log(`fetching ${prevPage}`)
+        let fetchUrl = `${baseUrl}?name=${searchName}&sector=${searchSector}`
+        fetch(`${fetchUrl}&page=${prevPage}`, { headers:{accept: 'application/json'} })
+            .then(response => (response.json()))
+            .then(json => {
+                console.log(json)
+                return json
+            })
+            .then(json => {
+                setPaginateNext(json.next)
+                setPaginatePrev(json.previous)
+                setStocks(json.results)
+            })
+            .catch(console.log)
+    }, [pressedPrev])
     
     return (
         <>
@@ -39,7 +101,12 @@ export function StockInfoListing() {
 
               <StockGraphBox selected={selected} setSelected={setSelected}/>
 
-              <SearchBar search={search} setSearch={setSearch}/>
+              <SearchBar
+                name={searchName}
+                setName={setSearchName}
+                sector={searchSector}
+                setSector={setSearchSector}
+              />
               
               <div className="row">
                 {stocks.map((stock, i) => (
@@ -51,6 +118,17 @@ export function StockInfoListing() {
                     />
                 ))}
 
+              </div>
+              <div className="navigation">
+                <button className="navigation-button" onClick={() => {
+                    console.log("PRESSED PREV")
+                    setPressedPrev(true)
+                }}>Prev</button>
+                <button className="navigation-button" onClick={() => {
+                    console.log("PRESSED NEXT")
+                    setPressedNext(true)
+                }}>Next</button>
+                
               </div>
             </div>
           </section>

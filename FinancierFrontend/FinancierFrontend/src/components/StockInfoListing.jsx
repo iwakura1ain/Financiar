@@ -28,19 +28,16 @@ export function StockInfoListing() {
     
     return (
         <>
-          <section  id="testimonials">
+          <section id="testimonials">
 
             <div className="container width-full">
-              
+
               <div className="title-block animated fadeInDown">
-                <h2>The Best Digital Agencies Recommend Our Software</h2>
-                <p>Industry experts mention their experience using our software and the excellent results they have achieved</p>
+                <h2>Financiar</h2>
+                <p>summary</p>
               </div>
-
               <StockGraphBox selected={selected} setSelected={setSelected}/>
-
               <SearchBar search={search} setSearch={setSearch}/>
-              
               <div className="row">
                 {stocks.map((stock, i) => (
                     <StockInfoItem

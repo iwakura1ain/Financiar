@@ -1,10 +1,6 @@
 import {useState, useEffect} from 'react';
-
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
-
 import {StockAPIRoute} from "../APIRoutes.jsx"
-
 
 const testData = [
     {
@@ -74,10 +70,9 @@ export function StockGraphBox({selected, setSelected}) {
 
     if (stockData) {
         return (
-            <div style={{height:500, width:1000}}>
-              <button onClick={() => setSelected()}>Close</button>
+            <div className='barchart-wrapper'>
               {/* <ResponsiveContainer width="100%" height="100%"> */}
-                <BarChart
+                <BarChart className="barchart-chart"
                   width={1000}
                   height={500}
                   data={stockData.data}
@@ -96,6 +91,7 @@ export function StockGraphBox({selected, setSelected}) {
                   {/* <Bar dataKey="Open" stackId="a" fill="#8884d8" /> */}
                   <Bar dataKey="Close" stackId="a" fill="#82ca9d" />
                 </BarChart>
+                <button className="barchart-btn" onClick={() => setSelected()}>Close</button>
               {/* </ResponsiveContainer> */}
             </div>
         )

@@ -25,6 +25,7 @@ export function NavBar() {
     return (
         <>
         <nav className="navbar navbar-default navbar-expand-lg fixed-top custom-navbar">
+        {/* <nav className="custom-navbar"> */}
           <div className="navbar-container">
             <div className='navbar-hamburger' onClick={updateMenu}>
               <div className={burger_class} ></div>

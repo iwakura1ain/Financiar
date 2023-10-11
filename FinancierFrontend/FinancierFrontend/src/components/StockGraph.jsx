@@ -73,7 +73,7 @@ export function StockGraphBox({selected, setSelected}) {
             <div className='barchart-wrapper'>
               {/* <ResponsiveContainer width="100%" height="100%"> */}
                 <BarChart className="barchart-chart"
-                  width={1000}
+                  width={700}
                   height={500}
                   data={stockData.data}
                   margin={{

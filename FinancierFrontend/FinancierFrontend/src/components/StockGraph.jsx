@@ -40,13 +40,12 @@ export function StockGraphBox({selected, setSelected}) {
     const [stockData, setStockData] = useState()
     const [startDate, setStartDate] = useState()
     const [endDate, setEndDate] = useState()
+    const [hideState, setHideState] = useState(true)
     
     useEffect(() => {
         if (selected === undefined)
             setStockData()
 
-        // (Array.from(json).map())
-        else {
             fetch(`/api/fdr/stocks/${selected}?start=${startDate}&end=${endDate}`, { headers:{accept: 'application/json'} })
                 .then(response => response.json())
                 .then(json => {
@@ -62,8 +61,7 @@ export function StockGraphBox({selected, setSelected}) {
                     return json
                 })
                 .then(setStockData)
-                .catch(console.log)
-        }
+            .catch(console.log)
     }, [selected, startDate, endDate])
 
     const CustomBar = (props) => {
@@ -78,39 +76,49 @@ export function StockGraphBox({selected, setSelected}) {
         )
     }
     
-    if (stockData) {
+    if (stockData && !hideState) {
         return (
-            <div className='barchart-wrapper' style={{height:500, width:1000, marginBottom:"20px"}}>
+            <div className='barchart-wrapper' /* style={{height:500, width:1000, marginBottom:"20px"}} */>
               {/* <button onClick={() => setZoomLevel(zoomLevel+10)}>+</button> */}
               {/* <button onClick={() => setZoomLevel(zoomLevel-10)}>-</button> */}
+              <button
+                className="barchart-toggle"
+                onClick={() => {
+                    setHideState(true)
 
-              <label htmlFor="start">Start date:</label>
-              <input
-                type="date"
-                id="start"
-                max={GetDefaultDate()}
-                onChange={(event) =>{
-                    console.log(event.target.value)
-                    setStartDate(event.target.value)
-                }}/> 
+                }}>Hide Graph</button>
+              <div className="barchart-controls">
+                <div>
+                  <label htmlFor="start">Start date : </label>
+                  <input
+                    type="date"
+                    id="start"
+                    max={GetDefaultDate()}
+                    onChange={(event) =>{
+                        console.log(event.target.value)
+                        setStartDate(event.target.value)
+                    }}/> 
+                </div>
+                <div>
+                  <label htmlFor="end">End date : </label>
+                  <input
+                    type="date"
+                    id="end"
+            /* value={GetDefaultDate()} */
+                    max={GetDefaultDate()}
+                    onChange={(event) => {
+                        console.log(event.target.value)
+                        setEndDate(event.target.value)
+                    }}/>
 
-              <label htmlFor="end">End date:</label>
-              <input
-                type="date"
-                id="end"
-                /* value={GetDefaultDate()} */
-                max={GetDefaultDate()}
-                onChange={(event) => {
-                    console.log(event.target.value)
-                    setEndDate(event.target.value)
-                }}/>
-
-              <button onClick={() => setSelected()}>Close</button>
-
+                </div>
+              
+              {/* <button className="barchart-btn" onClick={() => setSelected()}>Close</button> */}
+              </div>
               {/* <ResponsiveContainer width="100%" height="100%"> */}
                 <BarChart className="barchart-chart"
-                  width={700}
-                  height={500}
+                  width={1600}
+                  height={600}
                   data={stockData.data}
                   margin={{
                       top: 20,
@@ -129,15 +137,23 @@ export function StockGraphBox({selected, setSelected}) {
                   <Bar shape={CustomBar} dataKey="Area" stackId="a" >
                   </Bar>
                 </BarChart>
-                <button className="barchart-btn" onClick={() => setSelected()}>Close</button>
               {/* </ResponsiveContainer> */}
             </div>
+        )
+    }
+    else if (stockData && hideState) {
+        return (
+              <button
+                className="barchart-toggle"
+                onClick={() => {
+                    setHideState(false)
+                }}>Show Graph</button>
         )
     }
 
     return (
         <div>
-          <p>SELECT A STOCK</p>
+          <div className="barchart-toggle">Select Stock</div>
         </div>
     )
     

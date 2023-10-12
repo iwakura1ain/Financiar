@@ -1,14 +1,27 @@
+/* ==============================================
+  1. Root 
+  ===============================================*/
+
 #root {
-  max-width: 1280px;
-  //margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* text-align: center; */
+  /* position: relative; */
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .padding-none{
   padding: 0;
 }
-
 
 .logo {
   height: 6em;
@@ -16,50 +29,118 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-@keyframes logo-spin {
+/* @keyframes logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
+} */
+/* @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
-}
-
-.card {
+} */
+/* .card {
   padding: 2em;
 }
-
 .read-the-docs {
   color: #888;
-}
+} */
 
 /* ==============================================
-   2. Navbar 
-   ===============================================*/
+  2. Navbar
+  ===============================================*/
 
 .custom-navbar {
   background-color: #ffffff!important;
+  width: 100%;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.09);
   height: 70px;
   max-height: 70px;
+  /* display: flex;
+  justify-content: flex-start; */
+  /* padding-inline-start: 1em; */
+  padding: 0;
+}
+
+.navbar-container{
+  width: 100%;
+  height: 70px;
+  max-height: 70px;
+  /* padding: 0 10px; */
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.navbar-hamburger{
+  height: 50%;
+  margin-left: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  background-color: white;
+  width: 10%;
+}
+
+.burger-bar{
+  width: 2.5em;
+  height: 0.4em;
+  background-color: black;
+  border-radius: 0.5em;
+  transition: all 0.5s;
+}
+
+.menu{
+  width: 30%;
+  height: 100vh;
+  background-color: #252d32;
+  position: absolute;
+  top: 0;
+  z-index: -1;;
+  transition: all 0.5s;
+}
+
+.navbar-logo{
+  width: 80%;
+  font-size: 20px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.navbar-dummy{
+  width: 10%;
+  color: white;
+}
+
+.hidden{
+  display: none;
+}
+
+.visible{
+  display: inherit;
+  transition: all 0.5s;
 }
 
 .navbar-toggler {
   font-size: 38px;
   background-color: transparent;
+  color: black;
 }
 
 .navbar-toggler:focus {
@@ -90,22 +171,305 @@
   float: right;
 }
 
+.burgur-bar.clicked:nth-child(1){
+  transform: rotate(45deg) translate(0.75em, 1.25em);
+  transition: ease-out 0.5s;
+}
+
+.burgur-bar.clicked:nth-child(2){
+  transform: scale(0.1);
+  transition: ease-out 0.5s;
+}
+
+.burgur-bar.clicked:nth-child(3){
+  transform: rotate(135deg) translate(-0.5em, 1em);
+  transition: ease-out 0.5s;
+}
+
+.burgur-bar.unclicked{
+  transform: rotate(0) translate(0);
+  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* .menu.visible{
+  transition: all 0.5s;
+} */
 
 /* ==============================================
-   6. Testimonials
-   ===============================================*/
+  3. Barchart
+  ===============================================*/
 
-#testimonials {
-  background-color: #f6f8f9;
-  border-top: 1px solid #F8F9FB;
-  /* border-bottom: 1px solid #F8F9FB; */
-  margin-bottom: 90px;
-  padding: 90px;
-  box-sizing: border-box;
+.barchart-wrapper{
+  /* border: 3px solid #0095f7; */
+  /* width: 1000px; */
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: -60px;
+}
+
+.barchart-chart{
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.barchart-btn{
+  background-color: #0095f7;
+  transition: 0.3s ease-out;
+}
+
+.barchart-btn:hover{
+  background-color: #f79000;
+}
+
+/*-------------------------------------
+  4.  searchbar(before)
+   --------------------------------------*/
+  /* .searchbar {
+  position: relative;
+  background:url(../images/searchbar/banner.jpg)no-repeat;
+  background-position:center;
+  background-size:cover;
+  text-align: center;
+  height:800px;
+  z-index: 1;
+}
+
+.searchbar:before{
+    position: absolute;
+    content: " ";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:rgba(65,73,89,.65);
+    z-index: -1;
+}
+
+.searchbar-label {
+  margin-left: -20px;
+  margin-bottom: -5px;
+  padding:20px;
+}
+
+.searchbar-input{
   width: 100%;
 }
 
-.testimonial-button {
+.searchbar-txt { padding-top: 155px;}
+
+.searchbar-txt h2 {
+    font-size: 48px;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.4px;
+    line-height: 1.4;
+}
+.searchbar-txt p {
+    font-size: 18px;
+    color: #fcfcfc;
+    margin-top: 25px;
+}
+
+.searchbar-search-box{
+  width: 100%;
+  margin-top: 78px;
+  display: flex;
+}
+
+.searchbar-form {
+    display: flex;
+    background: #fff;
+    height: 70px;
+    border-radius: 3px;
+    width: 85%; 
+    width: 100%;
+}
+.single-searchbar-form {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 50%;
+    width: 40%;
+    width: 100%;
+    padding: 0 30px;
+}
+.single-searchbar-form:first-child{border-right: 1px solid #edeff1;}
+.single-searchbar-form input {
+    margin-left: 10px;
+    height: 70px;
+    width: 300px;
+    border: 0;
+    background: transparent;
+}
+.single-searchbar-form input[type="text"]{
+    font-size: 14px;
+    color: #859098;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+.searchbar-form-icon {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #252d32;
+}
+
+.searchbar-btn {
+  display:  flex;
+  justify-content:  center;
+  align-items:  center;
+  font-size:  14px;
+  color:  #fff;
+  width:  170px; 
+  width: 100%;
+  width: 20%;
+  height:  70px;
+  background:  #0095f7;
+  text-transform:  capitalize;
+  margin-left:  30px;
+  border-radius: 3px;
+  -webkit-transition: 0.3s linear; 
+  -moz-transition: 0.3s linear; 
+  -ms-transition: 0.3s linear; 
+  -o-transition: 0.3s linear; 
+  transition: 0.3s linear;
+}
+.searchbar-btn:hover{
+  // background: #fd4043;
+  background: #f43032;
+}
+
+.searchbar-btn svg {
+  width:  14px;
+  height:  auto;
+  margin-left:  12px;
+} */
+
+/*-------------------------------------
+  4.  searchbar(after)
+  --------------------------------------*/
+
+.searchbar-search-box{
+  width: 100%;
+  height: 100px;
+  margin-top: 78px;
+  display: flex;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.09);
+}
+
+.single-searchbar-form:first-child{
+  border-right: 1px solid #53627c2a;
+}
+.single-searchbar-form{
+  width: 40%;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.searchbar-label{
+  margin: -2.5px -10px;
+  padding: 15px 20px;
+}
+
+.searchbar-input{
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+
+  background-color: #ffffff;
+  color: #2e3643f7;
+  border: none;
+}
+
+.searchbar-input:focus{
+  outline: none;
+}
+
+.searchbar-form-icon{
+
+}
+
+.searchbar-btn{
+  width: 20%;
+  border-radius: 0 5px 5px 0;
+  background-color: #0095f7;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-20px);
+    -ms-transform: translateY(-20px);
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+}
+
+/* ==============================================
+  5. testimonials
+  ===============================================*/
+
+#testimonials {
+  width: 100%;
+  min-width: 100%;
+  background-color: #f6f8f9;
+  border-top: 1px solid #F8F9FB;
+  text-align: center;
+  border-bottom: 1px solid #F8F9FB;
+  /* position: absolute;
+  top: 0;
+  left: 0; */
+  /* margin-top: 90px; */
+  padding: 70px 0px;
+  box-sizing: content-box;
+}
+
+.testimonials-container{
+  width: 100%;
+  min-width: 100%;
+  background-color: white;
+  padding: 0px 40px;
+}
+
+.testimonials-title{
+  font-weight: 400;
+  color: black;
+  cursor: pointer;
+}
+
+.testimonials-summary{
+  font-weight: 700;
+  color: #292c31;
+}
+
+.testimonials-button {
   width: 100%;
   height: 180px;
   display: flex;
@@ -116,12 +480,12 @@
   transition: none;
 }
 
-.testimonial-button:hover{
+.testimonials-button:hover{
   height: 180px;
 }
 
 
-.testimonial-flex{
+.testimonials-flex{
   left: 5px;
   display: flex;
   flex-direction: column;
@@ -129,27 +493,27 @@
   align-items: flex-start; */
 }
 
-.testimonial-wrapper{
+.testimonials-wrapper{
   width: 100%;
   display: flex;
 }
 
-.testimonial-name-info{
+.testimonials-name-info{
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.testimonial-name{
+.testimonials-name{
   text-align: center;
 }
 
 
-.testimonial-info {
+.testimonials-info {
   padding: 0px;
   position: center;
 }
 
-.testimonial-box {
+.testimonials-box {
   background-color: #ffffff;
   box-shadow: 0 0 1px 0 rgba(0,12,32,0.04), 0 10px 16px 0 rgba(10,31,68,0.06);
   border-radius: 20px;
@@ -160,14 +524,14 @@
   transition: height 0.5s; */
 }
 
-/* .testimonial-box:hover {
+/* .testimonials-box:hover {
   padding-top: 10px;
   padding-bottom: 20px;
   height: 200px;
 } 
 */
 
-.testimonial-box h6 {
+.testimonials-box h6 {
   font-size: 22px;
   font-weight: 700;
   letter-spacing: .05em;
@@ -175,7 +539,7 @@
   margin-bottom: 0px;
 }
 
-/* .testimonial-box p {
+/* .testimonials-box p {
   font-size: 16px;
   font-weight: 300; */
   /* margin-top: 25px;
@@ -183,16 +547,16 @@
   padding: 0px;
 } */
 
-.testimonial-box i {
+.testimonials-box i {
   color: #ffffff;
 }
 
-.testimonial-box small {
+.testimonials-box small {
   color: #8da2b5;
   display: inline-block;
 }
 
-.testimonial-box span {
+.testimonials-box span {
   font-size: 14px;
   color: #ffffff;
 }
@@ -222,7 +586,7 @@
   /* border-bottom: 1px solid #edf1f2; */
 }
 
-.testimonial-desc{
+.testimonials-desc{
   color: #778694d7;
   width: 100%;
   height: 100%;
@@ -241,149 +605,17 @@
   -webkit-box-orient: vertical;
 }
 
-
-/*-------------------------------------
-   4.  searchbar
-   --------------------------------------*/
-.animated {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-@keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(-20px);
-    -ms-transform: translateY(-20px);
-    transform: translateY(-20px);
-  }
-
-  100% {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    -ms-transform: translateY(0);
-    transform: translateY(0);
-  }
-}
-
-.fadeInDown {
-  -webkit-animation-name: fadeInDown;
-  animation-name: fadeInDown;
-}
-
-.searchbar {
-  position: relative;
-  background:url(../images/searchbar/banner.jpg)no-repeat;
-  background-position:center;
-  background-size:cover;
-  text-align: center;
-  height:800px;
-  z-index: 1;
-}
-.searchbar:before{
-    position: absolute;
-    content: " ";
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background:rgba(65,73,89,.65);
-    z-index: -1;
-}
-
-.searchbar-label {
-  margin-left: -20px;
-  margin-bottom: -5px;
-  padding:20px;
-}
-
-.searchbar-txt { padding-top: 155px;}
-
-.searchbar-txt h2 {
-    font-size: 48px;
-    color: #fff;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2.4px;
-    line-height: 1.4;
-}
-.searchbar-txt p {
-    font-size: 18px;
-    color: #fcfcfc;
-    margin-top: 25px;
-}
-
-.searchbar-serch-box{margin-top: 78px;display: flex;}
-.searchbar-form {
-    display: flex;
-    background: #fff;
-    height: 70px;
-    border-radius: 3px;
-    width: 85%;
-}
-.single-searchbar-form {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 50%;
-    padding: 0 30px;
-}
-.single-searchbar-form:first-child{border-right: 1px solid #edeff1;}
-.single-searchbar-form input {
-    margin-left: 10px;
-    height: 70px;
-    width: 300px;
-    border: 0;
-    background: transparent;
-}
-.single-searchbar-form input[type="text"]{
-    font-size: 14px;
-    color: #859098;
-    text-transform: capitalize;
-    font-weight: 500;
-}
-.searchbar-form-icon {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    color: #252d32;
-}
-.searchbar-btn {
-  display:  flex;
-  justify-content:  center;
-  align-items:  center;
-  font-size:  14px;
-  color:  #fff;
-  width:  170px;
-  height:  70px;
-  background:  #0095f7;
-  text-transform:  capitalize;
-  margin-left:  30px;
-  border-radius: 3px;
-  -webkit-transition: 0.3s linear; 
-  -moz-transition: 0.3s linear; 
-  -ms-transition: 0.3s linear; 
-  -o-transition: 0.3s linear; 
-  transition: 0.3s linear;
-}
-.searchbar-btn:hover{/*background: #fd4043;*/background: #f43032;}
-
-.searchbar-btn svg {
-  width:  14px;
-  height:  auto;
-  margin-left:  12px;
-}
-
-
 /* ==============================================
-   9. Footer
-   ===============================================*/
+  6. Footer
+  ===============================================*/
+
+ul{
+  list-style: none;
+  padding-left: 0px;
+}
 
 footer {
-  
+  width: 100%;
   background-color: #292c31;
   padding: 60px 0;
   color: #62656a;
@@ -440,3 +672,71 @@ footer small {
 .external-links {
   color: #0095f7;
 }
+
+/* =============================================================== */
+/* classes to moderate with media query 
+  1. searchbar-search-box
+  2. searchbar-btn
+  3. personal-info
+  4. testimonials-button
+  5. testimonials-wrapper */
+/* ============================================================
+10.  media query - 1200px
+============================================================ */
+/* @media (max-width: 1200px) {
+  .searchbar-search-box{}
+
+  .searchbar-btn{
+    width: 20%;
+  }
+
+  .personal-info{
+    width: 100%;
+  }
+ 
+} */
+
+/* ============================================================
+11.  media query - 1024px
+============================================================ */
+
+/* @media (max-width: 1024px) {
+  .searchbar-search-box{
+    width: 100%;
+    height: 70px;
+    margin-top: 50px;
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.09);
+  }
+
+  .searchbar-btn{
+    width: 20%;
+  }
+
+  .personal-info{
+    width: 100%;
+  }
+ 
+} */
+
+/* ============================================================
+12.  media query - 768px
+============================================================ */
+
+/* @media (max-width: 768px) {
+  html, body{
+    width: 100%;
+    height: 100%;
+  }
+
+  #root {
+    width: 100%;
+    height: 100%;
+  }
+
+  .testimonials{
+    width: 100%;
+  }
+} */

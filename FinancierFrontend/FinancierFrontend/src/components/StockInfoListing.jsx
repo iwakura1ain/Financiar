@@ -10,6 +10,9 @@ export function StockInfoListing() {
     const [searchSector, setSearchSector] = useState("")
     const [stocks, setStocks] = useState([])
     const [selected, setSelected] = useState({})
+    const [summary, setSummary] = useState("summary-hidden")
+    const [title, setTitle] = useState("")
+    // const [isTitleClicked, setIsTitleClicked] = useState(false)
 
     const [paginateNext, setPaginateNext] = useState("")
     const [paginatePrev, setPaginatePrev] = useState("")
@@ -34,6 +37,7 @@ export function StockInfoListing() {
                 setStocks(json.results)
             })
             .catch(console.log)
+
 
     }, [searchSector, searchName])
 
@@ -87,27 +91,30 @@ export function StockInfoListing() {
             })
             .catch(console.log)
     }, [pressedPrev])
+
+    const showSummary = () => {
+      setSummary('summary-visible')
+    }
+    
     
     return (
         <>
-          <section  id="testimonials">
+          <section id="testimonials">
 
-            <div className="container width-full">
-              
+            <div className="testimonials-container width-full">
+
               <div className="title-block animated fadeInDown">
-                <h2>The Best Digital Agencies Recommend Our Software</h2>
-                <p>Industry experts mention their experience using our software and the excellent results they have achieved</p>
+                <h2 className='testimonials-title' onMouseOver={showSummary}>Financiar</h2>
+                <p className={summary}>Access all stocks anytime, anywhere, with ease.</p>
               </div>
-
               <StockGraphBox selected={selected} setSelected={setSelected}/>
-
+              
               <SearchBar
                 name={searchName}
                 setName={setSearchName}
                 sector={searchSector}
                 setSector={setSearchSector}
               />
-              
               <div className="row">
                 {stocks.map((stock, i) => (
                     <StockInfoItem

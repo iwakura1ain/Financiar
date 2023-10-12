@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 
+
 import { Rectangle, BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 import {CustomToolTip} from './StockGraphToolTip.jsx'
@@ -79,7 +80,7 @@ export function StockGraphBox({selected, setSelected}) {
     
     if (stockData) {
         return (
-            <div style={{height:500, width:1000, marginBottom:"20px"}}>
+            <div className='barchart-wrapper' style={{height:500, width:1000, marginBottom:"20px"}}>
               {/* <button onClick={() => setZoomLevel(zoomLevel+10)}>+</button> */}
               {/* <button onClick={() => setZoomLevel(zoomLevel-10)}>-</button> */}
 
@@ -105,9 +106,10 @@ export function StockGraphBox({selected, setSelected}) {
                 }}/>
 
               <button onClick={() => setSelected()}>Close</button>
+
               {/* <ResponsiveContainer width="100%" height="100%"> */}
-                <BarChart
-                  width={1000}
+                <BarChart className="barchart-chart"
+                  width={700}
                   height={500}
                   data={stockData.data}
                   margin={{
@@ -127,6 +129,7 @@ export function StockGraphBox({selected, setSelected}) {
                   <Bar shape={CustomBar} dataKey="Area" stackId="a" >
                   </Bar>
                 </BarChart>
+                <button className="barchart-btn" onClick={() => setSelected()}>Close</button>
               {/* </ResponsiveContainer> */}
             </div>
         )

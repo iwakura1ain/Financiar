@@ -494,6 +494,11 @@
   color: #292c31;
 }
 
+.testimonials-logo {
+  width: 90%;
+  height: 90%;
+}
+
 .testimonials-button {
   width: 100%;
   height: 180px;
@@ -542,7 +547,7 @@
   background-color: #ffffff;
   box-shadow: 0 0 1px 0 rgba(0,12,32,0.04), 0 10px 16px 0 rgba(10,31,68,0.06);
   border-radius: 20px;
-  padding: 10px 15px;
+  padding: 20px 35px;
   margin-top: 30px;
   /* transition: padding-top 0.5s, padding-bottom 0.5s; */
   /* height: 150px;
@@ -589,6 +594,7 @@
 .rating {
   background-color: #0095f7;
   padding: 2px 12px;
+  margin: 10px;
   border-radius: 50px;
 }
 
@@ -698,70 +704,111 @@ footer small {
   color: #0095f7;
 }
 
+/* ============================================================
+   13.  pic-in-pic
+   ============================================================ */
+
+.pic-in-pic-box {
+  position: fixed; 
+  bottom: 0%;
+  right: 30px;
+  bottom: 30px;
+  width: 400px;
+  height: 250px;
+  float:right;  
+}
+
+.pic-in-pic-graph {
+  border: 3px dotted #778694d7;
+  border-radius: 0 0 15px 15px;
+  background-color: white;
+  box-shadow: 5px 3px 3px #778694d7;
+  animation: fadeInDown 1s
+}
+
+.pic-in-pic-button {
+  border: 3px dotted #778694d7;
+  background-color: #0095f7;
+  border-radius: 10px 10px 0 0;
+  width: 80px;
+  height: 40px;
+  animation: fadeInDown 1.8s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 /* =============================================================== */
 /* classes to moderate with media query 
-  1. searchbar-search-box
-  2. searchbar-btn
-  3. personal-info
-  4. testimonials-button
-  5. testimonials-wrapper */
+   1. searchbar-search-box
+   2. searchbar-btn
+   3. personal-info
+   4. testimonials-button
+   5. testimonials-wrapper */
 /* ============================================================
-10.  media query - 1200px
-============================================================ */
+   10.  media query - 1200px
+   ============================================================ */
 /* @media (max-width: 1200px) {
-  .searchbar-search-box{}
+   .searchbar-search-box{}
 
-  .searchbar-btn{
-    width: 20%;
-  }
+   .searchbar-btn{
+   width: 20%;
+   }
 
-  .personal-info{
-    width: 100%;
-  }
- 
-} */
+   .personal-info{
+   width: 100%;
+   }
+   
+   } */
 
 /* ============================================================
-11.  media query - 1024px
-============================================================ */
+   11.  media query - 1024px
+   ============================================================ */
 
 /* @media (max-width: 1024px) {
-  .searchbar-search-box{
-    width: 100%;
-    height: 70px;
-    margin-top: 50px;
-    display: flex;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.09);
-  }
+   .searchbar-search-box{
+   width: 100%;
+   height: 70px;
+   margin-top: 50px;
+   display: flex;
+   background-color: #fff;
+   border-radius: 10px;
+   box-shadow: 0 2px 4px 0 rgba(0,0,0,.09);
+   }
 
-  .searchbar-btn{
-    width: 20%;
-  }
+   .searchbar-btn{
+   width: 20%;
+   }
 
-  .personal-info{
-    width: 100%;
-  }
- 
-} */
+   .personal-info{
+   width: 100%;
+   }
+   
+   } */
 
 /* ============================================================
-12.  media query - 768px
-============================================================ */
+   12.  media query - 768px
+   ============================================================ */
 
 /* @media (max-width: 768px) {
-  html, body{
-    width: 100%;
-    height: 100%;
-  }
+   html, body{
+   width: 100%;
+   height: 100%;
+   }
 
-  #root {
-    width: 100%;
-    height: 100%;
-  }
+   #root {
+   width: 100%;
+   height: 100%;
+   }
 
-  .testimonials{
-    width: 100%;
-  }
-} */
+   .testimonials{
+   width: 100%;
+   }
+   } */
+

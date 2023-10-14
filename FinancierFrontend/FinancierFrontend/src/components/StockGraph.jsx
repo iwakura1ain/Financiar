@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 
 
-import { Rectangle, BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, Rectangle, BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 import {CustomToolTip} from './StockGraphToolTip.jsx'
 
@@ -36,7 +36,7 @@ function GetDefaultDate() {
     return formattedDate
 }
 
-export function StockGraphBox({selected, setSelected}) {
+export function StockGraphBox({selected, setSelected, height=600, width=1600, small=false}) {
     const [stockData, setStockData] = useState()
     const [startDate, setStartDate] = useState()
     const [endDate, setEndDate] = useState()
@@ -62,6 +62,9 @@ export function StockGraphBox({selected, setSelected}) {
                 })
                 .then(setStockData)
             .catch(console.log)
+
+        //window.scrollTo(0, 0) scroll to top
+        
     }, [selected, startDate, endDate])
 
     const CustomBar = (props) => {
@@ -74,6 +77,36 @@ export function StockGraphBox({selected, setSelected}) {
               className="recharts-bar-rectangle"
             />
         )
+    }
+
+    if (small && stockData) {
+        return (
+            <div>
+            <LineChart
+              className="barchart-chart pic-in-pic-graph"
+              width={width}
+              height={height}
+              data={stockData.data}
+              margin={{
+                  top: 20,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              {/* <XAxis height={80} dataKey="Date" angle={-45} textAnchor='end'/> */}
+              <YAxis type="number" />
+              {/* <Tooltip /> */}
+              {/* <Tooltip content={<CustomToolTip />}  /> */}
+
+              {/* <Bar dataKey="Bottom" stackId="a" fill="#FFFFFF" />  */}
+              {/* <Bar shape={CustomBar} dataKey="Area" stackId="a" > */}
+              <Line type="monotone" dataKey="Close" stroke="#0095f7" dot={false} />
+            </LineChart>
+            </div>
+        )
+
     }
     
     if (stockData && !hideState) {
@@ -117,8 +150,8 @@ export function StockGraphBox({selected, setSelected}) {
               </div>
               {/* <ResponsiveContainer width="100%" height="100%"> */}
                 <BarChart className="barchart-chart"
-                  width={1600}
-                  height={600}
+                  width={width}
+                  height={height}
                   data={stockData.data}
                   margin={{
                       top: 20,
@@ -151,11 +184,14 @@ export function StockGraphBox({selected, setSelected}) {
         )
     }
 
-    return (
-        <div>
-          <div className="barchart-toggle">Select Stock</div>
-        </div>
-    )
+    else if(!small) {
+        return (
+            <div>
+              <div className="barchart-toggle">Select Stock</div>
+            </div>
+        )
+        
+    }
     
     
 }

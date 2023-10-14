@@ -3,6 +3,9 @@ import {useState, useEffect} from "react"
 import {StockInfoItem} from "./StockInfoItem.jsx"
 import {SearchBar} from "./Searchbar.jsx"
 import {StockGraphBox} from "./StockGraph.jsx"
+import {GraphPictureInPicture} from "./GraphPictureInPicture.jsx"
+
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 
 export function StockInfoListing() {
@@ -10,14 +13,9 @@ export function StockInfoListing() {
     const [searchSector, setSearchSector] = useState("")
     const [stocks, setStocks] = useState([])
     const [selected, setSelected] = useState({})
-    const [summary, setSummary] = useState("summary-hidden")
-    const [title, setTitle] = useState("")
-    // const [isTitleClicked, setIsTitleClicked] = useState(false)
+    const [summary, setSummary] = useState("summary-hidden")  // WHAT? 
 
     const [paginateNext, setPaginateNext] = useState("")
-    const [paginatePrev, setPaginatePrev] = useState("")
-    const [pressedNext, setPressedNext] = useState(false)
-    const [pressedPrev, setPressedPrev] = useState(false)
 
     
     const baseUrl="/api/fdr/stocks"
@@ -33,7 +31,7 @@ export function StockInfoListing() {
             })
             .then(json => {
                 setPaginateNext(json.next)
-                setPaginatePrev(json.previous)
+                // setPaginatePrev(json.previous)
                 setStocks(json.results)
             })
             .catch(console.log)
@@ -41,11 +39,7 @@ export function StockInfoListing() {
 
     }, [searchSector, searchName])
 
-    useEffect(() => {
-        if (!pressedNext || paginateNext == null)
-            return
-        setPressedNext(false)
-        
+    const getNextPage = () => {        
         let nextUrl = new URL(paginateNext);
         let nextPage = nextUrl.searchParams.get("page")
         
@@ -59,38 +53,11 @@ export function StockInfoListing() {
             })
             .then(json => {
                 setPaginateNext(json.next)
-                setPaginatePrev(json.previous)
-                setStocks(json.results)
+                // setPaginatePrev(json.previous)
+                setStocks(stocks.concat(json.results))
             })
             .catch(console.log)
-
-    }, [pressedNext])
-
-    useEffect(() => {
-        if (!pressedPrev || paginatePrev == null)
-            return
-        setPressedPrev(false)
-        
-        let prevUrl = new URL(paginatePrev);
-        let prevPage = prevUrl.searchParams.get("page")
-        if (prevPage == null)
-            prevPage = 1
-        
-        console.log(`fetching ${prevPage}`)
-        let fetchUrl = `${baseUrl}?name=${searchName}&sector=${searchSector}`
-        fetch(`${fetchUrl}&page=${prevPage}`, { headers:{accept: 'application/json'} })
-            .then(response => (response.json()))
-            .then(json => {
-                console.log(json)
-                return json
-            })
-            .then(json => {
-                setPaginateNext(json.next)
-                setPaginatePrev(json.previous)
-                setStocks(json.results)
-            })
-            .catch(console.log)
-    }, [pressedPrev])
+    }
 
     const showSummary = () => {
       setSummary('summary-visible')
@@ -115,31 +82,36 @@ export function StockInfoListing() {
                 sector={searchSector}
                 setSector={setSearchSector}
               />
-              <div className="row">
-                {stocks.map((stock, i) => (
-                    <StockInfoItem
-                      key={i}
-                      selected={selected}
-                      setSelected={setSelected}
-                      {...stock}
-                    />
-                ))}
 
-              </div>
-              <div className="navigation">
-                <button className="navigation-button" onClick={() => {
-                    console.log("PRESSED PREV")
-                    setPressedPrev(true)
-                }}>Prev</button>
-                <button className="navigation-button" onClick={() => {
-                    console.log("PRESSED NEXT")
-                    setPressedNext(true)
-                }}>Next</button>
-                
+              <div className="row">
+                <InfiniteScroll
+                  className="row"
+                  dataLength={stocks.length} //This is important field to render the next data
+                  next={getNextPage}
+                  hasMore={true}
+                  loader={
+                      <h4>Loading...</h4>
+                  }
+                  endMessage={
+                      <p style={{ textAlign: 'center' }}>
+                        <b>Yay! You have seen it all</b>
+                      </p>
+                  }
+                >
+                  {stocks.map((stock, i) => (
+                      <StockInfoItem
+                        key={i}
+                        selected={selected}
+                        setSelected={setSelected}
+                        {...stock}
+                      />
+                  ))}
+                </InfiniteScroll>
               </div>
             </div>
           </section>
           
+        <GraphPictureInPicture selected={selected} setSelected={setSelected} />
 
         </>
     )

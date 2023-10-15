@@ -59,7 +59,7 @@ button {
 }
 button:hover {
   /* border-color: #646cff; */
-  border-color: none;
+  /* border-color: none; */
 }
 button:focus,
 button:focus-visible {

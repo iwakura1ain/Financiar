@@ -36,8 +36,8 @@ function GetDefaultDate() {
     return formattedDate
 }
 
-export function StockGraphBox({selected, setSelected, height=600, width=1600, small=false}) {
-    const [stockData, setStockData] = useState()
+export function StockGraphBox({stockData, setStockData, selected, setSelected, height=600, width=1600, small=false}) {
+    // const [stockData, setStockData] = useState()
     const [startDate, setStartDate] = useState()
     const [endDate, setEndDate] = useState()
     const [hideState, setHideState] = useState(true)

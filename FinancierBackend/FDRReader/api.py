@@ -48,7 +48,7 @@ class StockRate(generics.GenericAPIView, IncrementFieldMixin):
     lookup_field = "ticker"
     increment_field = "rating"
     
-    def put(self, request, *args, **kwargs):    
+    def get(self, request, *args, **kwargs):    
         return self.increment(request, *args, **kwargs)
     
     

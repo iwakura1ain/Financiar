@@ -11,33 +11,26 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 export function StockInfoListing() {
     const [searchName, setSearchName] = useState("")
     const [searchSector, setSearchSector] = useState("")
+
     const [stocks, setStocks] = useState([])
     const [selected, setSelected] = useState({})
-    const [summary, setSummary] = useState("summary-hidden")  // WHAT? 
-
     const [paginateNext, setPaginateNext] = useState("")
 
-    
-    const baseUrl="/api/fdr/stocks"
-    useEffect(() => {
-        console.log("fetching")
+    const [stockData, setStockData] = useState()
 
-        let fetchUrl = `${baseUrl}?name=${searchName}&sector=${searchSector}`
-        fetch(fetchUrl, { headers:{accept: 'application/json'} })
-            .then(response => (response.json()))
+    
+    const baseUrl = "/api/fdr/stocks"
+
+    const rateStock = (ticker) => {
+        fetch(`/api/fdr/stocks/${ticker}/rate`, {headers:{method: "PUT", accept: 'application/json'}})
+            .then(response => response.json())
             .then(json => {
                 console.log(json)
                 return json
             })
-            .then(json => {
-                setPaginateNext(json.next)
-                // setPaginatePrev(json.previous)
-                setStocks(json.results)
-            })
+            .then((newStock) => setStocks(stocks.map(s => s.ticker !== ticker ? s : newStock)) )
             .catch(console.log)
-
-
-    }, [searchSector, searchName])
+    }
 
     const getNextPage = () => {        
         let nextUrl = new URL(paginateNext);
@@ -58,23 +51,43 @@ export function StockInfoListing() {
             })
             .catch(console.log)
     }
-
-    const showSummary = () => {
-      setSummary('summary-visible')
-    }
     
+    useEffect(() => {
+        console.log("fetching")
+
+        let fetchUrl = `${baseUrl}?name=${searchName}&sector=${searchSector}`
+        fetch(fetchUrl, { headers:{accept: 'application/json'} })
+            .then(response => (response.json()))
+            .then(json => {
+                console.log(json)
+                return json
+            })
+            .then(json => {
+                setPaginateNext(json.next)
+                // setPaginatePrev(json.previous)
+                setStocks(json.results)
+            })
+            .catch(console.log)
+
+
+    }, [searchSector, searchName])
     
     return (
         <>
           <section id="testimonials">
-
             <div className="testimonials-container width-full">
-
+              
               <div className="title-block animated fadeInDown">
-                <h2 className='testimonials-title' onMouseOver={showSummary}>Financiar</h2>
-                <p className={summary}>Access all stocks anytime, anywhere, with ease.</p>
+                <h2 className='testimonials-title'>Financiar</h2>
+                <p>Access all stocks anytime, anywhere, with ease.</p>
               </div>
-              <StockGraphBox selected={selected} setSelected={setSelected}/>
+
+              <StockGraphBox
+                stockData={stockData}
+                setStockData={setStockData}
+                selected={selected}
+                setSelected={setSelected}
+              />
               
               <SearchBar
                 name={searchName}
@@ -103,6 +116,7 @@ export function StockInfoListing() {
                         key={i}
                         selected={selected}
                         setSelected={setSelected}
+                        rateStock={rateStock}
                         {...stock}
                       />
                   ))}
@@ -111,7 +125,12 @@ export function StockInfoListing() {
             </div>
           </section>
           
-        <GraphPictureInPicture selected={selected} setSelected={setSelected} />
+          <GraphPictureInPicture
+            stockData={stockData}
+            setStockData={setStockData}
+            selected={selected}
+            setSelected={setSelected}
+          />
 
         </>
     )

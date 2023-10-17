@@ -21,8 +21,7 @@ function CleanTradeData(trade) {
 }
 
 
-function GetDefaultDate() {
-    
+function GetDefaultDate() {    
     // Create a date object from a date string
     var date = new Date();
 
@@ -37,7 +36,6 @@ function GetDefaultDate() {
 }
 
 export function StockGraphBox({stockData, setStockData, selected, setSelected, height=600, width=1600, small=false}) {
-    // const [stockData, setStockData] = useState()
     const [startDate, setStartDate] = useState()
     const [endDate, setEndDate] = useState()
     const [hideState, setHideState] = useState(true)

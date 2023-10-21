@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 
 
-import { LineChart, Line, Rectangle, BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { ComposedChart, LineChart, Line, Rectangle, BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 import {CustomToolTip} from './StockGraphToolTip.jsx'
 
@@ -18,6 +18,13 @@ function CleanTradeData(trade) {
         Area: area,
         Color: color
     }
+}
+
+function GetWeightedAverage(trade, current, num, weight=0.2) {
+    current = (((trade.Open + trade.Close)/2) + current*num*weight) / (num*weight + 1)
+    num += 1
+
+    return [current, num]
 }
 
 
@@ -50,8 +57,19 @@ export function StockGraphBox({stockData, setStockData, selected, setSelected, h
                     console.log(json)
                     return json
                 })
-                .then((json) => {
-                    json.data = Array.from(json.data).map(CleanTradeData)
+            .then((json) => {
+                    let avg=0, num=0
+               
+                    json.data = Array.from(json.data).map((trade) => {
+                       [avg, num] = GetWeightedAverage(trade, avg, num)
+                    
+                       return {
+                           ...CleanTradeData(trade),
+                           Average: avg
+                       }
+                    })
+
+                    console.log(json)
                     return json
                 })
                 .then((json) => {
@@ -147,38 +165,53 @@ export function StockGraphBox({stockData, setStockData, selected, setSelected, h
               {/* <button className="barchart-btn" onClick={() => setSelected()}>Close</button> */}
               </div>
               {/* <ResponsiveContainer width="100%" height="100%"> */}
-                <BarChart className="barchart-chart"
-                  width={width}
-                  height={height}
-                  data={stockData.data}
-                  margin={{
-                      top: 20,
-                      right: 30,
-                      left: 20,
-                      bottom: 5,
-                  }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis height={80} dataKey="Date" angle={-45} textAnchor='end'/>
-                  <YAxis type="number" />
-                  {/* <Tooltip /> */}
-                  <Tooltip content={<CustomToolTip />}  />
+              <ComposedChart className="barchart-chart"
+                        width={width}
+                        height={height}
+                        data={stockData.data}
+                        margin={{
+                            top: 20,
+                            right: 30,
+                            left: 20,
+                            bottom: 5,
+                        }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis height={80} dataKey="Date" angle={-45} textAnchor='end'/>
+                <YAxis type="number" />
+                {/* <Tooltip /> */}
+                <Tooltip content={<CustomToolTip />}  />
 
-                  <Bar dataKey="Bottom" stackId="a" fill="#FFFFFF" /> 
-                  <Bar shape={CustomBar} dataKey="Area" stackId="a" >
-                  </Bar>
-                </BarChart>
+                <Bar dataKey="Bottom" stackId="a" fill="#FFFFFF" /> 
+                <Bar shape={CustomBar} dataKey="Area" stackId="a" />
+                <Line type="monotone" dataKey="Average" stroke="#0095f7" dot={false}  strokeDasharray="5 5"/>
+              </ComposedChart>
+              <BarChart
+                className="volume-chart"
+                width={width}
+                height={height-220}
+                data={stockData.data}
+                margin={{
+                    top: 20,
+                    right: 30,
+                    left: 80,
+                    bottom: 200,
+                }}>
+                
+                <Tooltip />
+                <Bar dataKey="Volume" fill="#8884d8" activeBar={<Rectangle fill="#8f8e8c" stroke="blue" />}/>
+              </BarChart>
               {/* </ResponsiveContainer> */}
             </div>
         )
     }
     else if (stockData && hideState) {
         return (
-              <button
-                className="barchart-toggle"
-                onClick={() => {
-                    setHideState(false)
-                }}>Show Graph</button>
+            <button
+              className="barchart-toggle"
+              onClick={() => {
+                  setHideState(false)
+              }}>Show Graph</button>
         )
     }
 

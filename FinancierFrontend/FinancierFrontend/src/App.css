@@ -192,6 +192,12 @@
   margin-bottom: 120px;
 }
 
+.volume-chart {
+  display: inline-block;
+  margin-top: -385px;
+  
+}
+
 .barchart-toggle {
   width: 100%;
   height: 100%;
@@ -339,12 +345,12 @@
   transition: 0.3s ease-out;
   
 
-  .testimonials-button{
+  .testimonials-button {
     height: fit-content;
     transition: 0.3s;
   }
 
-  .testimonials-desc{
+  .testimonials-desc {
     color: #778694d7;
     line-height: 1.5;
     margin: 8px 0px 2px 0px;

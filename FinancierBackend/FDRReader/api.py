@@ -4,14 +4,13 @@ from rest_framework import generics
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models.query import QuerySet
 
-
 from .models import Stock
 from .serializers import StockSerializer
 from .utils import query_fdr
 from .mixins import APIQueryAndModelMixin, IncrementFieldMixin
 from .pagination import StandardResultsSetPagination, PartialPagination
 
-import FinanceDataReader as fdr
+#import FinanceDataReader as fdr
 
 # Create your views here.
 class StockList(generics.ListAPIView):

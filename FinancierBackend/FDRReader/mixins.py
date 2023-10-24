@@ -50,10 +50,13 @@ class APIQueryAndModelMixin:
         
         api_data = self.query_api(request.GET, **kwargs)
         page = self.paginate_queryset(api_data)
-        print(page)
-        
+        paginated_data = page.pop("results")
 
-        return Response({**serializer.data, "data": page})
+        return Response({
+            **serializer.data,
+            **page,
+            "data": paginated_data
+        })
 
     @classmethod
     def query_api(cls, query_params, *args, **kwargs):

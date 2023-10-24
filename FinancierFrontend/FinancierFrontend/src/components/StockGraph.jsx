@@ -67,47 +67,73 @@ export function StockGraphBox({
 
 
     console.log(GetDefaultDate())
+
     
+
     // ======= stock data fetch  ======= 
     useEffect(() => {
-        if (selected === undefined){
+        console.log("SELECTED", selected)
+        if (selected === undefined){            
             setStockData()
             return
         }
-                 
-        fetch(`/api/fdr/stocks/${selected}?start=${startDate}&end=${endDate}`, { headers:{accept: 'application/json'} })
-            .then(response => response.json())
-            .then(json => {
-                //console.log(json)
-                return json
-            })
-            .then((json) => {
-                let [avg, num] = [0, 0]
-                
-                json.data = Array.from(json.data).map((trade) => {
-                    [avg, num] = GetWeightedAverage(trade, avg, num, avgWeight)
-                    
-                    return {
-                        ...CleanTradeData(trade),
-                        Average: avg
-                    }
+
+
+        // ======================== TODO: CHANGE TO ASYNC AWAIT FUNCTION!!!! ===========================================        
+        let num = 0
+        let nextPage = 1
+        do {
+            fetch(`/api/fdr/stocks/${selected}?start=${startDate}&end=${endDate}&page=${nextPage}`, { headers:{accept: 'application/json'} })
+                .then(response => response.json())
+                .then(json => {
+                    console.log("FETCHED", json)
+                    return json
                 })
+                .then((json) => {
+                    let [avg, num] = [0, 0]
+                    
+                    json.data = Array.from(json.data).map((trade) => {
+                        [avg, num] = GetWeightedAverage(trade, avg, num, avgWeight)                        
+                        return {
+                            ...CleanTradeData(trade),
+                            Average: avg
+                        }
+                    })
 
-                //console.log(json)
+                    return json
+                })
+                .then((json) => {
+                    if (json.next == null)
+                        nextPage = null
+                    else {
+                        const nextUrl = new URL(json.next)
+                        nextPage = nextUrl.searchParams.get("page")
+                        console.log("NEW NEXT", nextPage)
+                    }
 
-                return json
-            })
-            .then((json) => {
-                // setZoomLevel(json.data.length)
-                return json
-            })
-            .then(setStockData)
-            .catch(console.log)
+                    return json
+                })
+                .then((json) => {
+                    if (stockData === undefined)
+                        setStockData(stockData)
 
-        
-        //setLoadingState(false)
+                    else {
+                        setStockData({
+                            ...stockData,
+                            data: stockData.data + json.data
+                        })
+                    }
+                    
+                    
+                })
+                .catch(console.log)
 
-        //window.scrollTo(0, 0) scroll to top
+            console.log("RAN ", num)
+            num += 1
+
+        } while (nextPage != null && num < 8)
+
+        // ======================== TODO: CHANGE TO ASYNC AWAIT FUNCTION!!!! ===========================================
         
     }, [selected, startDate, endDate])
 

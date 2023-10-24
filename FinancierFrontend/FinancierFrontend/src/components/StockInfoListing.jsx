@@ -14,7 +14,7 @@ export function StockInfoListing() {
     const [searchSector, setSearchSector] = useState("")
 
     const [stocks, setStocks] = useState([])
-    const [selected, setSelected] = useState({})
+    const [selected, setSelected] = useState()
     const [paginateNext, setPaginateNext] = useState("")
 
     const [stockData, setStockData] = useState()

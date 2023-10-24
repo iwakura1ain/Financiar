@@ -1,7 +1,11 @@
 import FinanceDataReader as fdr
 
-def query_fdr(ticker="", start="2020-01-01", end="2021-01-01"):
-    if start == "undefined" or end == "undefined":
+def query_fdr(**kwargs):
+    start = kwargs.get("start")
+    end = kwargs.get("end")
+    ticker = kwargs.get("ticker")
+
+    if start is None or end is None:
         start="2020-01-01"
         end="2021-01-01"
     

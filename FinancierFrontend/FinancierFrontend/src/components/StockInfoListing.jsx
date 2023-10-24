@@ -4,6 +4,7 @@ import {StockInfoItem} from "./StockInfoItem.jsx"
 import {SearchBar} from "./Searchbar.jsx"
 import {StockGraphBox} from "./StockGraph.jsx"
 import {GraphPictureInPicture} from "./GraphPictureInPicture.jsx"
+import {LoadingDots} from "./LoadingVisual.jsx"
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 
@@ -75,6 +76,7 @@ export function StockInfoListing() {
     return (
         <>
           <section id="testimonials">
+            
             <div className="testimonials-container width-full">
               
               <div className="title-block animated fadeInDown">
@@ -103,7 +105,7 @@ export function StockInfoListing() {
                   next={getNextPage}
                   hasMore={true}
                   loader={
-                      <h4>Loading...</h4>
+                      <LoadingDots />
                   }
                   endMessage={
                       <p style={{ textAlign: 'center' }}>

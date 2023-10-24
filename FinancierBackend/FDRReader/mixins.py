@@ -47,9 +47,13 @@ class APIQueryAndModelMixin:
     def query_retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = self.get_serializer(instance)
+        
         api_data = self.query_api(request.GET, **kwargs)
-       
-        return Response({**serializer.data, "data": api_data})
+        page = self.paginate_queryset(api_data)
+        print(page)
+        
+
+        return Response({**serializer.data, "data": page})
 
     @classmethod
     def query_api(cls, query_params, *args, **kwargs):

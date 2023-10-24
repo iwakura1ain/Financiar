@@ -25,7 +25,7 @@ export function GraphPictureInPicture({stockData, setStockData, selected, setSel
     }, [])
 
 
-    if (visibility ) {
+    if (visibility) {
         return (
             <div className="pic-in-pic-box">
               <button

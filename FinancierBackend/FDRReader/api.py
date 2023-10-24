@@ -9,7 +9,7 @@ from .models import Stock
 from .serializers import StockSerializer
 from .utils import query_fdr
 from .mixins import APIQueryAndModelMixin, IncrementFieldMixin
-from .pagination import StandardResultsSetPagination
+from .pagination import StandardResultsSetPagination, PartialPagination
 
 import FinanceDataReader as fdr
 
@@ -58,6 +58,7 @@ class StockDetail(generics.GenericAPIView, APIQueryAndModelMixin):
     lookup_field = 'ticker'
     #query_function = lambda self, ticker, start, end : fdr.DataReader(ticker, start, end)
     query_function = query_fdr
+    pagination_class = PartialPagination
         
     def get(self, request, *args, **kwargs):
         return self.query_retrieve(request, *args, **kwargs)

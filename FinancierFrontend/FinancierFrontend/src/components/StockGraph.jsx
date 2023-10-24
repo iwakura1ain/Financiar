@@ -188,7 +188,7 @@ export function StockGraphBox({stockData, setStockData, selected, setSelected, h
               </ComposedChart>
               <BarChart
                 className="volume-chart"
-                width={width}
+                width={width}39
                 height={height-220}
                 data={stockData.data}
                 margin={{

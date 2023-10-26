@@ -92,90 +92,90 @@ export function StockGraphBox({
 
     if (!stockData)
         return (
-                    <div className='barchart-wrapper' /* style={{height:500, width:1000, marginBottom:"20px"}} */>
-          {/* <button onClick={() => setZoomLevel(zoomLevel+10)}>+</button> */}
-          {/* <button onClick={() => setZoomLevel(zoomLevel-10)}>-</button> */}
+            <div className='barchart-wrapper' /* style={{height:500, width:1000, marginBottom:"20px"}} */>
+              {/* <button onClick={() => setZoomLevel(zoomLevel+10)}>+</button> */}
+              {/* <button onClick={() => setZoomLevel(zoomLevel-10)}>-</button> */}
 
-          <button
-            className="barchart-toggle"
-            onClick={() => {
-                setVisibility(false)
-            }}>Hide Graph</button>
-          
-          <div className="barchart-controls">
-            <div>
-              <label htmlFor="start">Start date : </label>
-              <input
-                type="date"
-                id="start"
-                max={GetDefaultDate()[0]}
-                value={startDate}
-                onChange={(event) =>{
-                    //console.log(event.target.value)
-                    setStartDate(event.target.value)
-                }}/> 
-            </div>
-            <div>
-              <label htmlFor="end">End date : </label>
-              <input
-                type="date"
-                id="end"
-                max={GetDefaultDate()[0]}
-                value={endDate}
-                onChange={(event) => {
-                    //console.log(event.target.value)
-                    setEndDate(event.target.value)
-                }}/>
-            </div>
-            <div>
-              <label htmlFor="end">Volume : </label>
-              <input
-                type="checkbox"
-                defaultChecked={true}
-                onChange={() => {
-                    setShowVolume(!showVolume)
-                }}/>
-            </div>
+              <button
+                className="barchart-toggle"
+                onClick={() => {
+                    setVisibility(false)
+                }}>Hide Graph</button>
+              
+              <div className="barchart-controls">
+                <div>
+                  <label htmlFor="start">Start date : </label>
+                  <input
+                    type="date"
+                    id="start"
+                    max={GetDefaultDate()[0]}
+                    value={startDate}
+                    onChange={(event) =>{
+                        //console.log(event.target.value)
+                        setStartDate(event.target.value)
+                    }}/> 
+                </div>
+                <div>
+                  <label htmlFor="end">End date : </label>
+                  <input
+                    type="date"
+                    id="end"
+                    max={GetDefaultDate()[0]}
+                    value={endDate}
+                    onChange={(event) => {
+                        //console.log(event.target.value)
+                        setEndDate(event.target.value)
+                    }}/>
+                </div>
+                <div>
+                  <label htmlFor="end">Volume : </label>
+                  <input
+                    type="checkbox"
+                    defaultChecked={true}
+                    onChange={() => {
+                        setShowVolume(!showVolume)
+                    }}/>
+                </div>
 
-            <div>
-              <label htmlFor="end">Average : </label>
-              <input
-                type="checkbox"
-                defaultChecked={true}
-                onChange={() => {                        
-                    setShowAverage(!showAverage)
-                }}/>
+                <div>
+                  <label htmlFor="end">Average : </label>
+                  <input
+                    type="checkbox"
+                    defaultChecked={true}
+                    onChange={() => {                        
+                        setShowAverage(!showAverage)
+                    }}/>
+                </div>
+                <div>
+                  <label htmlFor="end">Weight : </label>
+                  <input
+                    type="number"
+                    max={1.0}
+                    min={0.0}
+                    step={0.05}
+                    value={avgWeight}
+                    onChange={(event) => {
+                        setAvgWeight(event.target.value)
+                    }}/>
+                </div>
+              </div>
+              
+              <ComposedChart
+                className="barchart-chart"
+                width={width}
+                height={height}
+                data={null}
+                margin={{
+                    top: 20,
+                    right: 30,
+                    left: 20,
+                    bottom: 70,
+                }}>
+                <XAxis height={80} angle={-45} textAnchor='end'/>
+                <YAxis type="number" />
+                <CartesianGrid strokeDasharray="3 3" />
+              </ComposedChart>
             </div>
-            <div>
-              <label htmlFor="end">Weight : </label>
-              <input
-                type="number"
-                max={1.0}
-                min={0.0}
-                step={0.05}
-                value={avgWeight}
-                onChange={(event) => {
-                    setAvgWeight(event.target.value)
-                }}/>
-            </div>
-          </div>
-          
-          <ComposedChart
-            className="barchart-chart"
-            width={width}
-            height={height}
-            data={null}
-            margin={{
-                top: 20,
-                right: 30,
-                left: 20,
-                bottom: 70,
-            }}>
-            <XAxis height={80} angle={-45} textAnchor='end'/>
-            <YAxis type="number" />
-            <CartesianGrid strokeDasharray="3 3" />
-          </ComposedChart>
-        </div>
         )        
     
     return (
@@ -251,6 +251,7 @@ export function StockGraphBox({
             className="barchart-chart"
             width={width}
             height={height}
+        /* data={[...stockData.data, ...Array.apply(null, Array(stockData.count-stockData.data.length)).map(function () {})]} */
             data={stockData.data}
             margin={{
                 top: 20,
@@ -278,6 +279,7 @@ export function StockGraphBox({
             className="volume-chart"
             width={width}
             height={height-220}
+        /* data={showVolume ? [...stockData.data, ...Array.apply(null, Array(stockData.count-stockData.data.length)).map(function () {})] : null} */
             data={showVolume ? stockData.data : null}
             margin={{
                 top: 20,

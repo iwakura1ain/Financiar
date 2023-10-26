@@ -2,7 +2,9 @@ import {useState, useEffect} from "react"
 
 import {StockGraphBox} from "./StockGraph.jsx"
 
-export function GraphPictureInPicture({stockData, setStockData, selected, setSelected}) {
+export function GraphPictureInPicture({
+    stockData, setStockData, nextStockDataPage, setNextStockDataPage,  selected, setSelected
+}) {
     const [visibility, setVisibility] = useState(true)
 
     const listenToScroll = () => {
@@ -35,6 +37,8 @@ export function GraphPictureInPicture({stockData, setStockData, selected, setSel
               <StockGraphBox
                 stockData={stockData}
                 setStockData={setStockData}
+                nextStockDataPage={nextStockDataPage}
+                setNextStockDataPage={setNextStockDataPage}
                 selected={selected}
                 setSelected={setSelected}
                 height={200}

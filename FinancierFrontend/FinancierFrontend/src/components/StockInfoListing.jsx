@@ -3,23 +3,49 @@ import {useState, useEffect} from "react"
 import {StockInfoItem} from "./StockInfoItem.jsx"
 import {SearchBar} from "./Searchbar.jsx"
 import {StockGraphBox} from "./StockGraph.jsx"
-import {GraphPictureInPicture} from "./GraphPictureInPicture.jsx"
+import {PIPGraphBox} from "./PicInPicGraph.jsx"
+import {TradeDataLoader} from "./TradeDataLoader.jsx"
 import {LoadingDots} from "./LoadingVisual.jsx"
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 
+function GetDefaultDate() {    
+    // Create a date object from a date string
+    var date = new Date();
+
+    var prevDate = new Date();
+    prevDate.setFullYear(date.getFullYear() - 1);
+
+    const getFormatted = (date) => {
+        // Get year, month, and day part from the date
+        var year = date.toLocaleString("default", { year: "numeric" });
+        var month = date.toLocaleString("default", { month: "2-digit" });
+        var day = date.toLocaleString("default", { day: "2-digit" });
+
+        return year + "-" + month + "-" + day;
+    }
+    
+    return [getFormatted(date), getFormatted(prevDate)]
+}
+
 export function StockInfoListing() {
+    // ============= searchbar ====================
     const [searchName, setSearchName] = useState("")
     const [searchSector, setSearchSector] = useState("")
 
+    // ============ stock listing =================
     const [stocks, setStocks] = useState([])
     const [selected, setSelected] = useState()
     const [paginateNext, setPaginateNext] = useState("")
 
+    // ============= trade data for selected stock ===================
     const [stockData, setStockData] = useState()
+    const [nextStockData, setNextStockData] = useState(0)
+    const [fetchingStatus, setFetchingStatus] = useState(false)
+    const [startDate, setStartDate] = useState(GetDefaultDate()[1])
+    const [endDate, setEndDate] = useState(GetDefaultDate()[0])
 
-    
     const baseUrl = "/api/fdr/stocks"
 
     const rateStock = (ticker) => {
@@ -54,8 +80,6 @@ export function StockInfoListing() {
     }
     
     useEffect(() => {
-        console.log("fetching")
-
         let fetchUrl = `${baseUrl}?name=${searchName}&sector=${searchSector}`
         fetch(fetchUrl, { headers:{accept: 'application/json'} })
             .then(response => (response.json()))
@@ -70,12 +94,19 @@ export function StockInfoListing() {
             })
             .catch(console.log)
 
-
     }, [searchSector, searchName])
     
     return (
         <>
           <section id="testimonials">
+
+            <TradeDataLoader
+              selected={selected}
+              startDate={startDate} endDate={endDate}
+              stockData={stockData} setStockData={setStockData}
+              nextStockData={nextStockData} setNextStockData={setNextStockData}
+              fetchingStatus={fetchingStatus} setFetchingStatus={setFetchingStatus}
+            />
             
             <div className="testimonials-container width-full">
               
@@ -85,10 +116,11 @@ export function StockInfoListing() {
               </div>
 
               <StockGraphBox
-                stockData={stockData}
-                setStockData={setStockData}
-                selected={selected}
-                setSelected={setSelected}
+                stockData={stockData} setStockData={setStockData}
+                selected={selected} setSelected={setSelected}
+                fetchingStatus={fetchingStatus}
+                startDate={startDate} setStartDate={setStartDate}
+                endDate={endDate} setEndDate={setEndDate}                 
               />
               
               <SearchBar
@@ -127,11 +159,8 @@ export function StockInfoListing() {
             </div>
           </section>
           
-          <GraphPictureInPicture
+          <PIPGraphBox
             stockData={stockData}
-            setStockData={setStockData}
-            selected={selected}
-            setSelected={setSelected}
           />
 
         </>

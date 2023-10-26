@@ -14,44 +14,41 @@ function GetWeightedAverage(trade, current, num, weight) {
     return [current, num]
 }
 
-function GetDefaultDate() {    
-    // Create a date object from a date string
-    var date = new Date();
-
-    var prevDate = new Date();
-    prevDate.setFullYear(date.getFullYear() - 1);
-
-    const getFormatted = (date) => {
-        // Get year, month, and day part from the date
-        var year = date.toLocaleString("default", { year: "numeric" });
-        var month = date.toLocaleString("default", { month: "2-digit" });
-        var day = date.toLocaleString("default", { day: "2-digit" });
-
-        return year + "-" + month + "-" + day;
-    }
-    
-    return [getFormatted(date), getFormatted(prevDate)]
-}
 
 export function StockGraphBox({
-    stockData, setStockData,
-    selected, setSelected,
-    fetchingStatus,
-    startDate, setStartDate,
-    endDate, setEndDate,
-    height=600, width=1600,
+    stockData,
+    setStockData,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    fetchStatus,
+    height=600,
+    width=1600
 }) {
-    const [avgWeight, setAvgWeight] = useState(0.2)
-    const [showAverage, setShowAverage] = useState(true)
-    const [showVolume, setShowVolume] = useState(true)
     const [visibility, setVisibility] = useState(true)
 
-    // ====== avg ======
+    const [showAverage, setShowAverage] = useState(true)
+    const [avgWeight, setAvgWeight] = useState(0.2)
+    const [showVolume, setShowVolume] = useState(true)
+    
+    const CustomBar = (props) => {
+        const {Color} = props;
+
+        return (
+            <Rectangle
+              {...props}
+              fill={Color == "red" ? "#FF0000" : "#0000FF"}
+              className="recharts-bar-rectangle"
+            />
+        )
+    }
+
     useEffect(() => {
         if (!stockData || !showAverage)
             return
 
-        if (fetchingStatus)
+        if (fetchStatus)
             return
         
         let [avg, num] = [0, 0]
@@ -66,118 +63,32 @@ export function StockGraphBox({
         })
 
         setStockData({...stockData, data: newData})
-    }, [fetchingStatus, avgWeight, showAverage])
+    }, [avgWeight, showAverage])
 
-    const CustomBar = (props) => {
-        const {Color} = props;
 
-        return (
-            <Rectangle
-              {...props}
-              fill={Color == "red" ? "#FF0000" : "#0000FF"}
-              className="recharts-bar-rectangle"
-            />
-        )
-    }
-
-    if (!visibility) {
+    /// ============== hidden ============== 
+    if (!visibility) {        
         return (
             <button
               className="barchart-toggle"
               onClick={() => {
-                  setVisibility(true)
+                  setVisibility(false)
               }}>Show Graph</button>
         )
     }
 
-    if (!stockData)
+
+    /// ============== visible ============== 
+    // none selected
+    if (!stockData) { 
         return (
-                    <div className='barchart-wrapper' /* style={{height:500, width:1000, marginBottom:"20px"}} */>
-          {/* <button onClick={() => setZoomLevel(zoomLevel+10)}>+</button> */}
-          {/* <button onClick={() => setZoomLevel(zoomLevel-10)}>-</button> */}
-
-          <button
-            className="barchart-toggle"
-            onClick={() => {
-                setVisibility(false)
-            }}>Hide Graph</button>
-          
-          <div className="barchart-controls">
             <div>
-              <label htmlFor="start">Start date : </label>
-              <input
-                type="date"
-                id="start"
-                max={GetDefaultDate()[0]}
-                value={startDate}
-                onChange={(event) =>{
-                    //console.log(event.target.value)
-                    setStartDate(event.target.value)
-                }}/> 
+              <div className="barchart-toggle">Select Stock</div>
             </div>
-            <div>
-              <label htmlFor="end">End date : </label>
-              <input
-                type="date"
-                id="end"
-                max={GetDefaultDate()[0]}
-                value={endDate}
-                onChange={(event) => {
-                    //console.log(event.target.value)
-                    setEndDate(event.target.value)
-                }}/>
-            </div>
-            <div>
-              <label htmlFor="end">Volume : </label>
-              <input
-                type="checkbox"
-                defaultChecked={true}
-                onChange={() => {
-                    setShowVolume(!showVolume)
-                }}/>
-            </div>
-
-            <div>
-              <label htmlFor="end">Average : </label>
-              <input
-                type="checkbox"
-                defaultChecked={true}
-                onChange={() => {                        
-                    setShowAverage(!showAverage)
-                }}/>
-            </div>
-            <div>
-              <label htmlFor="end">Weight : </label>
-              <input
-                type="number"
-                max={1.0}
-                min={0.0}
-                step={0.05}
-                value={avgWeight}
-                onChange={(event) => {
-                    setAvgWeight(event.target.value)
-                }}/>
-            </div>
-          </div>
-          
-          <ComposedChart
-            className="barchart-chart"
-            width={width}
-            height={height}
-            data={null}
-            margin={{
-                top: 20,
-                right: 30,
-                left: 20,
-                bottom: 70,
-            }}>
-            <XAxis height={80} angle={-45} textAnchor='end'/>
-            <YAxis type="number" />
-            <CartesianGrid strokeDasharray="3 3" />
-          </ComposedChart>
-        </div>
         )        
-    
+    }
+
+    // selected
     return (
         <div className='barchart-wrapper' /* style={{height:500, width:1000, marginBottom:"20px"}} */>
           {/* <button onClick={() => setZoomLevel(zoomLevel+10)}>+</button> */}
@@ -186,7 +97,7 @@ export function StockGraphBox({
           <button
             className="barchart-toggle"
             onClick={() => {
-                setVisibility(false)
+                setVisibility(true)
             }}>Hide Graph</button>
           
           <div className="barchart-controls">
@@ -295,5 +206,5 @@ export function StockGraphBox({
           </BarChart>
         </div>
     )
-
 }
+

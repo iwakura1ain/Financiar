@@ -40,7 +40,9 @@ export function TradeDataLoader({
         setFetchTarget(selected)
         setFetchingStatus(false)
         setNextStockData(1)
-    }, [selected])
+    }, [selected, startDate, endDate])
+
+    
 
     useEffect(() => {
         (async () => {
@@ -101,7 +103,7 @@ export function TradeDataLoader({
                 .catch(console.log)
             
         })()
-    }, [fetchTarget, nextStockData, startDate, endDate])
+    }, [fetchTarget, nextStockData])
 
 
     return (<></>)            

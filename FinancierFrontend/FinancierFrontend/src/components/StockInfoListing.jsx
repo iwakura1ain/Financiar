@@ -4,7 +4,7 @@ import {StockInfoItem} from "./StockInfoItem.jsx"
 import {SearchBar} from "./Searchbar.jsx"
 import {StockGraphBox} from "./StockGraph.jsx"
 import {PIPGraphBox} from "./PicInPicGraph.jsx"
-import {TradeDataLoader} from "./TradeDataLoader.jsx"
+import {TradeDataLoader2} from "./TradeDataLoader.jsx"
 import {LoadingDots} from "./LoadingVisual.jsx"
 
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -41,7 +41,7 @@ export function StockInfoListing() {
 
     // ============= trade data for selected stock ===================
     const [stockData, setStockData] = useState()
-    const [nextStockData, setNextStockData] = useState(0)
+    //const [nextStockData, setNextStockData] = useState(0)
     const [fetchingStatus, setFetchingStatus] = useState(false)
     const [startDate, setStartDate] = useState(GetDefaultDate()[1])
     const [endDate, setEndDate] = useState(GetDefaultDate()[0])
@@ -100,13 +100,20 @@ export function StockInfoListing() {
         <>
           <section id="testimonials">
 
-            <TradeDataLoader
+            <TradeDataLoader2
               selected={selected}
               startDate={startDate} endDate={endDate}
               stockData={stockData} setStockData={setStockData}
-              nextStockData={nextStockData} setNextStockData={setNextStockData}
               fetchingStatus={fetchingStatus} setFetchingStatus={setFetchingStatus}
             />
+
+            {/* <TradeDataLoader */}
+            {/*   selected={selected} */}
+            {/*   startDate={startDate} endDate={endDate} */}
+            {/*   stockData={stockData} setStockData={setStockData} */}
+            {/*   nextStockData={nextStockData} setNextStockData={setNextStockData} */}
+            {/*   fetchingStatus={fetchingStatus} setFetchingStatus={setFetchingStatus} */}
+            {/* /> */}
             
             <div className="testimonials-container width-full">
               

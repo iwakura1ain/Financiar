@@ -18,6 +18,19 @@ function CleanTradeData(trade) {
     }
 }
 
+function getFormatted(date) {
+    if (date === undefined)
+        return date
+    
+    var val = new Date(date);
+    // Get year, month, and day part from the date
+    var year = val.toLocaleString("default", { year: "numeric" });
+    var month = val.toLocaleString("default", { month: "2-digit" });
+    var day = val.toLocaleString("default", { day: "2-digit" });
+
+    return year + "-" + month + "-" + day;
+}
+
 
 export function TradeDataLoader({
     selected,
@@ -55,15 +68,10 @@ export function TradeDataLoader({
     }, [startDate, endDate])
     
     useEffect(() => {
-        if (selected === undefined){
-            setStockData()
-            return
-        }
-        
         setStockData()
     }, [selected])
     
-    const fetchData = async ( start, end, next) => {
+    const fetchData = async (start, end, next, tempStockData, fetchBuffer) => {
         if (start === undefined || end === undefined) {
             return 0
         }
@@ -89,11 +97,18 @@ export function TradeDataLoader({
                 fetchBuffer = [...fetchBuffer, ...json.data]
                 return json
             })
-            .then((json) => { // TODO: original stockData remains unchanged!!!
-                console.log("STOCKDATA STATUS", stockData)
-                if (stockData == undefined) {
+            .then((json) => {
+                if (stockData === undefined) {
                     setStockData(json)
                 }
+                
+                setStockData(prevStockData => ({
+                    ...prevStockData,
+                    data: [...tempStockData, ...fetchBuffer]
+                }))
+            })
+            .then((json) => { // TODO: original stockData remains unchanged!!!
+                console.log("STOCKDATA STATUS", stockData)
 
                 return 
             })
@@ -120,10 +135,10 @@ export function TradeDataLoader({
             fetchBuffer = []
             do {                
                 nextPage = await fetchData(minFetchStart, minFetchEnd, nextPage)
-                await setStockData({
-                    ...stockData,
+                await setStockData(prevStockData => ({
+                    ...prevStockData,
                     data: [...fetchBuffer, ...tempStockData]
-                })
+                }))
 
                 console.log("Changed", stockData)
             } while (nextPage != 0)
@@ -133,12 +148,8 @@ export function TradeDataLoader({
             
             fetchBuffer = []
             do {
-                nextPage = await fetchData(maxFetchStart, maxFetchEnd, nextPage)
-                await setStockData({
-                    ...stockData,
-                    data: [...tempStockData, ...fetchBuffer]
-                })
-
+                nextPage = await fetchData(maxFetchStart, maxFetchEnd, nextPage, tempStockData, fetchBuffer)
+                
                 console.log("Changed", stockData)
             } while (nextPage != 0)
 
@@ -146,6 +157,203 @@ export function TradeDataLoader({
             await setDates()
         })()
     }, [selected, minFetchStart, minFetchEnd, maxFetchStart, maxFetchEnd])
+
+    return (<></>)            
+}
+
+
+
+export function TradeDataLoader2({
+    selected,
+    startDate, endDate, 
+    stockData, setStockData,
+    nextStockData, setNextStockData,
+    fetchingStatus, setFetchingStatus,
+}) {
+
+    const [fetchTarget, setFetchTarget] = useState(selected)    
+    const [fetchBuffer, setFetchBuffer] = useState([])
+    const [tempStockData, setTempStockData] = useState()
+
+    const [prevStartDate, setPrevStartDate] = useState()
+    const [prevEndDate, setPrevEndDate] = useState()
+    
+    const [minFetchStart, setMinFetchStart] = useState()
+    const [minFetchEnd, setMinFetchEnd] = useState()
+    const [minFetchNext, setMinFetchNext] = useState(0)
+
+    const [maxFetchStart, setMaxFetchStart] = useState()
+    const [maxFetchEnd, setMaxFetchEnd] = useState()
+    const [maxFetchNext, setMaxFetchNext] = useState(0)
+
+    const [cleanup, setCleanup] = useState(false)
+
+    useEffect(() => {
+        if (selected === undefined)
+            return
+        
+        console.log("SELECTED", selected)
+        setStockData()
+        setFetchTarget(selected)
+        setFetchingStatus(false)
+        //setNextFetch(1)
+    }, [selected])
+
+    useEffect(() => {
+        const newStartDate = new Date(startDate)
+        const newEndDate = new Date(endDate)
+
+        if (prevStartDate === undefined || prevEndDate === undefined) {
+            setMinFetchStart(newStartDate)
+            setMinFetchEnd(newEndDate)
+            return
+        }
+            
+        if (newStartDate < prevStartDate) {
+            setMinFetchStart(newStartDate)
+            setMinFetchEnd(prevStartDate)
+        }
+        else {
+            setMinFetchStart()
+            setMinFetchEnd()
+        }
+        
+        if (prevEndDate < newEndDate) {
+            setMaxFetchStart(prevEndDate)
+            setMaxFetchEnd(newEndDate)
+
+        }
+        else {
+            setMaxFetchStart()
+            setMaxFetchEnd()
+        }
+    }, [startDate, endDate])
+    
+    const fetchData = async (isMin) => {
+
+        const [target, start, end, next] = isMin
+              ? [selected, getFormatted(minFetchStart), getFormatted(minFetchEnd), minFetchNext]
+              : [selected, getFormatted(maxFetchStart), getFormatted(maxFetchEnd), maxFetchNext]
+
+        const setNext = isMin ? setMinFetchNext : setMaxFetchNext
+
+        const setPrevDate = isMin ? setPrevStartDate : setPrevEndDate
+        
+        if (start === undefined || end === undefined || next === 0) {
+            setFetchBuffer([])
+            return
+        }
+
+        console.log("FETCHING")
+        const fetchURL = `/api/fdr/stocks/${target}?start=${start}&end=${end}&page=${next}`
+        await fetch(fetchURL, { headers:{ accept: 'application/json' } })
+            .then(response => response.json())
+            .then((json) => { // get next page
+                if (json.next !== null) {
+                    const nextUrl = new URL(json.next)
+                    setNext(nextUrl.searchParams.get("page"))
+                    console.log("NEXT PAGE ", next)
+                }
+                else {
+                    console.log("LAST PAGE ", next)
+                    setNext(0)
+                    setFetchBuffer([])
+
+                }
+
+                return json
+            })
+            .then((json) => { // set stockdata
+                if (next == 0)
+                    return
+                
+                console.log("SETTING BUFFER")
+                if (fetchBuffer.length == 0) 
+                    setFetchBuffer(json.data)
+                
+                else 
+                    setFetchBuffer((prevBuffer) => ([...prevBuffer, ...json.data]))
+
+                console.log("FETCHBUFFER", fetchBuffer)
+            })
+            .then(() => (console.log("SUCCESS")))
+            .catch(console.log)
+    }
+
+    useEffect(() => {
+        (async () => {
+            console.log("FETCHING MIN PAGE ", minFetchNext)
+            
+            if (minFetchNext == 1)
+                setFetchingStatus(true)
+
+            else if (minFetchNext == 0) {
+                setFetchingStatus(false)
+                return
+            }
+
+            await fetchData(true)
+
+            await setStockData({
+                ...tempStockData,
+                data: [...fetchBuffer, ...tempStockData.data]
+            })
+
+        })()
+    }, [minFetchNext])
+
+    useEffect(() => {
+        (async () => {
+            console.log("FETCHING MAX PAGE ", maxFetchNext)
+            
+            if (maxFetchNext == 1)
+                setFetchingStatus(true)
+
+            else if (maxFetchNext == 0) {
+                setFetchingStatus(false)
+                return
+            }
+
+            await fetchData(false)
+
+            await setStockData({
+                ...tempStockData,
+                data: [...tempStockData.data, ...fetchBuffer]
+            })
+
+        })()
+    }, [maxFetchNext])
+
+    useEffect(() => {
+        (async () => {
+            if (selected === undefined)
+                return
+
+            await console.log("======= START WITH =====", stockData)
+            
+            await setTempStockData(stockData === undefined ? {data:[]} : stockData)
+            
+            await console.log("SAVING TEMP FOR MIN", tempStockData)
+            
+            await setMinFetchNext(1)
+
+            await setTempStockData(stockData === undefined ? {data:[]} : stockData)
+            await console.log("SAVING TEMP FOR MAX", tempStockData)
+
+            await setMaxFetchNext(1)
+        })()
+    }, [selected, minFetchStart, minFetchEnd, maxFetchStart, maxFetchEnd])
+
+
+    useEffect(() => {
+        if (stockData === undefined || stockData.data.length == 0)
+            return
+        
+        setPrevStartDate(new Date(stockData.data[0].Date))
+        setPrevEndDate(new Date(stockData.data[stockData.data.length-1].Date))
+
+        console.log(prevStartDate, prevEndDate)
+    }, [stockData])
 
     return (<></>)            
 }

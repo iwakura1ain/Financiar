@@ -132,7 +132,7 @@ export function TradeDataLoader2({
         console.log(res, resNext)
         return [res, resNext]
     }
-     
+    
     // fetch for lower region 
     useEffect(() => {
         (async () => {

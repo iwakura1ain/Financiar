@@ -33,21 +33,6 @@ function GetDefaultDate() {
     return [getFormatted(date), getFormatted(prevDate)]
 }
 
-function getVisibleArea(visibleIndex, visibleOffset, dataLength) {
-    let [start, end] = [0,10]
-    
-    if (visibleIndex[0] > 0)
-        start = visibleIndex[0] + visibleOffset[0]
-
-    if (visibleIndex[1] > 0)
-        end = visibleIndex[1] + visibleOffset[1] 
-
-    console.log("INDEX", visibleIndex)
-    console.log("OFFSET", visibleOffset)
-    console.log("VISIBLE", start, end)
-    return [start, end]
-}
-
 const CustomBar = (props) => {
     const {Color} = props;
 
@@ -74,7 +59,7 @@ export function StockGraphBox({
     const [showAverage, setShowAverage] = useState(true)
     const [showVolume, setShowVolume] = useState(true)
     const [visibility, setVisibility] = useState(true)
-    const [visibleIndex, setVisibleIndex] = useState([-1, -1])
+
 
     // ====== avg ======
     useEffect(() => {
@@ -178,27 +163,27 @@ export function StockGraphBox({
                     }}/>
                 </div>
 
-                <div>
-                  <label htmlFor="end">Start : </label>
-                  <input
-                    type="number"
-                    step={1}
-                    value={visibleIndex[0]}
-                    onChange={(event) => {
-                        setVisibleIndex([+event.target.value, visibleIndex[1]])
-                    }}/>
-                </div>
+                {/* <div> */}
+                {/*   <label htmlFor="end">Start : </label> */}
+                {/*   <input */}
+                {/*     type="number" */}
+                {/*     step={1} */}
+                {/*     value={visibleIndex[0]} */}
+                {/*     onChange={(event) => { */}
+                {/*         setVisibleIndex([+event.target.value, visibleIndex[1]]) */}
+                {/*     }}/> */}
+                {/* </div> */}
 
-                <div>
-                  <label htmlFor="end">End : </label>
-                  <input
-                    type="number"
-                    step={1}
-                    value={visibleIndex[1]}
-                    onChange={(event) => {
-                        setVisibleIndex([visibleIndex[0], +event.target.value])
-                    }}/>
-                </div>
+                {/* <div> */}
+                {/*   <label htmlFor="end">End : </label> */}
+                {/*   <input */}
+                {/*     type="number" */}
+                {/*     step={1} */}
+                {/*     value={visibleIndex[1]} */}
+                {/*     onChange={(event) => { */}
+                {/*         setVisibleIndex([visibleIndex[0], +event.target.value]) */}
+                {/*     }}/> */}
+                {/* </div> */}
                 
               </div>
               
@@ -289,27 +274,27 @@ export function StockGraphBox({
                 }}/>
             </div>
             
-            <div>
-              <label htmlFor="end">Start : </label>
-              <input
-                type="number"
-                step={1}
-                value={visibleIndex[0]}
-                onChange={(event) => {
-                    setVisibleIndex([+event.target.value, visibleIndex[1]])
-                }}/>
-            </div>
+            {/* <div> */}
+            {/*   <label htmlFor="end">Start : </label> */}
+            {/*   <input */}
+            {/*     type="number" */}
+            {/*     step={1} */}
+            {/*     value={visibleIndex[0]} */}
+            {/*     onChange={(event) => { */}
+            {/*         setVisibleIndex([+event.target.value, visibleIndex[1]]) */}
+            {/*     }}/> */}
+            {/* </div> */}
 
-            <div>
-              <label htmlFor="end">End : </label>
-              <input
-                type="number"
-                step={1}
-                value={visibleIndex[1]}
-                onChange={(event) => {
-                    setVisibleIndex([visibleIndex[0], +event.target.value])
-                }}/>
-            </div>
+            {/* <div> */}
+            {/*   <label htmlFor="end">End : </label> */}
+            {/*   <input */}
+            {/*     type="number" */}
+            {/*     step={1} */}
+            {/*     value={visibleIndex[1]} */}
+            {/*     onChange={(event) => { */}
+            {/*         setVisibleIndex([visibleIndex[0], +event.target.value]) */}
+            {/*     }}/> */}
+            {/* </div> */}
 
           </div>
 
@@ -320,10 +305,7 @@ export function StockGraphBox({
             width={width}
             height={height}
         /* data={[...stockData.data, ...Array.apply(null, Array(stockData.count-stockData.data.length)).map(function () {})]} */
-            data={stockData.data
-                /* stockData.data.slice(getVisibleArea(visibleIndex, visibleOffset, stockData.data.length)[0], */
-                /*                      getVisibleArea(visibleIndex, visibleOffset, stockData.data.length)[1]) */
-            }
+            data={stockData.data}
             margin={{
                 top: 20,
                 right: 30,

@@ -78,7 +78,7 @@ export function StockInfoListing() {
             })
             .catch(console.log)
     }
-    
+       
     useEffect(() => {
         let fetchUrl = `${baseUrl}?name=${searchName}&sector=${searchSector}`
         fetch(fetchUrl, { headers:{accept: 'application/json'} })
@@ -95,7 +95,11 @@ export function StockInfoListing() {
             .catch(console.log)
 
     }, [searchSector, searchName])
-    
+
+    useEffect(() => {
+        console.log("STATUS", fetchingStatus)
+    }, [fetchingStatus])
+
     return (
         <>
           <section id="testimonials">

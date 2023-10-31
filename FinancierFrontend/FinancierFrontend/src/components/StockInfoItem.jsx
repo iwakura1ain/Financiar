@@ -1,15 +1,11 @@
 const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur scelerisque, tortor nec mattis feugiat, velit purus euismod odio, quis vulputate velit urna sit amet enim. Maecenas vulputate auctor ligula sed sollicitudin."
 
 
-
-
 export function StockInfoItem({
-    selected, 
-    setSelected,
+    selected, setSelected,
     name="Stock", 
     ticker="---", 
-    rating=0,
-    rateStock,
+    rating=0, rateStock,
     sector="finance", 
     desc=lorem}) {
 

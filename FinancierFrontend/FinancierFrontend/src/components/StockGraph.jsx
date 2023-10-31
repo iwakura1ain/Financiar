@@ -48,11 +48,12 @@ export function StockGraphBox({
 
     // ====== avg ======
     useEffect(() => {
-        if (!stockData || !showAverage)
+        if (fetchingStatus || !showAverage)
             return
-
-        if (fetchingStatus)
+        
+        if (stockData === undefined)
             return
+        
         
         let [avg, num] = [0, 0]
         
@@ -265,11 +266,11 @@ export function StockGraphBox({
 
             <Tooltip content={<CustomToolTip />}  />
 
-            <Bar dataKey="Bottom" stackId="a" fill="#FFFFFF" /> 
-            <Bar shape={CustomBar} dataKey="Area" stackId="a" />
+            <Bar dataKey="Bottom" stackId="a" fill="#FFFFFF" isAnimationActive={false} /> 
+            <Bar shape={CustomBar} dataKey="Area" stackId="a" isAnimationActive={false} />
             <Line
               type="monotone"
-              dataKey={showAverage ? "Average" : ""}
+              dataKey={showAverage && !fetchingStatus ? "Average" : ""}
               stroke="#0095f7"
               dot={false}
               strokeDasharray="5 5"
@@ -293,6 +294,7 @@ export function StockGraphBox({
               dataKey={showVolume ? "Volume" : null}
               fill="#8884d8"
               activeBar={<Rectangle fill="#8f8e8c" stroke="blue" />}
+              isAnimationActive={false} 
             />
           </BarChart>
         </div>

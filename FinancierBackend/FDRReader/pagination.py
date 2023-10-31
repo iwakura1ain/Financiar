@@ -10,6 +10,7 @@ class PartialPagination(PageNumberPagination):
     page_size = 20
     page_size_query_param = 'page_size'
     max_page_size = 1000
+    flip = False
 
     def paginate_queryset(self, queryset, request, view=None):
         paginated = super().paginate_queryset(queryset, request, view=None)        

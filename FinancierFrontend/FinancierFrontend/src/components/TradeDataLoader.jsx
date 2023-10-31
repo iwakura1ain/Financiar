@@ -36,8 +36,8 @@ export function TradeDataLoader2({
     selected,
     startDate, endDate, 
     stockData, setStockData,
-    nextStockData, setNextStockData,
     fetchingStatus, setFetchingStatus,
+    visibleOffset, setVisibleOffset
 }) {
 
     //const [fetchTarget, setFetchTarget] = useState(selected)
@@ -62,8 +62,7 @@ export function TradeDataLoader2({
             if (selected === undefined)
                 return
             
-            console.log("SELECTED", selected)
-            
+            console.log("SELECTED", selected)            
 
             await setMinFetchNext(0)
             await setMaxFetchNext(0)
@@ -109,11 +108,11 @@ export function TradeDataLoader2({
     }, [startDate, endDate])
 
     // fetch paged data 
-    const fetchData = async (target, start, end, next) => {
+    const fetchData = async (target, start, end, next, flip) => {
         await setFetchingStatus(true)
         
         var [res, resNext] = [{}, 0]
-        const fetchURL = `/api/fdr/stocks/${target}?start=${getFormatted(start)}&end=${getFormatted(end)}&page=${next}`
+        const fetchURL = `/api/fdr/stocks/${target}?start=${getFormatted(start)}&end=${getFormatted(end)}&page=${next}&flip=${flip}`
         await fetch(fetchURL, { headers:{ accept: 'application/json' } })
             .then(response => response.json())
             .then((json) => { // set stockdata
@@ -133,18 +132,19 @@ export function TradeDataLoader2({
         console.log(res, resNext)
         return [res, resNext]
     }
-
-    //TODO: paginate backwards    
+     
     // fetch for lower region 
     useEffect(() => {
         (async () => {
+            console.log("fetching min", minFetchStart, minFetchEnd)
             if (minFetchNext == 0) {
                 setMinFetchBuff([])
                 return
             }
             
-            const [res, resNext] = await fetchData(selected, minFetchStart, minFetchEnd, minFetchNext)
-            await setMinFetchBuff((prevBuff) => ([...prevBuff, ...res.data]))
+            let [res, resNext] = await fetchData(selected, minFetchStart, minFetchEnd, minFetchNext, true)
+            res.data = await res.data.reverse()
+            await setMinFetchBuff((prevBuff) => ([ ...res.data, ...prevBuff]))
             await setMinFetchNext(resNext)
         })()
     }, [minFetchNext])
@@ -152,12 +152,13 @@ export function TradeDataLoader2({
     // fetch for upper region
     useEffect(() => {
         (async () => {
+            console.log("fetching max", maxFetchStart, maxFetchEnd)
             if (maxFetchNext == 0) {
                 setMaxFetchBuff([])
                 return
             }
 
-            const [res, resNext] = await fetchData(selected, maxFetchStart, maxFetchEnd, maxFetchNext)
+            const [res, resNext] = await fetchData(selected, maxFetchStart, maxFetchEnd, maxFetchNext, false)
             await setMaxFetchBuff((prevBuff) => ([...prevBuff, ...res.data]))
             await setMaxFetchNext(resNext)
         })()
@@ -185,14 +186,19 @@ export function TradeDataLoader2({
     // set stockData when fetchbuffer changes
     useEffect(() => {
         var newStockData = tempStockData
+        var newVisibleOffset = visibleOffset
         var changed = false
         if (minFetchBuff.length != 0){
             newStockData = [...minFetchBuff, ...newStockData]
+            //setVisibleOffset(newVisibleOffset.map((val) => (val+minFetchBuff.length)))
+            console.log("FETCHED MIN", newStockData)
             changed = true
         }
 
         if (maxFetchBuff.length != 0){
             newStockData = [...newStockData, ...maxFetchBuff]
+            //newVisibleIndex = newVisibleIndex.map((val) => (val-maxFetchBuff.length)) ... really needed?
+            console.log("FETCHED MAX", newStockData)
             changed = true
         }
 
@@ -201,14 +207,17 @@ export function TradeDataLoader2({
                 data: newStockData
             })
             
-            setPrevStartDate(new Date(newStockData[0].Date))
-            setPrevEndDate(new Date(newStockData[newStockData.length-1].Date))
+            // setPrevStartDate(new Date(newStockData[0].Date))
+            // setPrevEndDate(new Date(newStockData[newStockData.length-1].Date))
+            setPrevStartDate(new Date(startDate))
+            setPrevEndDate(new Date(endDate))
         }
         else
             setFetchingStatus(false)
         
         
     }, [minFetchBuff, maxFetchBuff])
+
 
 
     return (<></>)            

@@ -41,10 +41,10 @@ export function StockInfoListing() {
 
     // ============= trade data for selected stock ===================
     const [stockData, setStockData] = useState()
-    //const [nextStockData, setNextStockData] = useState(0)
     const [fetchingStatus, setFetchingStatus] = useState(false)
     const [startDate, setStartDate] = useState(GetDefaultDate()[1])
     const [endDate, setEndDate] = useState(GetDefaultDate()[0])
+    const [visibleOffset, setVisibleOffset] = useState([0,0])
 
     const baseUrl = "/api/fdr/stocks"
 
@@ -109,15 +109,8 @@ export function StockInfoListing() {
               startDate={startDate} endDate={endDate}
               stockData={stockData} setStockData={setStockData}
               fetchingStatus={fetchingStatus} setFetchingStatus={setFetchingStatus}
+              visibleOffset={visibleOffset} setVisibleOffset={setVisibleOffset}
             />
-
-            {/* <TradeDataLoader */}
-            {/*   selected={selected} */}
-            {/*   startDate={startDate} endDate={endDate} */}
-            {/*   stockData={stockData} setStockData={setStockData} */}
-            {/*   nextStockData={nextStockData} setNextStockData={setNextStockData} */}
-            {/*   fetchingStatus={fetchingStatus} setFetchingStatus={setFetchingStatus} */}
-            {/* /> */}
             
             <div className="testimonials-container width-full">
               
@@ -131,6 +124,7 @@ export function StockInfoListing() {
                 selected={selected} setSelected={setSelected}
                 fetchingStatus={fetchingStatus}
                 startDate={startDate} setStartDate={setStartDate}
+                visibleOffset={visibleOffset} setVisibleOffset={setVisibleOffset}
                 endDate={endDate} setEndDate={setEndDate}                 
               />
               

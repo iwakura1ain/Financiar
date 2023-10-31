@@ -49,6 +49,10 @@ class APIQueryAndModelMixin:
         serializer = self.get_serializer(instance)
         
         api_data = self.query_api(request.GET, **kwargs)
+
+        if (flip := request.GET.get("flip")) == "true":
+            api_data = api_data[::-1]
+        
         page = self.paginate_queryset(api_data)
         paginated_data = page.pop("results")
 

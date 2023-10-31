@@ -134,6 +134,7 @@ export function TradeDataLoader2({
         return [res, resNext]
     }
 
+    //TODO: paginate backwards    
     // fetch for lower region 
     useEffect(() => {
         (async () => {

@@ -247,6 +247,8 @@ export function StockGraphBox({
                 }}/>
             </div>
           </div>
+
+          <LoadingDots status={fetchingStatus}/>
           
           <ComposedChart
             className="barchart-chart"

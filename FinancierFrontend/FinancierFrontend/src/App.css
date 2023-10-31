@@ -623,26 +623,27 @@ footer small {
 
 .loader-outer {
   position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  right: 15px;
+  top: 170px;
 }
 
 .loader>span {
-  width: 15px;
-  height: 15px;
+  width: 10px;
+  height: 10px;
   display: inline;
-  background: #aeb3bd;
+  background: #778694;
   border-radius: 50%;
   position: relative;
   margin: 0 5px;
+  opacity: 0.3;
+  z-index: 1;
 }
 
 .loader {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 100px;
 }
 
 .dot-1 {

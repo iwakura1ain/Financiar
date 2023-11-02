@@ -204,6 +204,74 @@ export function StockGraphBox({
         </>
     )
     
+    const MainGraph = () => {
+        if (visibleOffset[1] > 365)
+            return (
+                <>
+                  <LineChart
+                    className="barchart-chart"
+                    width={width}
+                    height={height}
+                    data={GetSlicedStockData(stockData.data, visibleOffset)}
+                    margin={{
+                        top: 20,
+                        right: 30,
+                        left: 20,
+                        bottom: 70,
+                    }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis height={80} dataKey="Date" angle={-45} textAnchor='end'/>
+                    <YAxis type="number" />
+
+                    <Tooltip content={<CustomToolTip />}  />
+
+                    <Line type="monotone" dataKey="Close" stroke="#646cffaa" dot={false} isAnimationActive={false} />
+                    <Line
+                      type="monotone"
+                      dataKey={showAverage && !fetchingStatus ? "Average" : ""}
+                      stroke="#0095f7"
+                      dot={false}
+                      strokeDasharray="5 5"
+                      isAnimationActive={false} 
+                    />
+                  </LineChart>
+                </>
+            )
+
+        return (
+            <>
+              <ComposedChart
+                className="barchart-chart"
+                width={width}
+                height={height}
+            /* data={[...stockData.data, ...Array.apply(null, Array(stockData.count-stockData.data.length)).map(function () {})]} */
+                data={GetSlicedStockData(stockData.data, visibleOffset)}
+                margin={{
+                    top: 20,
+                    right: 30,
+                    left: 20,
+                    bottom: 70,
+                }}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis height={80} dataKey="Date" angle={-45} textAnchor='end'/>
+                <YAxis type="number" />
+
+                <Tooltip content={<CustomToolTip />}  />
+
+                <Bar dataKey="Bottom" stackId="a" fill="#FFFFFF" isAnimationActive={false} /> 
+                <Bar shape={CustomBar} dataKey="Area" stackId="a" isAnimationActive={false} />
+                <Line
+                  type="monotone"
+                  dataKey={showAverage && !fetchingStatus ? "Average" : ""}
+                  stroke="#0095f7"
+                  dot={false}
+                  strokeDasharray="5 5"
+                />
+              </ComposedChart>
+            </>
+        )
+    }
+    
     // ====== avg ======
     useEffect(() => {
         if (fetchingStatus || !showAverage)
@@ -238,8 +306,7 @@ export function StockGraphBox({
     }
 
     if (!stockData)
-        return (
-            
+        return (            
             <div
               className='barchart-wrapper'
               id="barchart-scrollable"
@@ -303,34 +370,8 @@ export function StockGraphBox({
           <LoadingSpinny status={fetchingStatus}/>
 
           <div id="barchart-scrollable">
-            <ComposedChart
-              className="barchart-chart"
-              width={width}
-              height={height}
-        /* data={[...stockData.data, ...Array.apply(null, Array(stockData.count-stockData.data.length)).map(function () {})]} */
-              data={GetSlicedStockData(stockData.data, visibleOffset)}
-              margin={{
-                  top: 20,
-                  right: 30,
-                  left: 20,
-                  bottom: 70,
-              }}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis height={80} dataKey="Date" angle={-45} textAnchor='end'/>
-              <YAxis type="number" />
-
-              <Tooltip content={<CustomToolTip />}  />
-
-              <Bar dataKey="Bottom" stackId="a" fill="#FFFFFF" isAnimationActive={false} /> 
-              <Bar shape={CustomBar} dataKey="Area" stackId="a" isAnimationActive={false} />
-              <Line
-                type="monotone"
-                dataKey={showAverage && !fetchingStatus ? "Average" : ""}
-                stroke="#0095f7"
-                dot={false}
-                strokeDasharray="5 5"
-              />
-            </ComposedChart>
+            <MainGraph />
+            
             <BarChart
               className="volume-chart"
               width={width}

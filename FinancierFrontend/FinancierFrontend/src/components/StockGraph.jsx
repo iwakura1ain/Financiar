@@ -1,7 +1,12 @@
 import {useState, useEffect} from 'react';
 
 
-import { ComposedChart, LineChart, Line, Rectangle, BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import {
+    ComposedChart, LineChart, Line, Rectangle, BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
+} from 'recharts';
+
+import { useScrollDirection } from 'react-use-scroll-direction'
+
 
 import {CustomToolTip} from './StockGraphToolTip.jsx'
 import {LoadingDots} from "./LoadingVisual.jsx"
@@ -33,6 +38,14 @@ function GetDefaultDate() {
     return [getFormatted(date), getFormatted(prevDate)]
 }
 
+function GetSlicedStockData(data, visibleOffset) {
+    let start = data.length - (visibleOffset[0] + visibleOffset[1])
+    let end = data.length - (visibleOffset[0])
+    let concat = start < 0 ? Array.apply(null, Array(Math.abs(start))).map(function () {}) : []
+
+    return [...concat, ...data.slice(start > 0 ? start : 0, end)]
+}
+
 const CustomBar = (props) => {
     const {Color} = props;
 
@@ -45,6 +58,32 @@ const CustomBar = (props) => {
     )
 }
 
+
+const AddGraphListener = ({eventAddStatus, setEventAddStatus, visibleOffset, setVisibleOffset}) => {
+    var element = document.getElementById("barchart-scrollable")
+    if (element == null || eventAddStatus)
+        return
+
+    element.addEventListener('wheel', preventScroll, {passive: false});
+    console.log("EVENT ADDED")
+
+    
+    function preventScroll(e){
+        e.preventDefault();
+        e.stopPropagation();
+        
+        var scrollAmount = e.deltaY > 0 ? 1 : -1
+        console.log("SCROLLED", scrollAmount)
+        
+        setVisibleOffset((prevOffset) => (
+            [prevOffset[0] + scrollAmount > 0 ? prevOffset[0] + scrollAmount : 0, prevOffset[1]]
+        ))
+
+        return false;
+    }
+
+    setEventAddStatus(true)
+}
 
 export function StockGraphBox({
     stockData, setStockData,
@@ -59,7 +98,9 @@ export function StockGraphBox({
     const [showAverage, setShowAverage] = useState(true)
     const [showVolume, setShowVolume] = useState(true)
     const [visibility, setVisibility] = useState(true)
-
+    const [eventAddStatus, setEventAddStatus] = useState(false)
+    
+    
     // ====== avg ======
     useEffect(() => {
         if (fetchingStatus || !showAverage)
@@ -95,7 +136,17 @@ export function StockGraphBox({
 
     if (!stockData)
         return (
-            <div className='barchart-wrapper' /* style={{height:500, width:1000, marginBottom:"20px"}} */>
+            
+            <div
+              className='barchart-wrapper'
+              id="barchart-scrollable"
+            >
+              <AddGraphListener
+                eventAddStatus={eventAddStatus}
+                setEventAddStatus={setEventAddStatus}
+                visibleOffset={visibleOffset}
+                setVisibleOffset={setVisibleOffset}
+              />
               
               <button
                 className="barchart-toggle"
@@ -184,6 +235,7 @@ export function StockGraphBox({
                 </div>
 
               </div>              
+
               
               <ComposedChart
                 className="barchart-chart"
@@ -204,7 +256,16 @@ export function StockGraphBox({
         )        
     
     return (
-        <div className='barchart-wrapper' /* style={{height:500, width:1000, marginBottom:"20px"}} */>
+        <div
+          className='barchart-wrapper'
+          id="barchart-scrollable"
+        >
+          <AddGraphListener
+            eventAddStatus={eventAddStatus}
+            setEventAddStatus={setEventAddStatus}
+            visibleOffset={visibleOffset}
+            setVisibleOffset={setVisibleOffset}
+          />
           <button
             className="barchart-toggle"
             onClick={() => {
@@ -298,10 +359,7 @@ export function StockGraphBox({
             width={width}
             height={height}
         /* data={[...stockData.data, ...Array.apply(null, Array(stockData.count-stockData.data.length)).map(function () {})]} */
-            data={stockData.data.slice(
-                stockData.data.length - (visibleOffset[0] + visibleOffset[1]),
-                stockData.data.length - (visibleOffset[0])
-            )}
+            data={GetSlicedStockData(stockData.data, visibleOffset)}
             margin={{
                 top: 20,
                 right: 30,
@@ -329,7 +387,8 @@ export function StockGraphBox({
             width={width}
             height={height-220}
         /* data={showVolume ? [...stockData.data, ...Array.apply(null, Array(stockData.count-stockData.data.length)).map(function () {})] : null} */
-            data={showVolume ? stockData.data : null}
+            data={GetSlicedStockData(stockData.data, visibleOffset)}
+
             margin={{
                 top: 20,
                 right: 30,

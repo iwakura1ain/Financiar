@@ -24,7 +24,7 @@ function getFormatted(date, offset=false) {
     var val = new Date(date);
 
     if (offset) {
-        val.setMonth(val.getMonth() - 1);
+        val.setMonth(val.getMonth() - 6);
     }
     
     // Get year, month, and day part from the date
@@ -68,7 +68,7 @@ export function TradeDataLoader2({
         if (stockData === undefined || fetchingStatus)
             return
         
-        if (visibleOffset[0] + visibleOffset[1] > stockData.data.length - 30) {
+        if (visibleOffset[0] + visibleOffset[1] > stockData.data.length - 80) {
             console.log("setting start date to ", startDate)
             setStartDate((currStartDate) => (getFormatted(currStartDate, true)))
         }
@@ -77,6 +77,9 @@ export function TradeDataLoader2({
     // reset stockData and buffers when different stock selected
     useEffect(() => {
         (async () => {
+            if (fetchingStatus)
+                return
+            
             if (selected === undefined)
                 return
             
@@ -249,7 +252,7 @@ export function TradeDataLoader2({
             //     setFetchingStatus(false)
             // }
 
-            if (minFetchNext == 0 && maxFetchNext == 0) {
+            if (minFetchNext == 0 && maxFetchNext == 0 && fetchingStatus) {
                 console.log("SETTING FETCHING STATUS FALSE")
                 await setFetchingStatus(false)
                 await setMinFetchReady(false)

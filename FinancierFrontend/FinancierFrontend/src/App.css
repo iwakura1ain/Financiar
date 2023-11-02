@@ -174,7 +174,7 @@
   position: absolute;
   top: 180px;
   margin: 0;
-  right: 110px;
+  left: 110px;
   height: 5px;
   width: 10px;
   z-index: 1;
@@ -658,7 +658,7 @@ footer small {
 
 .loader-outer {
   position: absolute;
-  right: 15px;
+  left: 170px;
   top: 170px;
 }
 
@@ -670,7 +670,7 @@ footer small {
   border-radius: 50%;
   position: relative;
   margin: 0 5px;
-  opacity: 0.3;
+  opacity: 0.5;
   z-index: 1;
 }
 

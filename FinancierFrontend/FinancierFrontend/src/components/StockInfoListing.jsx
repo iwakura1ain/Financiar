@@ -42,7 +42,7 @@ export function StockInfoListing() {
 
     // ============= trade data for selected stock ===================
     const [stockData, setStockData] = useState()
-    const [visibleOffset, setVisibleOffset] = useState([0, 200]) //  [a, b] => stockData.data: [ |---- b ---| ... a ... ]
+    const [visibleOffset, setVisibleOffset] = useState([0, 180]) //  [a, b] => stockData.data: [ |---- b ---| ... a ... ]
     const [fetchingStatus, setFetchingStatus] = useState(false)
     const [startDate, setStartDate] = useState(GetDefaultDate()[1])
     const [endDate, setEndDate] = useState(GetDefaultDate()[0])

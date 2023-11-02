@@ -3,7 +3,6 @@ import {useState, useEffect} from "react"
 const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur scelerisque, tortor nec mattis feugiat, velit purus euismod odio, quis vulputate velit urna sit amet enim. Maecenas vulputate auctor ligula sed sollicitudin."
 
 export function StockInfoItem({
-    key,
     selected, setSelected,
     selectedElement, setSelectedElement, 
     name="Stock", 

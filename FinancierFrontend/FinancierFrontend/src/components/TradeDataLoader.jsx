@@ -64,12 +64,15 @@ export function TradeDataLoader2({
     const [maxFetchBuff, setMaxFetchBuff] = useState([])
     const [maxFetchReady, setMaxFetchReady] = useState(false)
 
+        
     useEffect(() => {
+        console.log("PREFETCHING")        
         if (stockData === undefined || fetchingStatus)
             return
         
         if (visibleOffset[0] + visibleOffset[1] > stockData.data.length - 80) {
             console.log("setting start date to ", startDate)
+            setFetchingStatus(true)
             setStartDate((currStartDate) => (getFormatted(currStartDate, true)))
         }
     }, [visibleOffset])
@@ -83,22 +86,24 @@ export function TradeDataLoader2({
             if (selected === undefined)
                 return
             
-            console.log("SELECTED", selected)            
+            console.log("SELECTED", selected)
+            setFetchingStatus(true)
 
             await setMinFetchNext(0)
             await setMaxFetchNext(0)
+
             await setMinFetchBuff([])
             await setMaxFetchBuff([])
             
             await setStockData()
-            setTempStockData([])
+            await setTempStockData([])
 
-            setMinFetchStart(new Date(startDate))
-            setMinFetchEnd(new Date(endDate))
+            await setMinFetchStart(new Date(startDate))
+            await setMinFetchEnd(new Date(endDate))
             setMinFetchReady(true)
 
-            setMaxFetchStart()
-            setMaxFetchEnd()
+            await setMaxFetchStart()
+            await setMaxFetchEnd()
             
         })()        
     }, [selected])
@@ -106,11 +111,12 @@ export function TradeDataLoader2({
     // set dates to fetch
     useEffect(() => {
         (async () => {
-            if (fetchingStatus)
-                return
+            // if (fetchingStatus)
+            //     return
+            // await setFetchingStatus(true)
 
             await console.log("SETTING FETCHING STATUS TRUE")
-            await setFetchingStatus(true)
+            
 
             const newStartDate = new Date(startDate)
             const newEndDate = new Date(endDate)

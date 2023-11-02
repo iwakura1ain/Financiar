@@ -9,7 +9,7 @@ import { useScrollDirection } from 'react-use-scroll-direction'
 
 
 import {CustomToolTip} from './StockGraphToolTip.jsx'
-import {LoadingDots} from "./LoadingVisual.jsx"
+import {LoadingDots, LoadingSpinny} from "./LoadingVisual.jsx"
 
 
 function GetWeightedAverage(trade, current, num, weight) {
@@ -95,11 +95,114 @@ export function StockGraphBox({
     height=600, width=1600,
 }) {
     const [avgWeight, setAvgWeight] = useState(0.2)
-    const [showAverage, setShowAverage] = useState(true)
+    const [showAverage, setShowAverage] = useState(false)
     const [showVolume, setShowVolume] = useState(true)
     const [visibility, setVisibility] = useState(true)
     const [eventAddStatus, setEventAddStatus] = useState(false)
-    
+
+    const GraphControls = () => (
+        <div className="barchart-controls">
+          <div>
+            <label htmlFor="start">Start date : </label>
+            <input
+              type="date"
+              id="start"
+              max={GetDefaultDate()[0]}
+              value={startDate}
+              onChange={(event) =>{
+                  setStartDate(event.target.value)
+              }}/> 
+          </div>
+          <div>
+            <label htmlFor="end">End date : </label>
+            <input
+              type="date"
+              id="end"
+              max={GetDefaultDate()[0]}
+              value={endDate}
+              onChange={(event) => {
+                  setEndDate(event.target.value)
+              }}/>
+          </div>
+          <div>
+            <label htmlFor="end">Volume : </label>
+            <input
+              type="checkbox"
+              defaultChecked={true}
+              onChange={() => {
+                  setShowVolume(!showVolume)
+              }}/>
+          </div>
+
+          <div>
+            <label htmlFor="end">Average : </label>
+            <input
+              type="checkbox"
+             
+              onChange={() => {                        
+                  setShowAverage(!showAverage)
+              }}/>
+          </div>
+          <div>
+            <label htmlFor="end">Weight : </label>
+            <input
+              type="number"
+              max={1.0}
+              min={0.0}
+              step={0.05}
+              value={avgWeight}
+              onChange={(event) => {
+                  setAvgWeight(event.target.value)
+              }}/>
+          </div>
+          <div>
+            <label htmlFor="end">A (offset from end): </label>
+            <input
+              type="number"
+              step={10}
+              min={0}
+              value={visibleOffset[0]}
+              onChange={(event) => {
+                  setVisibleOffset([+event.target.value, visibleOffset[1]])
+              }}/>
+          </div>
+
+          <div>
+            <label htmlFor="end">B (len of data) : </label>
+            <input
+              type="number"
+              step={1}
+              min={0}
+              value={visibleOffset[1]}
+              onChange={(event) => {
+                  setVisibleOffset([visibleOffset[0], +event.target.value])
+              }}/>
+          </div>
+
+        </div>              
+    )
+
+    const GraphZoomButton = () => (
+        <>
+          <button
+            className="barchart-zoom"
+            id="barchart-zoom-in"
+            onClick={() => {
+                setVisibleOffset((prevOffset) => ([prevOffset[0], prevOffset[1]-10]))
+            }}>
+            <img src="/src/assets/plus.svg"  />
+          </button>
+          
+          <button
+            className="barchart-zoom"
+            id="barchart-zoom-out"
+            onClick={() => {
+                setVisibleOffset((prevOffset) => ([prevOffset[0], prevOffset[1]+10]))
+            }}>
+            <img src="/src/assets/minus.svg" />
+          </button>
+        </>
+    )
     
     // ====== avg ======
     useEffect(() => {
@@ -154,111 +257,32 @@ export function StockGraphBox({
                     setVisibility(false)
                 }}>Hide Graph</button>
               
-              <div className="barchart-controls">
-                <div>
-                  <label htmlFor="start">Start date : </label>
-                  <input
-                    type="date"
-                    id="start"
-                    max={GetDefaultDate()[0]}
-                    value={startDate}
-                    onChange={(event) =>{
-                        //console.log(event.target.value)
-                        setStartDate(event.target.value)
-                    }}/> 
-                </div>
-                <div>
-                  <label htmlFor="end">End date : </label>
-                  <input
-                    type="date"
-                    id="end"
-                    max={GetDefaultDate()[0]}
-                    value={endDate}
-                    onChange={(event) => {
-                        //console.log(event.target.value)
-                        setEndDate(event.target.value)
-                    }}/>
-                </div>
-                <div>
-                  <label htmlFor="end">Volume : </label>
-                  <input
-                    type="checkbox"
-                    defaultChecked={true}
-                    onChange={() => {
-                        setShowVolume(!showVolume)
-                    }}/>
-                </div>
+              <GraphControls />
+              <GraphZoomButton />             
 
-                <div>
-                  <label htmlFor="end">Average : </label>
-                  <input
-                    type="checkbox"
-                    defaultChecked={true}
-                    onChange={() => {                        
-                        setShowAverage(!showAverage)
-                    }}/>
-                </div>
-                <div>
-                  <label htmlFor="end">Weight : </label>
-                  <input
-                    type="number"
-                    max={1.0}
-                    min={0.0}
-                    step={0.05}
-                    value={avgWeight}
-                    onChange={(event) => {
-                        setAvgWeight(event.target.value)
-                    }}/>
-                </div>
-                <div>
-                  <label htmlFor="end">A (offset from end): </label>
-                  <input
-                    type="number"
-                    step={10}
-                    min={0}
-                    value={visibleOffset[0]}
-                    onChange={(event) => {
-                        setVisibleOffset([+event.target.value, visibleOffset[1]])
-                    }}/>
-                </div>
-
-                <div>
-                  <label htmlFor="end">B (len of data) : </label>
-                  <input
-                    type="number"
-                    step={1}
-                    min={0}
-                    value={visibleOffset[1]}
-                    onChange={(event) => {
-                        setVisibleOffset([visibleOffset[0], +event.target.value])
-                    }}/>
-                </div>
-
-              </div>              
-
-              
-              <ComposedChart
-                className="barchart-chart"
-                width={width}
-                height={height}
-                data={null}
-                margin={{
-                    top: 20,
-                    right: 30,
-                    left: 20,
-                    bottom: 70,
-                }}>
-                <XAxis height={80} angle={-45} textAnchor='end'/>
-                <YAxis type="number" />
-                <CartesianGrid strokeDasharray="3 3" />
-              </ComposedChart>
+              <div id="barchart-scrollable">
+                <ComposedChart
+                  className="barchart-chart"
+                  width={width}
+                  height={height}
+                  data={null}
+                  margin={{
+                      top: 20,
+                      right: 30,
+                      left: 20,
+                      bottom: 70,
+                  }}>
+                  <XAxis height={80} angle={-45} textAnchor='end'/>
+                  <YAxis type="number" />
+                  <CartesianGrid strokeDasharray="3 3" />
+                </ComposedChart>
+              </div>
             </div>
         )        
     
     return (
         <div
           className='barchart-wrapper'
-          id="barchart-scrollable"
         >
           <AddGraphListener
             eventAddStatus={eventAddStatus}
@@ -272,139 +296,66 @@ export function StockGraphBox({
                 setVisibility(false)
             }}>Hide Graph</button>
           
-          <div className="barchart-controls">
-            <div>
-              <label htmlFor="start">Start date : </label>
-              <input
-                type="date"
-                id="start"
-                max={GetDefaultDate()[0]}
-                value={startDate}
-                onChange={(event) =>{
-                    //console.log(event.target.value)
-                    setStartDate(event.target.value)
-                }}/> 
-            </div>
-            <div>
-              <label htmlFor="end">End date : </label>
-              <input
-                type="date"
-                id="end"
-                max={GetDefaultDate()[0]}
-                value={endDate}
-                onChange={(event) => {
-                    //console.log(event.target.value)
-                    setEndDate(event.target.value)
-                }}/>
-            </div>
-            <div>
-              <label htmlFor="end">Volume : </label>
-              <input
-                type="checkbox"
-                defaultChecked={true}
-                onChange={() => {
-                    setShowVolume(!showVolume)
-                }}/>
-            </div>
+          <GraphControls />
+          <GraphZoomButton />
 
-            <div>
-              <label htmlFor="end">Average : </label>
-              <input
-                type="checkbox"
-                defaultChecked={true}
-                onChange={() => {                        
-                    setShowAverage(!showAverage)
-                }}/>
-            </div>
-            <div>
-              <label htmlFor="end">Weight : </label>
-              <input
-                type="number"
-                max={1.0}
-                min={0.0}
-                step={0.05}
-                value={avgWeight}
-                onChange={(event) => {
-                    setAvgWeight(event.target.value)
-                }}/>
-            </div>
-            
-            <div>
-              <label htmlFor="end">A (offset from end): </label>
-              <input
-                type="number"
-                step={1}
-                value={visibleOffset[0]}
-                onChange={(event) => {
-                    setVisibleOffset([+event.target.value, visibleOffset[1]])
-                }}/>
-            </div>
+          {/* <LoadingDots status={fetchingStatus}/> */}
+          <LoadingSpinny status={fetchingStatus}/>
 
-            <div>
-              <label htmlFor="end">B (len of data) : </label>
-              <input
-                type="number"
-                step={1}
-                value={visibleOffset[1]}
-                onChange={(event) => {
-                    setVisibleOffset([visibleOffset[0], +event.target.value])
-                }}/>
-            </div>
-          </div>
-
-          <LoadingDots status={fetchingStatus}/>
-          
-          <ComposedChart
-            className="barchart-chart"
-            width={width}
-            height={height}
+          <div id="barchart-scrollable">
+            <ComposedChart
+              className="barchart-chart"
+              width={width}
+              height={height}
         /* data={[...stockData.data, ...Array.apply(null, Array(stockData.count-stockData.data.length)).map(function () {})]} */
-            data={GetSlicedStockData(stockData.data, visibleOffset)}
-            margin={{
-                top: 20,
-                right: 30,
-                left: 20,
-                bottom: 70,
-            }}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis height={80} dataKey="Date" angle={-45} textAnchor='end'/>
-            <YAxis type="number" />
+              data={GetSlicedStockData(stockData.data, visibleOffset)}
+              margin={{
+                  top: 20,
+                  right: 30,
+                  left: 20,
+                  bottom: 70,
+              }}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis height={80} dataKey="Date" angle={-45} textAnchor='end'/>
+              <YAxis type="number" />
 
-            <Tooltip content={<CustomToolTip />}  />
+              <Tooltip content={<CustomToolTip />}  />
 
-            <Bar dataKey="Bottom" stackId="a" fill="#FFFFFF" isAnimationActive={false} /> 
-            <Bar shape={CustomBar} dataKey="Area" stackId="a" isAnimationActive={false} />
-            <Line
-              type="monotone"
-              dataKey={showAverage && !fetchingStatus ? "Average" : ""}
-              stroke="#0095f7"
-              dot={false}
-              strokeDasharray="5 5"
-            />
-          </ComposedChart>
-          <BarChart
-            className="volume-chart"
-            width={width}
-            height={height-220}
+              <Bar dataKey="Bottom" stackId="a" fill="#FFFFFF" isAnimationActive={false} /> 
+              <Bar shape={CustomBar} dataKey="Area" stackId="a" isAnimationActive={false} />
+              <Line
+                type="monotone"
+                dataKey={showAverage && !fetchingStatus ? "Average" : ""}
+                stroke="#0095f7"
+                dot={false}
+                strokeDasharray="5 5"
+              />
+            </ComposedChart>
+            <BarChart
+              className="volume-chart"
+              width={width}
+              height={height-220}
         /* data={showVolume ? [...stockData.data, ...Array.apply(null, Array(stockData.count-stockData.data.length)).map(function () {})] : null} */
-            data={GetSlicedStockData(stockData.data, visibleOffset)}
+              data={GetSlicedStockData(stockData.data, visibleOffset)}
 
-            margin={{
-                top: 20,
-                right: 30,
-                left: 80,
-                bottom: 265,
-            }}>
-            
-            <Tooltip />
-            <Bar
-              dataKey={showVolume ? "Volume" : null}
-              fill="#8884d8"
-              activeBar={<Rectangle fill="#8f8e8c" stroke="blue" />}
-              isAnimationActive={false} 
-            />
-          </BarChart>
+              margin={{
+                  top: 20,
+                  right: 30,
+                  left: 80,
+                  bottom: 265,
+              }}>
+              
+              <Tooltip />
+              <Bar
+                dataKey={showVolume ? "Volume" : null}
+                fill="#8884d8"
+                activeBar={<Rectangle fill="#8f8e8c" stroke="blue" />}
+                isAnimationActive={false} 
+              />
+            </BarChart>
+          </div>
         </div>
+        
     )
 
 }

@@ -189,6 +189,40 @@
   
 }
 
+#barchart-zoom-in {
+  position: absolute;
+  right: 180px;
+  top: 180px;
+}
+
+#barchart-zoom-out {
+  position: absolute;
+  right: 130px;
+  top: 180px;
+}
+
+.barchart-zoom {
+  background: #aeb3bd;
+  border-radius: 8px;
+  z-index: 1;
+  opacity: 0.5;
+  width: 30px;
+  height:40px;
+}
+
+.barchart-zoom:hover {
+  opacity: 0.8;
+}
+
+.barchart-zoom>img {
+  height:20px;
+  width: 20px;
+  margin: 0px;
+  margin-left: -10px;
+  margin-top: -5px;
+}
+
+
 .barchart-controls{
   display: flex;
   flex-direction: row;
@@ -205,8 +239,8 @@
 
 .volume-chart {
   display: inline-block;
-  margin-top: -385px;
-  
+  margin-top: -405px;
+  top:-22px;
 }
 
 .barchart-toggle {
@@ -711,6 +745,44 @@ footer small {
   }
 }
 
+.lds-ring {
+  position: absolute;
+  left: 170px;
+  top: 170px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  margin: 8px;
+  border: 8px solid #778690;
+  border-radius: 50%;
+  opacity: 0.9;
+  z-index: 1;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #778690 transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
 /* =============================================================== */
 /* classes to moderate with media query 
    1. searchbar-search-box
@@ -778,4 +850,6 @@ footer small {
    width: 100%;
    }
    } */
+
+
 

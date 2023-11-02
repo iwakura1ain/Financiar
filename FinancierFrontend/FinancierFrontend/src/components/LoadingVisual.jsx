@@ -15,3 +15,9 @@ export function LoadingDots({status}) {
         return <></>
     
 }
+
+export function LoadingSpinny({status}) {
+    if (status) {
+        return (<div className="lds-ring"><div></div><div></div><div></div><div></div></div>)
+    }
+}

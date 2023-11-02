@@ -1,3 +1,25 @@
+
+* 프로젝트 개요
+- 주식 종목 검색 (현재는 snp500만, 추후 다른 국가 추가)
+- 주식 데이터 그래프 표출 (하루 단위 O, 가중평균 O, 거래량 O, drawdown X, sharpe 지수 X)
+- 과거 주식 대해 buy/sell -> 수익률 표출, drawdown, 여러 종목 hedging
+
+* 프로젝트 진행상황
+** 백엔드
+- 종목 대한 데이터, 아이콘, 기본정보 크롤링 완료 -> sqlite3 디비 안에 들어있음 -> postgres로 export 필요  
+- 디플로이 안됨 -> 개인컴터로 디플로이
+- *거래 데이터 캐싱 필요함*, redis 구현 필요
+- 주식 데이터, 거래 데이터 paginated REST api 구현 완료
+- API 명세서 X -> 필요하면 만들어줌 
+** 프론트
+- 페이지 레이아웃, 종목 search 완료
+- 거래 데이터 표출 그래프 90% 완료 -> *그래프 대한 스크롤 기능*, 그래프 크기 하드코딩 구현중
+- css 하드코딩, 모바일 지원 필요
+- state 중앙관리 X, 페이지별 컴포넌트 나누기 필요
+- 거래 데이터 불러오는 알고리즘 안정화 필요
+- *buy/sell 페이지 만들어야 함*
+- typescript로 리팩터링?
+
 * 프론트 실행 방법
 : npm 있어야함 
 #+begin_src bash
@@ -24,9 +46,9 @@
 : venv 설정해놓아야 함
 #+begin_src bash
   cd FinancierBackend
-  ./manage.py makemigrations
-  ./manage.py migrate # DB 만들기 
-  ./manage.py loaddata test-cleaned-2.json  # 주식 정보 임포트 
+  # ./manage.py makemigrations
+  # ./manage.py migrate # DB 만들기 
+  # ./manage.py loaddata test-cleaned-2.json  # 주식 정보 임포트 
   ./manage.py createsuperuser # 어드민 유저 생성 
   ./ manage.py runserver 
 #+end_src

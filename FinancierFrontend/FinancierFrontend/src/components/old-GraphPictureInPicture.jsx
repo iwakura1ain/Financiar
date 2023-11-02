@@ -34,7 +34,7 @@ export function GraphPictureInPicture({
                 className="pic-in-pic-button" /* style={{bottom:"-20px"}} */
                 onClick={() => window.scrollTo(0, 0)}
               >UP</button>
-              <StockGraphBox
+              <StockGraphBox                  
                 stockData={stockData}
                 setStockData={setStockData}
                 nextStockDataPage={nextStockDataPage}

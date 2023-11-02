@@ -1,9 +1,7 @@
 export const CustomToolTip = ({ active, payload, label }) => {
 
     if (active && payload && payload.length) {
-        if(active){
-          console.log('payload:', payload[0].payload);
-        }
+        
         return (
             <div className="custom-tooltip">
               <div className="tooltip-container">

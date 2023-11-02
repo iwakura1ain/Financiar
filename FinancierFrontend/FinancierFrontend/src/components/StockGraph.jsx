@@ -48,18 +48,17 @@ const CustomBar = (props) => {
 
 export function StockGraphBox({
     stockData, setStockData,
+    visibleOffset, setVisibleOffset,
     selected, setSelected,
     fetchingStatus,
     startDate, setStartDate,
     endDate, setEndDate,
     height=600, width=1600,
-    visibleOffset, setVisibleOffset
 }) {
     const [avgWeight, setAvgWeight] = useState(0.2)
     const [showAverage, setShowAverage] = useState(true)
     const [showVolume, setShowVolume] = useState(true)
     const [visibility, setVisibility] = useState(true)
-
 
     // ====== avg ======
     useEffect(() => {
@@ -97,9 +96,7 @@ export function StockGraphBox({
     if (!stockData)
         return (
             <div className='barchart-wrapper' /* style={{height:500, width:1000, marginBottom:"20px"}} */>
-              {/* <button onClick={() => setZoomLevel(zoomLevel+10)}>+</button> */}
-              {/* <button onClick={() => setZoomLevel(zoomLevel-10)}>-</button> */}
-
+              
               <button
                 className="barchart-toggle"
                 onClick={() => {
@@ -162,31 +159,31 @@ export function StockGraphBox({
                         setAvgWeight(event.target.value)
                     }}/>
                 </div>
+                <div>
+                  <label htmlFor="end">A (offset from end): </label>
+                  <input
+                    type="number"
+                    step={10}
+                    min={0}
+                    value={visibleOffset[0]}
+                    onChange={(event) => {
+                        setVisibleOffset([+event.target.value, visibleOffset[1]])
+                    }}/>
+                </div>
 
-                {/* <div> */}
-                {/*   <label htmlFor="end">Start : </label> */}
-                {/*   <input */}
-                {/*     type="number" */}
-                {/*     step={1} */}
-                {/*     value={visibleIndex[0]} */}
-                {/*     onChange={(event) => { */}
-                {/*         setVisibleIndex([+event.target.value, visibleIndex[1]]) */}
-                {/*     }}/> */}
-                {/* </div> */}
+                <div>
+                  <label htmlFor="end">B (len of data) : </label>
+                  <input
+                    type="number"
+                    step={1}
+                    min={0}
+                    value={visibleOffset[1]}
+                    onChange={(event) => {
+                        setVisibleOffset([visibleOffset[0], +event.target.value])
+                    }}/>
+                </div>
 
-                {/* <div> */}
-                {/*   <label htmlFor="end">End : </label> */}
-                {/*   <input */}
-                {/*     type="number" */}
-                {/*     step={1} */}
-                {/*     value={visibleIndex[1]} */}
-                {/*     onChange={(event) => { */}
-                {/*         setVisibleIndex([visibleIndex[0], +event.target.value]) */}
-                {/*     }}/> */}
-                {/* </div> */}
-                
-              </div>
-              
+              </div>              
               
               <ComposedChart
                 className="barchart-chart"
@@ -208,9 +205,6 @@ export function StockGraphBox({
     
     return (
         <div className='barchart-wrapper' /* style={{height:500, width:1000, marginBottom:"20px"}} */>
-          {/* <button onClick={() => setZoomLevel(zoomLevel+10)}>+</button> */}
-          {/* <button onClick={() => setZoomLevel(zoomLevel-10)}>-</button> */}
-
           <button
             className="barchart-toggle"
             onClick={() => {
@@ -274,28 +268,27 @@ export function StockGraphBox({
                 }}/>
             </div>
             
-            {/* <div> */}
-            {/*   <label htmlFor="end">Start : </label> */}
-            {/*   <input */}
-            {/*     type="number" */}
-            {/*     step={1} */}
-            {/*     value={visibleIndex[0]} */}
-            {/*     onChange={(event) => { */}
-            {/*         setVisibleIndex([+event.target.value, visibleIndex[1]]) */}
-            {/*     }}/> */}
-            {/* </div> */}
+            <div>
+              <label htmlFor="end">A (offset from end): </label>
+              <input
+                type="number"
+                step={1}
+                value={visibleOffset[0]}
+                onChange={(event) => {
+                    setVisibleOffset([+event.target.value, visibleOffset[1]])
+                }}/>
+            </div>
 
-            {/* <div> */}
-            {/*   <label htmlFor="end">End : </label> */}
-            {/*   <input */}
-            {/*     type="number" */}
-            {/*     step={1} */}
-            {/*     value={visibleIndex[1]} */}
-            {/*     onChange={(event) => { */}
-            {/*         setVisibleIndex([visibleIndex[0], +event.target.value]) */}
-            {/*     }}/> */}
-            {/* </div> */}
-
+            <div>
+              <label htmlFor="end">B (len of data) : </label>
+              <input
+                type="number"
+                step={1}
+                value={visibleOffset[1]}
+                onChange={(event) => {
+                    setVisibleOffset([visibleOffset[0], +event.target.value])
+                }}/>
+            </div>
           </div>
 
           <LoadingDots status={fetchingStatus}/>
@@ -305,7 +298,10 @@ export function StockGraphBox({
             width={width}
             height={height}
         /* data={[...stockData.data, ...Array.apply(null, Array(stockData.count-stockData.data.length)).map(function () {})]} */
-            data={stockData.data}
+            data={stockData.data.slice(
+                stockData.data.length - (visibleOffset[0] + visibleOffset[1]),
+                stockData.data.length - (visibleOffset[0])
+            )}
             margin={{
                 top: 20,
                 right: 30,

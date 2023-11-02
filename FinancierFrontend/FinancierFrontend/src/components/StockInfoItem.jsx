@@ -1,8 +1,11 @@
+import {useState, useEffect} from "react"
+
 const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur scelerisque, tortor nec mattis feugiat, velit purus euismod odio, quis vulputate velit urna sit amet enim. Maecenas vulputate auctor ligula sed sollicitudin."
 
-
 export function StockInfoItem({
+    key,
     selected, setSelected,
+    selectedElement, setSelectedElement, 
     name="Stock", 
     ticker="---", 
     rating=0, rateStock,
@@ -11,17 +14,21 @@ export function StockInfoItem({
 
     const getLogoName = (name) => (name.replaceAll(" ", "_"))
 
-    
     return (
-        <div className="col-sm-6 col-md-4">
-          <div className="testimonials-box">
+        <div className="col-sm-6 col-md-4" >
+          <div className="testimonials-box" id={`stock-item-${ticker}`}>
             <div className="row personal-info">
               
               <button className="testimonials-button" onClick={() => {
+                  if (selectedElement !== undefined)
+                      selectedElement.style.outline = "unset"
+                  
                   setSelected(ticker)
+                  setSelectedElement(document.getElementById(`stock-item-${ticker}`))
                   console.log(`selected ${ticker}`)
+                  document.getElementById(`stock-item-${ticker}`).style.outline = "1px solid #0095f7"
               }}>
-                <div className="testimonials-wrapper">
+                <div className="testimonials-wrapper" >
                   <div className="col-md-2 col-xs-2 padding-none">
                     <img className="icon testimonials-logo" src={`/src/assets/logos/${getLogoName(name)}.svg`} alt={name}></img>
                   </div>
@@ -38,7 +45,7 @@ export function StockInfoItem({
                     </div>
                   </div>
                 </div>
-                <p className="testimonials-desc">{desc}</p>
+                <p className="testimonials-desc">{desc.length < 20 ? lorem : desc}</p>
               </button>
             </div>
           </div>

@@ -5,7 +5,7 @@ import { ComposedChart, LineChart, Line, Rectangle, BarChart, Bar, Cell, XAxis, 
 
 
 export function PIPGraphBox({
-    stockData, width=400, height=200
+    selected, stockData, width=400, height=200
 }) {
     const [visibility, setVisibility] = useState(true)
 
@@ -35,7 +35,11 @@ export function PIPGraphBox({
                 <div className="pic-in-pic-box">
                   <button
                     className="pic-in-pic-button" /* style={{bottom:"-20px"}} */
-                    onClick={() => window.scrollTo(0, 0)}
+                    onClick={() => window.scrollTo({
+                        top: document.body.scrollTop,
+                        left: 0,
+                        behavior: 'smooth'
+                    })}
                   >UP</button>
 
                   <div>

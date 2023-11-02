@@ -10,7 +10,7 @@ import {LoadingDots} from "./LoadingVisual.jsx"
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 
-function GetDefaultDate() {    
+export function GetDefaultDate() {    
     // Create a date object from a date string
     var date = new Date();
 
@@ -37,14 +37,16 @@ export function StockInfoListing() {
     // ============ stock listing =================
     const [stocks, setStocks] = useState([])
     const [selected, setSelected] = useState()
+    const [selectedElement, setSelectedElement] = useState()
     const [paginateNext, setPaginateNext] = useState("")
 
     // ============= trade data for selected stock ===================
     const [stockData, setStockData] = useState()
+    const [visibleOffset, setVisibleOffset] = useState([0, 200]) //  [a, b] => stockData.data: [ |---- b ---| ... a ... ]
     const [fetchingStatus, setFetchingStatus] = useState(false)
     const [startDate, setStartDate] = useState(GetDefaultDate()[1])
     const [endDate, setEndDate] = useState(GetDefaultDate()[0])
-    const [visibleOffset, setVisibleOffset] = useState([0,0])
+    
 
     const baseUrl = "/api/fdr/stocks"
 
@@ -106,10 +108,11 @@ export function StockInfoListing() {
 
             <TradeDataLoader2
               selected={selected}
-              startDate={startDate} endDate={endDate}
+              startDate={startDate} setStartDate={setStartDate}
+              endDate={endDate} setEndDate={setEndDate}
               stockData={stockData} setStockData={setStockData}
-              fetchingStatus={fetchingStatus} setFetchingStatus={setFetchingStatus}
               visibleOffset={visibleOffset} setVisibleOffset={setVisibleOffset}
+              fetchingStatus={fetchingStatus} setFetchingStatus={setFetchingStatus}
             />
             
             <div className="testimonials-container width-full">
@@ -121,10 +124,10 @@ export function StockInfoListing() {
 
               <StockGraphBox
                 stockData={stockData} setStockData={setStockData}
+                visibleOffset={visibleOffset} setVisibleOffset={setVisibleOffset}
                 selected={selected} setSelected={setSelected}
                 fetchingStatus={fetchingStatus}
                 startDate={startDate} setStartDate={setStartDate}
-                visibleOffset={visibleOffset} setVisibleOffset={setVisibleOffset}
                 endDate={endDate} setEndDate={setEndDate}                 
               />
               
@@ -156,6 +159,8 @@ export function StockInfoListing() {
                         selected={selected}
                         setSelected={setSelected}
                         rateStock={rateStock}
+                        selectedElement={selectedElement}
+                        setSelectedElement={setSelectedElement}
                         {...stock}
                       />
                   ))}
@@ -165,6 +170,8 @@ export function StockInfoListing() {
           </section>
           
           <PIPGraphBox
+            selectedElement={selectedElement}
+            setSelectedElement={setSelectedElement}
             stockData={stockData}
           />
 

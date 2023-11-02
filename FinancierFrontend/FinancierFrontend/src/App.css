@@ -572,6 +572,41 @@ footer small {
 .external-links {
   color: #0095f7;
 }
+/* ============================================================
+   12. tooltip
+   ============================================================ */
+
+.custom-tooltip{
+
+}
+
+.tooltip-container{
+  width: 11em;
+  display: inline-block;
+  padding: 10px 10px 0 10px;
+  background-color: white;
+  font-size: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.518);
+  border-radius: 8px;
+}
+
+.tooltip-date{
+  font-size: 14px;
+  color: #252d32a5;
+}
+
+.tooltip-label{
+  text-align: start;
+}
+
+/* .tooltip-label-start{
+  text-align:start;
+}
+
+.tooltip-label-end{
+  text-align:end;
+} */
+
 
 /* ============================================================
    13.  pic-in-pic

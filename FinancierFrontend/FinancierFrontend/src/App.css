@@ -278,14 +278,17 @@
 }
 
 .searchbar-dropdown {
+  border: 3px dotted #778694d7;
   width: 590px;
   position: absolute;
+  border-radius: 0 0 15px 15px;
   z-index: 10;
   top: 100px;
   height: 300px;
   display: flex;
   overflow: auto;
-  flex-direction: column; 
+  flex-direction: column;
+  animation: fadeInDown 1.8s;
 }
 
 .searchbar-button-wrapper {
@@ -724,6 +727,7 @@ footer small {
   border-radius: 10px 10px 0 0;
   width: 80px;
   height: 40px;
+  margin-left: 320px;
   animation: fadeInDown 1.8s;
 }
 

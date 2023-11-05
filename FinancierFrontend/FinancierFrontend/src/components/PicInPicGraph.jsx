@@ -8,9 +8,22 @@ export function PIPGraphBox({
     selected, stockData, width=400, height=200
 }) {
     const [visibility, setVisibility] = useState(true)
+    const [scrollLocation, setScrollLocation] = useState(0)
+
+    useEffect(() => {
+        if (selected === undefined)
+            return
+        
+        setScrollLocation(document.getElementById(`stock-item-${selected}`).top + window.scrollY)
+        console.log("SETTING SCROLL LOCATION", scrollLocation)
+    }, [selected])
+
+    useEffect(() => {
+        console.log(visibility)
+    }, [visibility])
 
     const listenToScroll = () => {
-        let heightToHideFrom = 300;
+        let heightToHideFrom = 500;
         const winScroll = document.body.scrollTop ||
               document.documentElement.scrollTop;
 
@@ -29,8 +42,8 @@ export function PIPGraphBox({
     }, [])
 
 
-    if (visibility) {
-        if (stockData) {
+    if (stockData) {
+        if (visibility) {
             return (
                 <div className="pic-in-pic-box">
                   <button
@@ -41,7 +54,6 @@ export function PIPGraphBox({
                         behavior: 'smooth'
                     })}
                   >UP</button>
-
                   <div>
                     <LineChart
                       className="barchart-chart pic-in-pic-graph"
@@ -65,26 +77,40 @@ export function PIPGraphBox({
         }
 
         return (
-            <div>
-              <LineChart
-                className="barchart-chart pic-in-pic-graph"
-                width={width}
-                height={height}
-                
-                margin={{
-                    top: 15,
-                    right: 30,
-                    left: 30,
-                    bottom: 18,
+            <div className="pic-in-pic-box">
+              <button
+                className="pic-in-pic-button"
+                style={{position:"fixed", bottom:"20px", right: "20px"}}
+            /* onClick={() => (goToScrollLocation())} */
+                onClick={() => {
+                    document.getElementById(`stock-item-${selected}`)
+                        .scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
                 }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-              </LineChart>
+              >Back</button>
             </div>
         )
+    }        
+
+    return (
+        <div>
+          <LineChart
+            className="barchart-chart pic-in-pic-graph"
+            width={width}
+            height={height}            
+            margin={{
+                top: 15,
+                right: 30,
+                left: 30,
+                bottom: 18,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+          </LineChart>
+        </div>
+    )
 
 
-    }
+        
 }
 
 

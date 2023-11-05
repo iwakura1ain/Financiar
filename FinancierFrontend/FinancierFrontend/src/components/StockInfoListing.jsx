@@ -170,8 +170,7 @@ export function StockInfoListing() {
           </section>
           
           <PIPGraphBox
-            selectedElement={selectedElement}
-            setSelectedElement={setSelectedElement}
+            selected={selected}             
             stockData={stockData}
           />
 

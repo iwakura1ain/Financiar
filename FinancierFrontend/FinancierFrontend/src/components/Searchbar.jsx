@@ -33,7 +33,7 @@ export function SearchBar({name, setName, sector, setSector}) {
                                document.forms["searchbar-sector-form"].requestSubmit();
                                setDropdownStatus(false)
                            }}>
-                           <p>{sectorItem}</p>
+                           <h5 className="testimonials-name">{sectorItem}</h5>
                         </button>)
                     )}
                   </div>
@@ -104,8 +104,7 @@ export function SearchBar({name, setName, sector, setSector}) {
                 setSearchName("")
                 setSearchSector("")
                 setName("")
-                setSector("")
-                
+                setSector("")                
             }}
           >
             Clear

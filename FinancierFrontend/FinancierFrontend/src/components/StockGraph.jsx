@@ -41,9 +41,9 @@ function GetDefaultDate() {
 function GetSlicedStockData(data, visibleOffset) {
     let start = data.length - (visibleOffset[0] + visibleOffset[1])
     let end = data.length - (visibleOffset[0])
-    let concat = start < 0 ? Array.apply(null, Array(Math.abs(start))).map(function () {}) : []
+    let padding = start < 0 ? Array.apply(null, Array(Math.abs(start))).map(function () {}) : []
 
-    return [...concat, ...data.slice(start > 0 ? start : 0, end)]
+    return [...padding, ...data.slice(start > 0 ? start : 0, end)]
 }
 
 const CustomBar = (props) => {
@@ -72,7 +72,7 @@ const AddGraphListener = ({eventAddStatus, setEventAddStatus, visibleOffset, set
         e.preventDefault();
         e.stopPropagation();
         
-        var scrollAmount = e.deltaY > 0 ? 1 : -1
+        var scrollAmount = e.deltaY > 0 ? 2 : -2
         console.log("SCROLLED", scrollAmount)
         
         setVisibleOffset((prevOffset) => (
@@ -178,6 +178,9 @@ export function StockGraphBox({
                   setVisibleOffset([visibleOffset[0], +event.target.value])
               }}/>
           </div>
+          <div>
+        <p>LEN: {stockData ? stockData.data.length: 0}</p>
+          </div>
 
         </div>              
     )
@@ -208,6 +211,13 @@ export function StockGraphBox({
         if (visibleOffset[1] > 365)
             return (
                 <>
+                  <AddGraphListener
+                    eventAddStatus={eventAddStatus}
+                    setEventAddStatus={setEventAddStatus}
+                    visibleOffset={visibleOffset}
+                    setVisibleOffset={setVisibleOffset}
+                  />
+
                   <LineChart
                     className="barchart-chart"
                     width={width}
@@ -311,13 +321,7 @@ export function StockGraphBox({
               className='barchart-wrapper'
               id="barchart-scrollable"
             >
-              <AddGraphListener
-                eventAddStatus={eventAddStatus}
-                setEventAddStatus={setEventAddStatus}
-                visibleOffset={visibleOffset}
-                setVisibleOffset={setVisibleOffset}
-              />
-              
+                            
               <button
                 className="barchart-toggle"
                 onClick={() => {

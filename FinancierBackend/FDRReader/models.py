@@ -8,11 +8,12 @@ class Stock(models.Model):
     sector = models.CharField(max_length=100)
     rating = models.IntegerField(default=0)
     desc = models.TextField(max_length=200, default="")
+    link = models.TextField(max_length=100, default="#")
+    recent = models.FloatField(default=0.0)
 
 class Trade(models.Model):
     stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
     date = models.DateField()
-
     open = models.FloatField()
     high = models.FloatField()
     low = models.FloatField()
@@ -20,6 +21,8 @@ class Trade(models.Model):
     adj_close = models.FloatField()
     volume = models.FloatField()
 
+# class Sector(models.Model):
+#     value=models.TextField(max_length=100)
 
 
 

@@ -69,12 +69,21 @@ export function TradeDataLoader2({
         console.log("PREFETCHING")        
         if (stockData === undefined || fetchingStatus)
             return
-        
+
+        // prefetch min
         if (visibleOffset[0] + visibleOffset[1] > stockData.data.length - 80) {
             console.log("setting start date to ", startDate)
             setFetchingStatus(true)
             setStartDate((currStartDate) => (getFormatted(currStartDate, true)))
         }
+
+        // // TODO: truncate
+        // if (stockData.data.length > 800) {
+        //     setStockData((currStockData) => ({
+        //         data: currStockData.data.slice(0, currStockData.data.length-100)
+        //     }))
+        //     setVisibleOffset((currVisibleOffset) => ([currVisibleOffset[0]-100, currVisibleOffset[1]]))
+        // }
     }, [visibleOffset])
 
     // reset stockData and buffers when different stock selected

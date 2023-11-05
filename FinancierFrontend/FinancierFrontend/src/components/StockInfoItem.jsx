@@ -12,9 +12,15 @@ export function StockInfoItem({
     desc=lorem}) {
 
     const getLogoName = (name) => (name.replaceAll(" ", "_"))
+// before: testimonials-box > personal-info > testimonials-button > (testimonials-wrapper + testimonials-desc)
+// after: testimonials-box > testimonials-outer-wrapper > testimonials-stock > testimonials-head + testmonials-body
 
-    return (
-        <div className="col-sm-6 col-md-4" >
+// before: testimonials-wrapper > NONE + testmonials-flex 
+// before: testimonials-flex > testimonials-name-info > testimonials-name + testimonials-info
+// after: testimonials-head > testimonials-icon + testimonials-head-wrapper
+// after: testimonials-head-wrapper > testimonials-name-info > testimonials-name + testimonials-info
+    return (  
+        <div className="col-sm-6 col-md-6 col-lg-4" >
           <div className="testimonials-box" id={`stock-item-${ticker}`}>
             <div className="row personal-info">
               
@@ -33,8 +39,10 @@ export function StockInfoItem({
                   </div>
                   <div className="col-md-10 col-xs-10 testimonial-flex" >
                     <div className="testimonials-name-info">
-                      <h6 className="testimonials-name">{name}</h6>
-                      <small className="testimonials-info">{sector} | {ticker}</small>
+                      <div className="testimonials-flex">
+                        <h6 className="testimonials-name">{name}</h6>
+                        <small className="testimonials-info">{sector} | {ticker}</small>
+                      </div>
                       <button onClick={() => {
                           console.log("RATE PRESSED")
                           rateStock(ticker)

@@ -45,8 +45,8 @@
   : TODO: 화면 가로로 꽉 안채워짐 
 
 * 백엔드 실행 방법 
-: python, django 있어야 함
-: venv 설정해놓아야 함
+: python, django 있어야 함 => 가이드 링크 : https://docs.djangoproject.com/ko/4.2/intro/install/
+: venv 설정해놓아야 함 
 #+begin_src bash
   cd FinancierBackend
   # ./manage.py makemigrations

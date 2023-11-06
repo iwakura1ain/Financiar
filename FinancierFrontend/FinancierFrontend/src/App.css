@@ -214,6 +214,7 @@
   opacity: 0.7;
 }
 
+/* hard */
 .barchart-zoom>img {
   height:20px;
   width: 20px;
@@ -221,7 +222,6 @@
   margin-left: -10px;
   margin-top: -5px;
 }
-
 
 .barchart-controls{
   display: flex;
@@ -277,6 +277,7 @@
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.09); 
 }
 
+/* hard */
 .searchbar-dropdown {
   border: 3px dotted #778694d7;
   width: 590px;
@@ -301,6 +302,7 @@
   width: auto;
   opacity: 0.3;
 }
+
 .searchbar-button-wrapper:hover {
   opacity: 0.7;
 }
@@ -422,30 +424,34 @@
   z-index: 2;
 }
 
-
+/* hard */
 .testimonials-box {
   background-color: #ffffff;
   box-shadow: 0 0 1px 0 rgba(0,12,32,0.04), 0 10px 16px 0 rgba(10,31,68,0.06);
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
   border-radius: 20px;
   padding: 10px 25px;
   margin-top: 30px;
-  height: 200px;
   transition: all 0.4s ease-out;
   position: relative;;
   z-index: 3;
 }
 
+/* transition할 때 width가 변하는 이유: position absolute때문
+부모 혹은 가장 근접한 조상중 position이 static이 아닌 요소의 width를 따라감  */
 .testimonials-box:hover {
   outline: 1px solid #0095f7;
   z-index: 9;
   background-color: #ffffff;
-  display: relative;
   height: fit-content;
   position: absolute;
   width: 95%;
+  /* width: calc(100% - 30px); */
   transition: 0.3s ease-out;
   
-
   .testimonials-button {
     height: fit-content;
     transition: 0.3s;
@@ -455,9 +461,8 @@
     color: #778694d7;
     line-height: 1.5;
     margin: 8px 0px 2px 0px;
-    padding: 0px;
     white-space:inherit;
-    padding: 0px;
+    /* padding: 0px; */
     overflow: unset;
     height:100%;
     white-space:inherit;
@@ -469,24 +474,19 @@
   }
 }
 
-.testimonials-box h6 {
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: .05em;
-  margin-top: 5px;
-  margin-bottom: 0px;
-}
-
+/* before: .testimonials-box i */
 .testimonials-box i {
   color: #ffffff;
 }
 
-.testimonials-box small {
+/* before: .testimonials-box small */
+.testimonials-info {
   color: #8da2b5;
   display: inline-block;
 }
 
-.testimonials-box span {
+/* before: .testimonials-box span */
+.rating{
   font-size: 14px;
   color: #ffffff;
 }
@@ -520,6 +520,8 @@
   left: 5px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .testimonials-wrapper{
@@ -538,8 +540,12 @@
 }
 
 .testimonials-name{
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  margin-top: 5px;
+  margin-bottom: 0px;
   text-align: center;
-  /* transition:0.5s; */
 }
 
 .testimonials-info {
@@ -547,17 +553,17 @@
   position: center;
 }
 
-/* .testimonials-info button {
-  background-color: white;
-} */
-
 .rating {
+  display: flex;
+  width: fit-content;
+  font-size: 10px;
   background-color: #0095f7;
   padding: 2px 12px;
   margin: 10px;
   border-radius: 50px;
 }
 
+/* hard */
 .profile-picture {
   display: inline-block;
   width: 60px;
@@ -572,21 +578,14 @@
   background-image: url('/src/assets/images/profile-picture-one.jpg');
 }
 
-.personal-info {
-  /* padding: 5px 0 20px 0; */
-}
-
 .testimonials-desc{
-  /* text-align: justify; */
   color: #778694d7;
   width: 100%;
   height: 100%;
   font-size: 16px;
   font-weight: bold;
   line-height: 1.5;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  padding: 0px;
+  margin: 8px 0px;
   white-space:inherit;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -701,12 +700,13 @@ footer small {
 /* ============================================================
    13.  pic-in-pic
    ============================================================ */
-
+/* hard */
+/* recharts-surface에 width 하드코딩 되어있음 */
 .pic-in-pic-box {
   z-index: 1;
   position: fixed; 
   bottom: 0%;
-  right: 30px;
+  right: 10%;
   bottom: 30px;
   width: 400px;
   height: 250px;
@@ -721,6 +721,7 @@ footer small {
   animation: fadeInDown 1s
 }
 
+/* hard */
 .pic-in-pic-button {
   border: 3px dotted #778694d7;
   background-color: #0095f7;
@@ -753,6 +754,7 @@ footer small {
   top: 170px;
 }
 
+/* hard */
 .loader>span {
   width: 10px;
   height: 10px;
@@ -807,6 +809,8 @@ footer small {
   left: 170px;
   top: 170px;
 }
+
+/* hard */
 .lds-ring div {
   box-sizing: border-box;
   display: block;
@@ -839,54 +843,63 @@ footer small {
   }
 }
 
-
-/* =============================================================== */
-/* classes to moderate with media query 
-   1. searchbar-search-box
-   2. searchbar-btn
-   3. personal-info
-   4. testimonials-button
-   5. testimonials-wrapper */
 /* ============================================================
    10.  media query - 1200px
    ============================================================ */
-/* @media (max-width: 1200px) {
-   .searchbar-search-box{}
+@media (max-width: 1200px) {
+  .searchbar-search-box{
+  height: 80px;
+  }
 
-   .searchbar-btn{
-   width: 20%;
-   }
+  .searchbar-label{
+  font-size: 20px;
+  }
 
-   .personal-info{
-   width: 100%;
-   }
-   
-   } */
+  .testimonials-name{
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: .05em;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    text-align: center;
+  }
+
+  .testimonials-desc{
+    font-size: 12px;
+    padding: 0px;
+    white-space:inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  /* .pic-in-pic-box{
+
+  } */   
+}
 
 /* ============================================================
-   11.  media query - 1024px
+   11.  media query - 992px
    ============================================================ */
+@media (max-width: 992px){
+  .searchbar-search-box{
+    height: 80px;
+  }
 
-/* @media (max-width: 1024px) {
-   .searchbar-search-box{
-   width: 100%;
-   height: 70px;
-   margin-top: 50px;
-   display: flex;
-   background-color: #fff;
-   border-radius: 10px;
-   box-shadow: 0 2px 4px 0 rgba(0,0,0,.09);
-   }
+  .searchbar-label{
+    font-size: 20px;
+  }
 
-   .searchbar-btn{
-   width: 20%;
-   }
+  .testimonials-desc{
+    font-size: 14px;
+  }
 
-   .personal-info{
-   width: 100%;
-   }
-   
-   } */
+  /* .pic-in-pic-box{
+
+  } */
+}
 
 /* ============================================================
    12.  media query - 768px

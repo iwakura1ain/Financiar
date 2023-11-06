@@ -208,7 +208,7 @@ export function StockGraphBox({
     )
     
     const MainGraph = () => {
-        if (visibleOffset[1] > 365)
+        if (visibleOffset[1] > 250)
             return (
                 <>
                   <AddGraphListener

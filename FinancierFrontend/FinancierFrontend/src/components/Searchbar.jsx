@@ -14,7 +14,7 @@ const sectorList = ['Industrials',
 
 export function SearchBar({name, setName, sector, setSector}) {
     const [searchName, setSearchName] = useState(name)
-    const [searchSector, setSearchSector] = useState(sector)
+    const [searchSector, setSearchSector] = useState(sector ? sector : "")
     const [dropdownStatus, setDropdownStatus] = useState(false)
 
     const Dropdown = () => {

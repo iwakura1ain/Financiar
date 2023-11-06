@@ -1,5 +1,6 @@
-[[screenshot.png]]
+
 * 프로젝트 개요
+[[screenshot.png]]
 - 주식 종목 검색 (현재는 snp500만, 추후 다른 국가 추가)
 - 주식 데이터 그래프 표출 (하루 단위 O, 가중평균 O, 거래량 O, drawdown X, sharpe 지수 X)
 - 과거 주식 대해 buy/sell -> 수익률 표출, drawdown, 여러 종목 hedging

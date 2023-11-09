@@ -36,8 +36,30 @@ function getFormatted(date, offset=false) {
 }
 
 
+/*
+  Component that fetches paged trade data and fills stockData.
+  
+  - selected: ticker for currently selected stock
+  "MMM"
 
+  - startDate / endDate: start and end date for fetching, defaults to 1 year
+  "2022-01-01" / "2023-01-01"
+
+  - stockData: object with individual trade data
+  {
+  ...
+  data: [...]  <--- list of trades 
+  }
+
+  - visibleOffset: offset for scrolling the graph where B is the visible area 
+  [A, B] =>  [ |---- B ---| ... A ... ]
+
+  - fetchingStatus:
+  TradeDataLoader is fetching data -> true
+  TradeDataLoader is not fetching data -> false
+*/
 export function TradeDataLoader2({
+    // all must be unique states to retrieve multiple values
     selected,
     startDate, setStartDate,
     endDate, setEndDate,

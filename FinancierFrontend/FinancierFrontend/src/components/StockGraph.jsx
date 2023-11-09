@@ -85,10 +85,30 @@ const AddGraphListener = ({eventAddStatus, setEventAddStatus, visibleOffset, set
     setEventAddStatus(true)
 }
 
+
+/*
+  Component that renders data inside stockData.
+
+  - stockData: object with individual trade data
+  {
+    ...
+    data: [...]  <--- list of trades 
+  }
+
+  - visibleOffset: offset for scrolling the graph where B is the visible area 
+  [A, B] =>  [ |---- B ---| ... A ... ]
+
+  - selected: ticker for currently selected stock
+  "MMM"
+
+  - fetchingStatus:
+  TradeDataLoader is fetching data -> true
+  TradeDataLoader is not fetching data -> false
+*/
 export function StockGraphBox({
-    stockData, setStockData,
-    visibleOffset, setVisibleOffset,
-    selected, setSelected,
+    stockData, setStockData, // object with individual trade data
+    visibleOffset, setVisibleOffset, // offset for scrolling the graph 
+    selected, setSelected, // ticker for currently selected stock
     fetchingStatus,
     startDate, setStartDate,
     endDate, setEndDate,

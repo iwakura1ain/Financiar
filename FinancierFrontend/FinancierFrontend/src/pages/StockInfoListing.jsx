@@ -1,11 +1,11 @@
 import {useState, useEffect} from "react"
 
-import {StockInfoItem} from "./StockInfoItem.jsx"
-import {SearchBar} from "./Searchbar.jsx"
-import {StockGraphBox} from "./StockGraph.jsx"
-import {PIPGraphBox} from "./PicInPicGraph.jsx"
-import {TradeDataLoader2} from "./TradeDataLoader.jsx"
-import {LoadingDots} from "./LoadingVisual.jsx"
+import {StockInfoItem} from "../components/StockInfoItem.jsx"
+import {SearchBar} from "../components/Searchbar.jsx"
+import {StockGraphBox} from "../components/StockGraph.jsx"
+import {PIPGraphBox} from "../components/PicInPicGraph.jsx"
+import {TradeDataLoader2} from "../components/TradeDataLoader.jsx"
+import {LoadingDots} from "../components/LoadingVisual.jsx"
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 

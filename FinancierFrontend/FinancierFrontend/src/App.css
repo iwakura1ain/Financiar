@@ -440,16 +440,12 @@
   z-index: 3;
 }
 
-/* transition할 때 width가 변하는 이유: position absolute때문
-부모 혹은 가장 근접한 조상중 position이 static이 아닌 요소의 width를 따라감  */
 .testimonials-box:hover {
   outline: 1px solid #0095f7;
   z-index: 9;
   background-color: #ffffff;
   height: fit-content;
   position: absolute;
-  width: 95%;
-  /* width: calc(100% - 30px); */
   transition: 0.3s ease-out;
   
   .testimonials-button {

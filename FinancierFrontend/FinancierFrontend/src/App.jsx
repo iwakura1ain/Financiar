@@ -1,18 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
-import {NavBar} from "./components/Navbar.jsx"
-import {StockInfoListing} from "./components/StockInfoListing.jsx"
-import {Footer} from "./components/Footer.jsx"
+
+import {Layout} from "./pages/Layout.jsx"
+import {StockInfoListing} from "./pages/StockInfoListing.jsx"
+import {BackTesting} from "./pages/BackTesting.jsx"
+
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 
 function App() {
   return (
       <>
-        <NavBar />
-        <StockInfoListing />
-        <Footer />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<StockInfoListing />} />
+              <Route path="backtest" element={<BackTesting />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
       </>
   )
 }

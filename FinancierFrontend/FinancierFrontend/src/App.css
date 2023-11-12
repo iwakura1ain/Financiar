@@ -182,11 +182,12 @@
 
 .barchart-wrapper{
   position: relative;
+  width: 100%;
   height: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+  margin-bottom: 20px;
 }
 
 #barchart-zoom-in {
@@ -227,6 +228,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 100%;
   gap: 20px;
   margin-bottom: 20px;
   
@@ -412,11 +414,14 @@
   padding-top: 100px;
   box-sizing: content-box;
   align-items: center;
-  /* display: content; */
+  /* display: content; */ 
   z-index: 1;
 }
 
 .testimonials-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   min-width: 100%;
   background-color: white;

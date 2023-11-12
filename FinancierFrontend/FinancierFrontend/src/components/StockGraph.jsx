@@ -120,6 +120,36 @@ export function StockGraphBox({
     const [visibility, setVisibility] = useState(true)
     const [eventAddStatus, setEventAddStatus] = useState(false)
 
+    
+    const GraphSize = () => {
+      // console.log('outer-width:',window.outerWidth, 'outer-height:', window.outerHeight);
+      // console.log('inner-width:',window.innerWidth, 'inner-height:', window.innerHeight);
+      
+      if(window.innerWidth >= 2160) {
+        width = window.innerWidth*0.7
+        height = 700
+      }
+
+      if(window.innerWidth >= 1440 && window.innerWidth < 2160) {
+        width = window.innerWidth*0.7
+        height = 600
+      }
+
+      if(window.innerWidth >= 992 && window.innerWidth < 1440) {
+        width = window.innerWidth*0.9
+        height = 540
+      }
+
+      if(window.innerWidth >= 768 && window.innerWidth < 992) {
+        width = window.innerWidth*0.7
+        height = 500
+      }
+
+
+      console.log('width:', width, 'height:', height);
+    }
+    
+    GraphSize();
     const GraphControls = () => (
         <div className="barchart-controls">
           <div>
@@ -330,8 +360,10 @@ export function StockGraphBox({
             <button
               className="barchart-toggle"
               onClick={() => {
+                  GraphSize()
                   setVisibility(true)
               }}>Show Graph</button>
+              
         )
     }
 

@@ -123,6 +123,7 @@ export function StockInfoListing() {
               </div>
 
               <StockGraphBox
+                barchartId={200}
                 stockData={stockData} setStockData={setStockData}
                 visibleOffset={visibleOffset} setVisibleOffset={setVisibleOffset}
                 selected={selected} setSelected={setSelected}

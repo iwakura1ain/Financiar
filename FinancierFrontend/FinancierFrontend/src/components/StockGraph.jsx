@@ -60,6 +60,8 @@ const CustomBar = (props) => {
 
 
 const GraphScrollListener = ({barchartId, eventAddStatus, setEventAddStatus, visibleOffset, setVisibleOffset}) => {
+    console.log("ADDING LISTENER FOR ", barchartId)
+    
     var element = document.getElementById(`barchart-scrollable-${barchartId}`)
     if (element == null || eventAddStatus)
         return
@@ -114,6 +116,7 @@ export function StockGraphBox({
     startDate, setStartDate,
     endDate, setEndDate,
     height=600, width=1600,
+    showControls=false,
 }) {
     const [avgWeight, setAvgWeight] = useState(0.2)
     const [showAverage, setShowAverage] = useState(false)
@@ -121,90 +124,98 @@ export function StockGraphBox({
     const [visibility, setVisibility] = useState(true)
     const [eventAddStatus, setEventAddStatus] = useState(false)
 
-    const GraphControls = () => (
-        <div className="barchart-controls">
-          <div>
-            <label htmlFor="start">Start date : </label>
-            <input
-              type="date"
-              id="start"
-              max={GetDefaultDate()[0]}
-              value={startDate}
-              onChange={(event) =>{
-                  setStartDate(event.target.value)
-              }}/> 
-          </div>
-          <div>
-            <label htmlFor="end">End date : </label>
-            <input
-              type="date"
-              id="end"
-              max={GetDefaultDate()[0]}
-              value={endDate}
-              onChange={(event) => {
-                  setEndDate(event.target.value)
-              }}/>
-          </div>
-          <div>
-            <label htmlFor="end">Volume : </label>
-            <input
-              type="checkbox"
-              defaultChecked={true}
-              onChange={() => {
-                  setShowVolume(!showVolume)
-              }}/>
-          </div>
+    const GraphControls = () => {
+        if (showControls) {
+            return
+            (<div className="barchart-controls">
+               <button
+                 className="barchart-toggle"
+                 onClick={() => {
+                     setVisibility(false)
+                 }}>Hide Graph</button>
+               <div>
+                 <label htmlFor="start">Start date : </label>
+                 <input
+                   type="date"
+                   id="start"
+                   max={GetDefaultDate()[0]}
+                   value={startDate}
+                   onChange={(event) =>{
+                       setStartDate(event.target.value)
+                   }}/> 
+               </div>
+               <div>
+                 <label htmlFor="end">End date : </label>
+                 <input
+                   type="date"
+                   id="end"
+                   max={GetDefaultDate()[0]}
+                   value={endDate}
+                   onChange={(event) => {
+                       setEndDate(event.target.value)
+                   }}/>
+               </div>
+               <div>
+                 <label htmlFor="end">Volume : </label>
+                 <input
+                   type="checkbox"
+                   defaultChecked={true}
+                   onChange={() => {
+                       setShowVolume(!showVolume)
+                   }}/>
+               </div>
 
-          <div>
-            <label htmlFor="end">Average : </label>
-            <input
-              type="checkbox"
-             
-              onChange={() => {                        
-                  setShowAverage(!showAverage)
-              }}/>
-          </div>
-          <div>
-            <label htmlFor="end">Weight : </label>
-            <input
-              type="number"
-              max={1.0}
-              min={0.0}
-              step={0.05}
-              value={avgWeight}
-              onChange={(event) => {
-                  setAvgWeight(event.target.value)
-              }}/>
-          </div>
-          <div>
-            <label htmlFor="end">A (offset from end): </label>
-            <input
-              type="number"
-              step={10}
-              min={0}
-              value={visibleOffset[0]}
-              onChange={(event) => {
-                  setVisibleOffset([+event.target.value, visibleOffset[1]])
-              }}/>
-          </div>
+               <div>
+                 <label htmlFor="end">Average : </label>
+                 <input
+                   type="checkbox"
+                   
+                   onChange={() => {                        
+                       setShowAverage(!showAverage)
+                   }}/>
+               </div>
+               <div>
+                 <label htmlFor="end">Weight : </label>
+                 <input
+                   type="number"
+                   max={1.0}
+                   min={0.0}
+                   step={0.05}
+                   value={avgWeight}
+                   onChange={(event) => {
+                       setAvgWeight(event.target.value)
+                   }}/>
+               </div>
+               <div>
+                 <label htmlFor="end">A (offset from end): </label>
+                 <input
+                   type="number"
+                   step={10}
+                   min={0}
+                   value={visibleOffset[0]}
+                   onChange={(event) => {
+                       setVisibleOffset([+event.target.value, visibleOffset[1]])
+                   }}/>
+               </div>
 
-          <div>
-            <label htmlFor="end">B (len of data) : </label>
-            <input
-              type="number"
-              step={1}
-              min={0}
-              value={visibleOffset[1]}
-              onChange={(event) => {
-                  setVisibleOffset([visibleOffset[0], +event.target.value])
-              }}/>
-          </div>
-          <div>
-        <p>LEN: {stockData ? stockData.data.length: 0}</p>
-          </div>
+               <div>
+                 <label htmlFor="end">B (len of data) : </label>
+                 <input
+                   type="number"
+                   step={1}
+                   min={0}
+                   value={visibleOffset[1]}
+                   onChange={(event) => {
+                       setVisibleOffset([visibleOffset[0], +event.target.value])
+                   }}/>
+               </div>
+               <div>
+                 <p>LEN: {stockData ? stockData.data.length: 0}</p>
+               </div>
 
-        </div>              
-    )
+             </div>)
+        }
+    }
 
     const GraphZoomButton = () => (
         <>
@@ -321,11 +332,7 @@ export function StockGraphBox({
 
     if (!visibility) {
         return (
-            <button
-              className="barchart-toggle"
-              onClick={() => {
-                  setVisibility(true)
-              }}>Show Graph</button>
+            <GraphControls />
         )
     }
 
@@ -335,12 +342,6 @@ export function StockGraphBox({
               className='barchart-wrapper'
               id={`barchart-scrollable-${barchartId}`}
             >
-                            
-              <button
-                className="barchart-toggle"
-                onClick={() => {
-                    setVisibility(false)
-                }}>Hide Graph</button>
 
               <GraphScrollListener
                 barchartId={barchartId}
@@ -383,11 +384,6 @@ export function StockGraphBox({
             visibleOffset={visibleOffset}
             setVisibleOffset={setVisibleOffset}
           />
-          <button
-            className="barchart-toggle"
-            onClick={() => {
-                setVisibility(false)
-            }}>Hide Graph</button>
           
           <GraphControls />
           <GraphZoomButton />

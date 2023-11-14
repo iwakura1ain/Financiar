@@ -166,13 +166,15 @@
   transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+
+
 /* ==============================================
    3. Barchart
    ===============================================*/
 
 .barchart-loading {
   position: absolute;
-  top: 180px;
+  top: 40px;
   margin: 0;
   left: 110px;
   height: 5px;
@@ -192,13 +194,13 @@
 #barchart-zoom-in {
   position: absolute;
   right: 180px;
-  top: 180px;
+  top: 40px;
 }
 
 #barchart-zoom-out {
   position: absolute;
   right: 130px;
-  top: 180px;
+  top: 40px;
 }
 
 .barchart-zoom {
@@ -803,7 +805,7 @@ footer small {
 .lds-ring {
   position: absolute;
   left: 170px;
-  top: 170px;
+  top: 40px;
 }
 
 /* hard */
@@ -840,15 +842,37 @@ footer small {
 }
 
 /* ============================================================
+   15.  backtesting
+   ============================================================ */
+
+.backtest-box {
+  background-color: #ffffff;
+  box-shadow: 0 0 1px 0 rgba(0,12,32,0.04), 0 10px 16px 0 rgba(10,31,68,0.06);
+  border-radius: 30px;
+  padding-top: 20px;
+  margin: 10px;
+}
+
+.backtest-profit-box {
+  border: 5px solid #0095f7;
+  background-color: #F8F9FB;
+  box-shadow: 0 0 1px 0 rgba(0,12,32,0.04), 0 10px 16px 0 rgba(10,31,68,0.06);
+  border-radius: 30px;
+  padding-top: 20px;
+  margin-bottom: 70px;
+}
+
+
+/* ============================================================
    10.  media query - 1200px
    ============================================================ */
 @media (max-width: 1200px) {
   .searchbar-search-box{
-  height: 80px;
+    height: 80px;
   }
 
   .searchbar-label{
-  font-size: 20px;
+    font-size: 20px;
   }
 
   .testimonials-name{
@@ -873,7 +897,7 @@ footer small {
 
   /* .pic-in-pic-box{
 
-  } */   
+     } */   
 }
 
 /* ============================================================
@@ -894,7 +918,7 @@ footer small {
 
   /* .pic-in-pic-box{
 
-  } */
+     } */
 }
 
 /* ============================================================

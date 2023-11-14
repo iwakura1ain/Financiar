@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react';
 import {StockGraphBox} from "../components/StockGraph.jsx"
 import {TradeDataLoader2} from "../components/TradeDataLoader.jsx"
 import {GetDefaultDate} from "./StockInfoListing.jsx"
+import {ProfitGraphBox} from "../components/ProfitGraph.jsx"
 
 /*
   Page used for backtesting.
@@ -44,9 +45,11 @@ function StockData (
 export function BackTesting() {    
     var stockDataList = [
         StockData("MMM"),
-        StockData("AOS"),
-         StockData("ABT")
+        StockData("AOS")
+        //  StockData("ABT")
     ]
+
+    
     
     return (
         <section id="testimonials">
@@ -54,18 +57,24 @@ export function BackTesting() {
             <div className="title-block animated fadeInDown">
               <h2 className='testimonials-title'>BackTesting</h2>
               <p>Access all stocks anytime, anywhere, with ease.</p>
+              
+              <div className="backtest-profit-box">
+                <span><h3>Profit Graph</h3></span>
+                <ProfitGraphBox barchartId={100}/>
+              </div>
+              
               <div>
                 {stockDataList.map((stockData, i) => (
-                    <div>
+                    <div className="backtest-box" key={i}>
+                      <span><h3>{stockDataList[i].selected}</h3></span>
                       <TradeDataLoader2
-                        key={i}
                         {...stockDataList[i]}
                       />
                       <StockGraphBox
-                        key={i}
                         {...stockDataList[i]}
                         barchartId={i}
                       />
+                      {/* TODO: OFFLOAD GraphScrollListener TO HERE */}
                     </div>
                 ))}
               </div>

@@ -59,8 +59,8 @@ const CustomBar = (props) => {
 }
 
 
-const AddGraphListener = ({eventAddStatus, setEventAddStatus, visibleOffset, setVisibleOffset}) => {
-    var element = document.getElementById("barchart-scrollable")
+const GraphScrollListener = ({barchartId, eventAddStatus, setEventAddStatus, visibleOffset, setVisibleOffset}) => {
+    var element = document.getElementById(`barchart-scrollable-${barchartId}`)
     if (element == null || eventAddStatus)
         return
 
@@ -106,6 +106,7 @@ const AddGraphListener = ({eventAddStatus, setEventAddStatus, visibleOffset, set
   TradeDataLoader is not fetching data -> false
 */
 export function StockGraphBox({
+    barchartId=0,
     stockData, setStockData, // object with individual trade data
     visibleOffset, setVisibleOffset, // offset for scrolling the graph 
     selected, setSelected, // ticker for currently selected stock
@@ -231,13 +232,6 @@ export function StockGraphBox({
         if (visibleOffset[1] > 250)
             return (
                 <>
-                  <AddGraphListener
-                    eventAddStatus={eventAddStatus}
-                    setEventAddStatus={setEventAddStatus}
-                    visibleOffset={visibleOffset}
-                    setVisibleOffset={setVisibleOffset}
-                  />
-
                   <LineChart
                     className="barchart-chart"
                     width={width}
@@ -339,7 +333,7 @@ export function StockGraphBox({
         return (            
             <div
               className='barchart-wrapper'
-              id="barchart-scrollable"
+              id={`barchart-scrollable-${barchartId}`}
             >
                             
               <button
@@ -347,11 +341,18 @@ export function StockGraphBox({
                 onClick={() => {
                     setVisibility(false)
                 }}>Hide Graph</button>
-              
+
+              <GraphScrollListener
+                barchartId={barchartId}
+                eventAddStatus={eventAddStatus}
+                setEventAddStatus={setEventAddStatus}
+                visibleOffset={visibleOffset}
+                setVisibleOffset={setVisibleOffset}
+              />              
               <GraphControls />
               <GraphZoomButton />             
 
-              <div id="barchart-scrollable">
+              <div   id={`barchart-scrollable-${barchartId}`}>
                 <ComposedChart
                   className="barchart-chart"
                   width={width}
@@ -375,7 +376,8 @@ export function StockGraphBox({
         <div
           className='barchart-wrapper'
         >
-          <AddGraphListener
+          <GraphScrollListener
+            barchartId={barchartId}
             eventAddStatus={eventAddStatus}
             setEventAddStatus={setEventAddStatus}
             visibleOffset={visibleOffset}
@@ -393,7 +395,7 @@ export function StockGraphBox({
           {/* <LoadingDots status={fetchingStatus}/> */}
           <LoadingSpinny status={fetchingStatus}/>
 
-          <div id="barchart-scrollable">
+          <div   id={`barchart-scrollable-${barchartId}`}>
             <MainGraph />
             
             <BarChart

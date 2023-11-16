@@ -120,124 +120,126 @@ export function StockGraphBox({
 }) {
     const [avgWeight, setAvgWeight] = useState(0.2)
     const [showAverage, setShowAverage] = useState(false)
-    const [showVolume, setShowVolume] = useState(true)
+    const [showVolume, setShowVolume] = useState(false)
     const [visibility, setVisibility] = useState(true)
     const [eventAddStatus, setEventAddStatus] = useState(false)
 
 
     // TODO: refactor into object
     const GraphSize = () => {
-      // console.log('outer-width:',window.outerWidth, 'outer-height:', window.outerHeight);
-      // console.log('inner-width:',window.innerWidth, 'inner-height:', window.innerHeight);
-      
-      if(window.innerWidth >= 2160) {
-        width = window.innerWidth*0.7
-        height = 700
-      }
+        // console.log('outer-width:',window.outerWidth, 'outer-height:', window.outerHeight);
+        // console.log('inner-width:',window.innerWidth, 'inner-height:', window.innerHeight);
+        
+        if(window.innerWidth >= 2160) {
+            width = window.innerWidth*0.7
+            height = 700
+        }
 
-      if(window.innerWidth >= 1440 && window.innerWidth < 2160) {
-        width = window.innerWidth*0.7
-        height = 600
-      }
+        if(window.innerWidth >= 1440 && window.innerWidth < 2160) {
+            width = window.innerWidth*0.7
+            height = 600
+        }
 
-      if(window.innerWidth >= 992 && window.innerWidth < 1440) {
-        width = window.innerWidth*0.9
-        height = 540
-      }
+        if(window.innerWidth >= 992 && window.innerWidth < 1440) {
+            width = window.innerWidth*0.9
+            height = 540
+        }
 
-      if(window.innerWidth >= 768 && window.innerWidth < 992) {
-        width = window.innerWidth*0.7
-        height = 500
-      }
+        if(window.innerWidth >= 768 && window.innerWidth < 992) {
+            width = window.innerWidth*0.7
+            height = 500
+        }
 
-
-      console.log('width:', width, 'height:', height);
+        console.log('width:', width, 'height:', height);
     }
     GraphSize(); 
     
-    const GraphControls = () => (
-        <div className="barchart-controls">
-          <div>
-            <label htmlFor="start">Start date : </label>
-            <input
-              type="date"
-              id="start"
-              max={GetDefaultDate()[0]}
-              value={startDate}
-              onChange={(event) =>{
-                  setStartDate(event.target.value)
-              }}/> 
-          </div>
-          <div>
-            <label htmlFor="end">End date : </label>
-            <input
-              type="date"
-              id="end"
-              max={GetDefaultDate()[0]}
-              value={endDate}
-              onChange={(event) => {
-                  setEndDate(event.target.value)
-              }}/>
-          </div>
-          <div>
-            <label htmlFor="end">Volume : </label>
-            <input
-              type="checkbox"
-              defaultChecked={true}
-              onChange={() => {
-                  setShowVolume(!showVolume)
-              }}/>
-          </div>
-          <div>
-            <label htmlFor="end">Average : </label>
-            <input
-              type="checkbox"
-              
-              onChange={() => {                        
-                  setShowAverage(!showAverage)
-              }}/>
-          </div>
-          <div>
-            <label htmlFor="end">Weight : </label>
-            <input
-              type="number"
-              max={1.0}
-              min={0.0}
-              step={0.05}
-              value={avgWeight}
-              onChange={(event) => {
-                  setAvgWeight(event.target.value)
-              }}/>
-          </div>
-          <div>
-            <label htmlFor="end">A (offset from end): </label>
-            <input
-              type="number"
-              step={10}
-              min={0}
-              value={visibleOffset[0]}
-              onChange={(event) => {
-                  setVisibleOffset([+event.target.value, visibleOffset[1]])
-              }}/>
-          </div>
+    const GraphControls = () => {
+        if (showControls)
+            return (
+                <div className="barchart-controls">
+                  <div>
+                    <label htmlFor="start">Start date : </label>
+                    <input
+                      type="date"
+                      id="start"
+                      max={GetDefaultDate()[0]}
+                      value={startDate}
+                      onChange={(event) =>{
+                          setStartDate(event.target.value)
+                      }}/> 
+                  </div>
+                  <div>
+                    <label htmlFor="end">End date : </label>
+                    <input
+                      type="date"
+                      id="end"
+                      max={GetDefaultDate()[0]}
+                      value={endDate}
+                      onChange={(event) => {
+                          setEndDate(event.target.value)
+                      }}/>
+                  </div>
+                  <div>
+                    <label htmlFor="end">Volume : </label>
+                    <input
+                      type="checkbox"
+                      defaultChecked={true}
+                      onChange={() => {
+                          setShowVolume(!showVolume)
+                      }}/>
+                  </div>
+                  <div>
+                    <label htmlFor="end">Average : </label>
+                    <input
+                      type="checkbox"
+                      
+                      onChange={() => {                        
+                          setShowAverage(!showAverage)
+                      }}/>
+                  </div>
+                  <div>
+                    <label htmlFor="end">Weight : </label>
+                    <input
+                      type="number"
+                      max={1.0}
+                      min={0.0}
+                      step={0.05}
+                      value={avgWeight}
+                      onChange={(event) => {
+                          setAvgWeight(event.target.value)
+                      }}/>
+                  </div>
+                  <div>
+                    <label htmlFor="end">A (offset from end): </label>
+                    <input
+                      type="number"
+                      step={10}
+                      min={0}
+                      value={visibleOffset[0]}
+                      onChange={(event) => {
+                          setVisibleOffset([+event.target.value, visibleOffset[1]])
+                      }}/>
+                  </div>
 
-          <div>
-            <label htmlFor="end">B (len of data) : </label>
-            <input
-              type="number"
-              step={1}
-              min={0}
-              value={visibleOffset[1]}
-              onChange={(event) => {
-                  setVisibleOffset([visibleOffset[0], +event.target.value])
-              }}/>
-          </div>
-          <div>
-            <p>LEN: {stockData ? stockData.data.length: 0}</p>
-          </div>
+                  <div>
+                    <label htmlFor="end">B (len of data) : </label>
+                    <input
+                      type="number"
+                      step={1}
+                      min={0}
+                      value={visibleOffset[1]}
+                      onChange={(event) => {
+                          setVisibleOffset([visibleOffset[0], +event.target.value])
+                      }}/>
+                  </div>
+                  <div>
+                    <p>LEN: {stockData ? stockData.data.length: 0}</p>
+                  </div>
 
-        </div>
-    )
+                </div>
+            )
+    }
 
     const GraphZoomButton = () => (
         <>

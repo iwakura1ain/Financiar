@@ -70,6 +70,7 @@ export function TradeDataLoader2({
 }) {
 
     const [tempStockData, setTempStockData] = useState([])
+    const [tempStockInfo, setTempStockInfo] = useState({})
 
     const [prevStartDate, setPrevStartDate] = useState()
     const [prevEndDate, setPrevEndDate] = useState()
@@ -128,6 +129,7 @@ export function TradeDataLoader2({
             
             await setStockData()
             await setTempStockData([])
+            await setTempStockInfo({})
 
             await setMinFetchStart(new Date(startDate))
             await setMinFetchEnd(new Date(endDate))
@@ -210,9 +212,12 @@ export function TradeDataLoader2({
             }
 
             console.log("fetching min")
-            let [res, resNext] = await fetchData(selected, minFetchStart, minFetchEnd, minFetchNext, true)
-            res.data = await res.data.reverse()
-            await setMinFetchBuff((prevBuff) => ([ ...res.data, ...prevBuff]))
+            const [res, resNext] = await fetchData(selected, minFetchStart, minFetchEnd, minFetchNext, true)
+            let {data, ...info} = res
+            data = await data.reverse()
+            
+            await setTempStockInfo({...info})
+            await setMinFetchBuff((prevBuff) => ([ ...data, ...prevBuff]))
             await setMinFetchNext(resNext)
         })()
     }, [minFetchNext])
@@ -227,7 +232,10 @@ export function TradeDataLoader2({
 
             console.log("fetching max")
             const [res, resNext] = await fetchData(selected, maxFetchStart, maxFetchEnd, maxFetchNext, false)
-            await setMaxFetchBuff((prevBuff) => ([...prevBuff, ...res.data]))
+            let {data, ...info} = res
+
+            await setTempStockInfo({...info})
+            await setMaxFetchBuff((prevBuff) => ([...prevBuff, ...data]))
             await setMaxFetchNext(resNext)
         })()
     }, [maxFetchNext])
@@ -272,22 +280,21 @@ export function TradeDataLoader2({
                 await setVisibleOffset((prevOffset) => ([prevOffset[0], prevOffset[1] + maxFetchBuff.length]))
                 changed = true
             }
+            
 
             if (newStockData.length != 0 && changed){
                 await setStockData({
+                    ...tempStockInfo,
                     data: newStockData
                 })
+
+                await console.log("FETCHED INFO", stockData)
                 
                 // setPrevStartDate(new Date(newStockData[0].Date))
                 // setPrevEndDate(new Date(newStockData[newStockData.length-1].Date))
                 await setPrevStartDate(new Date(startDate))
                 await setPrevEndDate(new Date(endDate))
             }
-            // else if (!changed && minFetchBuff.length == 0 && maxFetchBuff.length == 0) {
-            //     console.log(changed, minFetchBuff, maxFetchBuff)
-            //     console.log("SETTING FETCHING STATUS FALSE")
-            //     setFetchingStatus(false)
-            // }
 
             if (minFetchNext == 0 && maxFetchNext == 0 && fetchingStatus) {
                 console.log("SETTING FETCHING STATUS FALSE")
@@ -300,8 +307,6 @@ export function TradeDataLoader2({
         })()
         
     }, [minFetchBuff, maxFetchBuff])
-
-
 
     return (<></>)            
 }

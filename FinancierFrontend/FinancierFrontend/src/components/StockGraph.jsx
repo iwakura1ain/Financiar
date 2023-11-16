@@ -11,7 +11,8 @@ import {CustomToolTip} from './StockGraphToolTip.jsx'
 import {LoadingDots, LoadingSpinny} from "./LoadingVisual.jsx"
 import {getWeightedAverage, getDefaultDate, getSlicedStockData} from "./Utils.jsx"
 
-import {registerStockData} from "../pages/BackTesting.jsx"
+import {addRegister, removeRegister, hasRegister} from "../pages/BackTesting.jsx"
+
 
 const CustomBar = (props) => {
     const {Color} = props;
@@ -26,14 +27,14 @@ const CustomBar = (props) => {
 }
 
 const GraphScrollListener = ({barchartId, eventAddStatus, setEventAddStatus, visibleOffset, setVisibleOffset}) => {
-    console.log("ADDING LISTENER FOR ", barchartId)
+    //console.log("ADDING LISTENER FOR ", barchartId)
     
     var element = document.getElementById(`barchart-scrollable-${barchartId}`)
     if (element == null || eventAddStatus)
         return
 
     element.addEventListener('wheel', preventScroll, {passive: false});
-    console.log("EVENT ADDED")
+    //console.log("EVENT ADDED")
 
     
     function preventScroll(e){
@@ -41,7 +42,7 @@ const GraphScrollListener = ({barchartId, eventAddStatus, setEventAddStatus, vis
         e.stopPropagation();
         
         var scrollAmount = e.deltaY > 0 ? 2 : -2
-        console.log("SCROLLED", scrollAmount)
+        //console.log("SCROLLED", scrollAmount)
         
         setVisibleOffset((prevOffset) => (
             [prevOffset[0] + scrollAmount > 0 ? prevOffset[0] + scrollAmount : 0, prevOffset[1]]
@@ -90,7 +91,6 @@ export function StockGraphBox({
     const [visibility, setVisibility] = useState(true)
     const [eventAddStatus, setEventAddStatus] = useState(false)
 
-
     // TODO: refactor into object
     const GraphSize = () => {
         // console.log('outer-width:',window.outerWidth, 'outer-height:', window.outerHeight);
@@ -116,7 +116,7 @@ export function StockGraphBox({
             height = 500
         }
 
-        console.log('width:', width, 'height:', height);
+        //console.log('width:', width, 'height:', height);
     }
     GraphSize(); 
     
@@ -204,8 +204,12 @@ export function StockGraphBox({
                   </div>
                   
                   <button onClick={() => {                       
-                      registerStockData(selected)
-                  }}>ADD</button>
+                      if (hasRegister(selected))
+                          removeRegister(selected)
+                      else
+                          addRegister(selected)
+                      
+                  }}>{hasRegister(selected) ? "UNREGISTER" : "REGISTER"}</button>
 
                 </div>
             )

@@ -19,7 +19,7 @@ export function StockInfoListing() {
     // ============ stock listing =================
     const [stocks, setStocks] = useState([])
     const [selected, setSelected] = useState()
-    const [selectedElement, setSelectedElement] = useState()
+    
     const [paginateNext, setPaginateNext] = useState("")
 
     // ============= trade data for selected stock ===================
@@ -78,11 +78,7 @@ export function StockInfoListing() {
             .catch(console.log)
 
     }, [searchSector, searchName])
-
-    useEffect(() => {
-        console.log("STATUS", fetchingStatus)
-    }, [fetchingStatus])
-
+    
     return (
         <>
           <section id="testimonials">
@@ -141,8 +137,6 @@ export function StockInfoListing() {
                         selected={selected}
                         setSelected={setSelected}
                         rateStock={rateStock}
-                        selectedElement={selectedElement}
-                        setSelectedElement={setSelectedElement}
                         {...stock}
                       />
                   ))}

@@ -5,10 +5,10 @@ import {getLogoName, lorem} from "./Utils.jsx"
 
 export function StockInfoItem({
     selected, setSelected,
-    selectedElement, setSelectedElement, 
     name="Stock", 
     ticker="---", 
     rating=0, rateStock,
+    registered=false,
     sector="finance", 
     desc="No Description"}) {
 
@@ -25,12 +25,8 @@ export function StockInfoItem({
             <div className="testimonials-box" id={`stock-item-${ticker}`}>
               <div className="row personal-info">
                 
-                <button className="testimonials-button" onClick={() => {
-                    if (selectedElement !== undefined)
-                        selectedElement.style.outline = "unset"
-                    
+                <button className="testimonials-button" onClick={() => {                    
                     setSelected(ticker)
-                    setSelectedElement(document.getElementById(`stock-item-${ticker}`))
                     console.log(`selected ${ticker}`)
                     document.getElementById(`stock-item-${ticker}`).style.outline = "1px solid #0095f7"
                 }}>

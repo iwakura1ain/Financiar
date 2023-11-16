@@ -4,13 +4,14 @@ import {getLogoName, lorem} from "./Utils.jsx"
 
 
 export function StockInfoItem({
+    register,
     selected, setSelected,
     name="Stock", 
     ticker="---", 
     rating=0, rateStock,
-    registered=false,
     sector="finance", 
     desc="No Description"}) {
+
 
     // before: testimonials-box > personal-info > testimonials-button > (testimonials-wrapper + testimonials-desc)
     // after: testimonials-box > testimonials-outer-wrapper > testimonials-stock > testimonials-head + testmonials-body
@@ -19,16 +20,26 @@ export function StockInfoItem({
     // before: testimonials-flex > testimonials-name-info > testimonials-name + testimonials-info
     // after: testimonials-head > testimonials-icon + testimonials-head-wrapper
     // after: testimonials-head-wrapper > testimonials-name-info > testimonials-name + testimonials-info
+
+    const elementStyle = () => register.has(ticker) ? {border: "5px solid #0095f7"} : {}
+    
     return (  
         <div className="col-sm-6 col-md-6 col-lg-4" >
           <div style={{position:"relative", width:"100%"}}>
-            <div className="testimonials-box" id={`stock-item-${ticker}`}>
+            <div className="testimonials-box" id={`stock-item-${ticker}`} style={elementStyle()}>
               <div className="row personal-info">
                 
-                <button className="testimonials-button" onClick={() => {                    
-                    setSelected(ticker)
+                <button className="testimonials-button" onClick={() => {
+                    setSelected((prevSelected) => {
+                        if (prevSelected)
+                            document.getElementById(`stock-item-${prevSelected}`).style.outline = "unset"
+
+                        document.getElementById(`stock-item-${ticker}`).style.outline = "1px solid #0095f7"
+
+                        return ticker
+                    })
                     console.log(`selected ${ticker}`)
-                    document.getElementById(`stock-item-${ticker}`).style.outline = "1px solid #0095f7"
+                    
                 }}>
                   <div className="testimonials-wrapper" >
                     <div className="col-md-2 col-xs-2 padding-none">

@@ -90,6 +90,12 @@ export function StockGraphBox({
     const [visibility, setVisibility] = useState(true)
     const [eventAddStatus, setEventAddStatus] = useState(false)
 
+    const [registerButtonText, setRegisterButtonText] = useState()
+
+    useEffect(() => {
+        setRegisterButtonText(register.has(selected) ? "Remove" : "Add")
+    }, [register, selected])
+    
     // TODO: refactor into object
     const GraphSize = () => {
         // console.log('outer-width:',window.outerWidth, 'outer-height:', window.outerHeight);
@@ -118,12 +124,43 @@ export function StockGraphBox({
         //console.log('width:', width, 'height:', height);
     }
     GraphSize(); 
+
+    // TODO: refactor into component
+    const GraphRegister = () => {
+        const callback = () => {
+            if (register.has(selected))
+                setRegister((prevRegister) => {
+                    var element = document.getElementById(`stock-item-${selected}`)
+                    if (element)
+                        element.style.border = "unset"
+                    
+                    prevRegister.delete(selected)
+                    setRegisterButtonText("Add")
+                    return prevRegister
+                })
+            else {
+                setRegister((prevRegister) => {
+                    var element = document.getElementById(`stock-item-${selected}`)
+                    if (element)
+                        element.style.border = "5px solid #0095f7"
+                    
+                    prevRegister.add(selected)                     
+                    setRegisterButtonText("Remove")
+                    return prevRegister
+                })
+            }
+        }
+        
+        return (<button onClick={() => callback()}>{registerButtonText}</button>)
+
+    }
     
     const GraphControls = () => {
         if (showControls)
             return (
                 <div className="barchart-controls">
                   <div>
+                    <GraphRegister />
                     <label htmlFor="start">Start date : </label>
                     <input
                       type="date"
@@ -201,22 +238,6 @@ export function StockGraphBox({
                   <div>
                     <p>LEN: {stockData ? stockData.data.length: 0}</p>
                   </div>
-                  
-                  <button onClick={() => {
-                      if (register.has(selected))
-                          setRegister((prevRegister) => {
-                              prevRegister.delete(selected)
-                              return prevRegister
-                          })
-                      else {
-                          setRegister((prevRegister) => {
-                              prevRegister.add(selected)
-                              return prevRegister
-                          })
-                      }
-
-                      console.log("REGISTER", register)
-                  }}>{register.has(selected) ? "UNREGISTER" : "REGISTER"}</button>
 
                 </div>
             )
@@ -362,7 +383,7 @@ export function StockGraphBox({
 
         setStockData({...stockData, data: newData})
     }, [fetchingStatus, avgWeight, showAverage])
-
+    
     if (!visibility) {
         return (
             <GraphControls />
@@ -417,7 +438,6 @@ export function StockGraphBox({
             visibleOffset={visibleOffset}
             setVisibleOffset={setVisibleOffset}
           />
-          
           <GraphControls />
           <GraphZoomButton />
 

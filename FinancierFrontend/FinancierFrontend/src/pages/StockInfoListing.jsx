@@ -138,6 +138,7 @@ export function StockInfoListing({register, setRegister}) {
                         selected={selected}
                         setSelected={setSelected}
                         rateStock={rateStock}
+                        register={register}
                         {...stock}
                       />
                   ))}

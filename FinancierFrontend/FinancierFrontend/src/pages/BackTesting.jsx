@@ -75,6 +75,7 @@ export function BackTesting ({register, setRegister}) {
                         {...stockDataList[i]}
                         barchartId={i}
                         showControls={false}
+                        register={register} setRegister={setRegister}
                       />
                       {/* TODO: OFFLOAD GraphScrollListener TO HERE */}
                     </div>

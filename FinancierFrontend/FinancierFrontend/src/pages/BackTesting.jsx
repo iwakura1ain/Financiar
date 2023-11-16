@@ -14,10 +14,10 @@ import {ProfitGraphBox} from "../components/ProfitGraph.jsx"
   they require seperate stockData and startDate/endDate states to work. 
 */
 
-var register = new Set()
-export const addRegister = (ticker) =>  ticker ? register.add(ticker) : null
-export const removeRegister = (ticker) => ticker? register.delete(ticker) : null
-export const hasRegister = (ticker) => register.has(ticker)
+// export var register = new Set()
+// export const addRegister = (ticker) =>  ticker ? register.add(ticker) : null
+// export const removeRegister = (ticker) => ticker? register.delete(ticker) : null
+// export const hasRegister = (ticker) => register.has(ticker)
 
 //TODO: refactor this into StockInfoListing page
 function StockData (
@@ -49,7 +49,7 @@ function StockData (
     return target
 }
 
-export function BackTesting () {
+export function BackTesting ({register, setRegister}) {
     var stockDataList = Array.from(register).map((ticker) => StockData(ticker))
     
     return (
@@ -67,7 +67,7 @@ export function BackTesting () {
               <div>
                 {stockDataList.map((stockData, i) => (
                     <div className="backtest-box" key={i}>
-                      <span><h3>{stockDataList[i].name}</h3></span>
+                      <span><h3>{stockDataList[i].selected}</h3></span>
                       <TradeDataLoader2
                         {...stockDataList[i]}
                       />

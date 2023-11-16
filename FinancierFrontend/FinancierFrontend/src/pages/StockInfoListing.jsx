@@ -11,7 +11,7 @@ import {getDefaultDate} from "../components/Utils.jsx"
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 
-export function StockInfoListing() {
+export function StockInfoListing({register, setRegister}) {
     // ============= searchbar ====================
     const [searchName, setSearchName] = useState("")
     const [searchSector, setSearchSector] = useState("")
@@ -105,6 +105,7 @@ export function StockInfoListing() {
                 visibleOffset={visibleOffset} setVisibleOffset={setVisibleOffset}
                 selected={selected} setSelected={setSelected}
                 fetchingStatus={fetchingStatus}
+                register={register} setRegister={setRegister}
                 startDate={startDate} setStartDate={setStartDate}
                 endDate={endDate} setEndDate={setEndDate}                 
               />

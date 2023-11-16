@@ -11,8 +11,6 @@ import {CustomToolTip} from './StockGraphToolTip.jsx'
 import {LoadingDots, LoadingSpinny} from "./LoadingVisual.jsx"
 import {getWeightedAverage, getDefaultDate, getSlicedStockData} from "./Utils.jsx"
 
-import {addRegister, removeRegister, hasRegister} from "../pages/BackTesting.jsx"
-
 
 const CustomBar = (props) => {
     const {Color} = props;
@@ -81,6 +79,7 @@ export function StockGraphBox({
     fetchingStatus,
     startDate, setStartDate,
     endDate, setEndDate,
+    register, setRegister,
     callback=(e)=>{},
     height=600, width=1600,
     showControls=true,
@@ -203,13 +202,21 @@ export function StockGraphBox({
                     <p>LEN: {stockData ? stockData.data.length: 0}</p>
                   </div>
                   
-                  <button onClick={() => {                       
-                      if (hasRegister(selected))
-                          removeRegister(selected)
-                      else
-                          addRegister(selected)
-                      
-                  }}>{hasRegister(selected) ? "UNREGISTER" : "REGISTER"}</button>
+                  <button onClick={() => {
+                      if (register.has(selected))
+                          setRegister((prevRegister) => {
+                              prevRegister.delete(selected)
+                              return prevRegister
+                          })
+                      else {
+                          setRegister((prevRegister) => {
+                              prevRegister.add(selected)
+                              return prevRegister
+                          })
+                      }
+
+                      console.log("REGISTER", register)
+                  }}>{register.has(selected) ? "UNREGISTER" : "REGISTER"}</button>
 
                 </div>
             )

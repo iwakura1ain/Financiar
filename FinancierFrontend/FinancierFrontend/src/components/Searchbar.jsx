@@ -1,16 +1,6 @@
 import {useState, useEffect} from 'react';
+import {sectorList} from "./Utils.jsx"
 
-const sectorList = ['Industrials',
-                 'Health Care',
-                 'Information Technology',
-                 'Communication Services',
-                 'Consumer Staples',
-                 'Utilities',
-                 'Financials',
-                 'Materials',
-                 'Real Estate',
-                 'Consumer Discretionary',
-                 'Energy']
 
 export function SearchBar({name, setName, sector, setSector}) {
     const [searchName, setSearchName] = useState(name)

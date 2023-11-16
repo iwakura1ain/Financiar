@@ -3,6 +3,8 @@ import {useState, useEffect} from 'react';
 import {CustomToolTip} from './StockGraphToolTip.jsx'
 import {LoadingDots} from "./LoadingVisual.jsx"
 
+import {getFormattedDate} from "./Utils.jsx"
+
 function CleanTradeData(trade) {
     const [bottom, area, color] =
           trade.Open < trade.Close ?
@@ -16,25 +18,6 @@ function CleanTradeData(trade) {
         Color: color
     }
 }
-
-function getFormatted(date, offset=false) {
-    if (date === undefined)
-        return date
-    
-    var val = new Date(date);
-
-    if (offset) {
-        val.setMonth(val.getMonth() - 6);
-    }
-    
-    // Get year, month, and day part from the date
-    var year = val.toLocaleString("default", { year: "numeric" });
-    var month = val.toLocaleString("default", { month: "2-digit" });
-    var day = val.toLocaleString("default", { day: "2-digit" });
-
-    return year + "-" + month + "-" + day;
-}
-
 
 /*
   Component that fetches paged trade data and fills stockData.
@@ -97,7 +80,7 @@ export function TradeDataLoader2({
         if (visibleOffset[0] + visibleOffset[1] > stockData.data.length - 80) {
             console.log("setting start date to ", startDate)
             setFetchingStatus(true)
-            setStartDate((currStartDate) => (getFormatted(currStartDate, true)))
+            setStartDate((currStartDate) => (getFormattedDate(currStartDate, true)))
         }
 
         // // TODO: truncate
@@ -182,7 +165,7 @@ export function TradeDataLoader2({
         await setFetchingStatus(true)
 
         var [res, resNext] = [{}, 0]
-        const fetchURL = `/api/fdr/stocks/${target}?start=${getFormatted(start)}&end=${getFormatted(end)}&page=${next}&flip=${flip}`
+        const fetchURL = `/api/fdr/stocks/${target}?start=${getFormattedDate(start)}&end=${getFormattedDate(end)}&page=${next}&flip=${flip}`
         await fetch(fetchURL, { headers:{ accept: 'application/json' } })
             .then(response => response.json())
             .then((json) => { // set stockdata

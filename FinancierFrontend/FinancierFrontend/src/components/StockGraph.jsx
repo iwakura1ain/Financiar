@@ -10,41 +10,8 @@ import { useScrollDirection } from 'react-use-scroll-direction'
 
 import {CustomToolTip} from './StockGraphToolTip.jsx'
 import {LoadingDots, LoadingSpinny} from "./LoadingVisual.jsx"
+import {getWeightedAverage, getDefaultDate, getSlicedStockData} from "./Utils.jsx"
 
-
-function GetWeightedAverage(trade, current, num, weight) {
-    current = (((trade.Open + trade.Close)/2) + current*num*weight) / (num*weight + 1)
-    num += 1
-
-    return [current, num]
-}
-
-function GetDefaultDate() {    
-    // Create a date object from a date string
-    var date = new Date();
-
-    var prevDate = new Date();
-    prevDate.setFullYear(date.getFullYear() - 1);
-
-    const getFormatted = (date) => {
-        // Get year, month, and day part from the date
-        var year = date.toLocaleString("default", { year: "numeric" });
-        var month = date.toLocaleString("default", { month: "2-digit" });
-        var day = date.toLocaleString("default", { day: "2-digit" });
-
-        return year + "-" + month + "-" + day;
-    }
-    
-    return [getFormatted(date), getFormatted(prevDate)]
-}
-
-function GetSlicedStockData(data, visibleOffset) {
-    let start = data.length - (visibleOffset[0] + visibleOffset[1])
-    let end = data.length - (visibleOffset[0])
-    let padding = start < 0 ? Array.apply(null, Array(Math.abs(start))).map(function () {}) : []
-
-    return [...padding, ...data.slice(start > 0 ? start : 0, end)]
-}
 
 const CustomBar = (props) => {
     const {Color} = props;
@@ -163,7 +130,7 @@ export function StockGraphBox({
                     <input
                       type="date"
                       id="start"
-                      max={GetDefaultDate()[0]}
+                      max={getDefaultDate()[0]}
                       value={startDate}
                       onChange={(event) =>{
                           setStartDate(event.target.value)
@@ -174,7 +141,7 @@ export function StockGraphBox({
                     <input
                       type="date"
                       id="end"
-                      max={GetDefaultDate()[0]}
+                      max={getDefaultDate()[0]}
                       value={endDate}
                       onChange={(event) => {
                           setEndDate(event.target.value)
@@ -271,7 +238,7 @@ export function StockGraphBox({
                     className="barchart-chart"
                     width={width}
                     height={height}
-                    data={GetSlicedStockData(stockData.data, visibleOffset)}
+                    data={getSlicedStockData(stockData.data, visibleOffset)}
                     margin={{
                         top: 20,
                         right: 30,
@@ -304,7 +271,7 @@ export function StockGraphBox({
                 width={width}
                 height={height}
             /* data={[...stockData.data, ...Array.apply(null, Array(stockData.count-stockData.data.length)).map(function () {})]} */
-                data={GetSlicedStockData(stockData.data, visibleOffset)}
+                data={getSlicedStockData(stockData.data, visibleOffset)}
                 margin={{
                     top: 20,
                     right: 30,
@@ -343,7 +310,7 @@ export function StockGraphBox({
         let [avg, num] = [0, 0]
         
         const newData = stockData.data.map((trade) => {
-            [avg, num] = GetWeightedAverage(trade, avg, num, avgWeight)
+            [avg, num] = getWeightedAverage(trade, avg, num, avgWeight)
             
             return {
                 ...trade,
@@ -423,7 +390,7 @@ export function StockGraphBox({
               width={width}
               height={height-220}
         /* data={showVolume ? [...stockData.data, ...Array.apply(null, Array(stockData.count-stockData.data.length)).map(function () {})] : null} */
-              data={GetSlicedStockData(stockData.data, visibleOffset)}
+              data={getSlicedStockData(stockData.data, visibleOffset)}
 
               margin={{
                   top: 20,

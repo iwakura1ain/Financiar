@@ -1,22 +1,15 @@
 import {useState, useEffect} from "react"
 
+import {getSlicedStockData} from "./Utils.jsx"
+
 
 import { ComposedChart, LineChart, Line, Rectangle, BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 
 export function PIPGraphBox({
-    selected, stockData, width=400, height=200
+    selected, stockData, visibleOffset, width=400, height=200
 }) {
     const [visibility, setVisibility] = useState(true)
-    const [scrollLocation, setScrollLocation] = useState(0)
-
-    useEffect(() => {
-        if (selected === undefined)
-            return
-        
-        setScrollLocation(document.getElementById(`stock-item-${selected}`).top + window.scrollY)
-        console.log("SETTING SCROLL LOCATION", scrollLocation)
-    }, [selected])
 
     useEffect(() => {
         console.log(visibility)
@@ -59,7 +52,7 @@ export function PIPGraphBox({
                       className="barchart-chart pic-in-pic-graph"
                       width={width}
                       height={height}
-                      data={stockData.data}
+                      data={getSlicedStockData(stockData.data, visibleOffset)}
                       margin={{
                           top: 15,
                           right: 30,
@@ -80,8 +73,7 @@ export function PIPGraphBox({
             <div className="pic-in-pic-box">
               <button
                 className="pic-in-pic-button"
-                style={{position:"fixed", bottom:"20px", right: "20px"}}
-            /* onClick={() => (goToScrollLocation())} */
+                style={{position:"fixed", bottom:"20px", right: "20px"}}             
                 onClick={() => {
                     document.getElementById(`stock-item-${selected}`)
                         .scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})

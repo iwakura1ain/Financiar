@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react"
 
-const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur scelerisque, tortor nec mattis feugiat, velit purus euismod odio, quis vulputate velit urna sit amet enim. Maecenas vulputate auctor ligula sed sollicitudin."
+import {getLogoName, lorem} from "./Utils.jsx"
+
 
 export function StockInfoItem({
     selected, setSelected,
@@ -9,9 +10,7 @@ export function StockInfoItem({
     ticker="---", 
     rating=0, rateStock,
     sector="finance", 
-    desc=lorem}) {
-
-    const getLogoName = (name) => (name.replaceAll(" ", "_"))
+    desc="No Description"}) {
 
     // before: testimonials-box > personal-info > testimonials-button > (testimonials-wrapper + testimonials-desc)
     // after: testimonials-box > testimonials-outer-wrapper > testimonials-stock > testimonials-head + testmonials-body

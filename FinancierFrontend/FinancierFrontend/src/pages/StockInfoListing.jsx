@@ -6,28 +6,10 @@ import {StockGraphBox} from "../components/StockGraph.jsx"
 import {PIPGraphBox} from "../components/PicInPicGraph.jsx"
 import {TradeDataLoader2} from "../components/TradeDataLoader.jsx"
 import {LoadingDots} from "../components/LoadingVisual.jsx"
+import {getDefaultDate} from "../components/Utils.jsx"
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-
-export function GetDefaultDate() {    
-    // Create a date object from a date string
-    var date = new Date();
-
-    var prevDate = new Date();
-    prevDate.setFullYear(date.getFullYear() - 1);
-
-    const getFormatted = (date) => {
-        // Get year, month, and day part from the date
-        var year = date.toLocaleString("default", { year: "numeric" });
-        var month = date.toLocaleString("default", { month: "2-digit" });
-        var day = date.toLocaleString("default", { day: "2-digit" });
-
-        return year + "-" + month + "-" + day;
-    }
-    
-    return [getFormatted(date), getFormatted(prevDate)]
-}
 
 export function StockInfoListing() {
     // ============= searchbar ====================
@@ -44,8 +26,8 @@ export function StockInfoListing() {
     const [stockData, setStockData] = useState()
     const [visibleOffset, setVisibleOffset] = useState([0, 180]) //  [a, b] => stockData.data: [ |---- b ---| ... a ... ]
     const [fetchingStatus, setFetchingStatus] = useState(false)
-    const [startDate, setStartDate] = useState(GetDefaultDate()[1])
-    const [endDate, setEndDate] = useState(GetDefaultDate()[0])
+    const [startDate, setStartDate] = useState(getDefaultDate()[1])
+    const [endDate, setEndDate] = useState(getDefaultDate()[0])
     
 
     const baseUrl = "/api/fdr/stocks"
@@ -173,6 +155,7 @@ export function StockInfoListing() {
           <PIPGraphBox
             selected={selected}             
             stockData={stockData}
+            visibleOffset={visibleOffset}
           />
 
         </>

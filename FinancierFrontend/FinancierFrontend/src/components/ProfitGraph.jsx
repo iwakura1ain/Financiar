@@ -10,33 +10,8 @@ import { useScrollDirection } from 'react-use-scroll-direction'
 
 import {CustomToolTip} from './StockGraphToolTip.jsx'
 import {LoadingDots, LoadingSpinny} from "./LoadingVisual.jsx"
+//import {getDefaultDate, getSlicedStockData} from "./Utils.jsx"
 
-function GetDefaultDate() {    
-    // Create a date object from a date string
-    var date = new Date();
-
-    var prevDate = new Date();
-    prevDate.setFullYear(date.getFullYear() - 1);
-
-    const getFormatted = (date) => {
-        // Get year, month, and day part from the date
-        var year = date.toLocaleString("default", { year: "numeric" });
-        var month = date.toLocaleString("default", { month: "2-digit" });
-        var day = date.toLocaleString("default", { day: "2-digit" });
-
-        return year + "-" + month + "-" + day;
-    }
-    
-    return [getFormatted(date), getFormatted(prevDate)]
-}
-
-function GetSlicedStockData(data, visibleOffset) {
-    let start = data.length - (visibleOffset[0] + visibleOffset[1])
-    let end = data.length - (visibleOffset[0])
-    let padding = start < 0 ? Array.apply(null, Array(Math.abs(start))).map(function () {}) : []
-
-    return [...padding, ...data.slice(start > 0 ? start : 0, end)]
-}
 
 const GraphScrollListener = ({barchartId, eventAddStatus, setEventAddStatus, visibleOffset, setVisibleOffset}) => {
     console.log("ADDING LISTENER FOR ", barchartId)

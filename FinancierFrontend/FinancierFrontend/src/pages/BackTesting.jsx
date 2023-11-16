@@ -13,6 +13,8 @@ import {ProfitGraphBox} from "../components/ProfitGraph.jsx"
   they require seperate stockData and startDate/endDate states to work. 
 */
 
+
+//TODO: refactor this into StockInfoListing page
 function StockData (
     selected,
     stockData=undefined,
@@ -42,14 +44,15 @@ function StockData (
     return target
 }
 
-export function BackTesting() {    
-    var stockDataList = [
-        StockData("MMM"),
-        StockData("AOS")
-        //  StockData("ABT")
-    ]
+var registered = []    
 
-    
+export function registerStockData (ticker) {
+    registered.push(ticker)
+    console.log("REGISTERED", registered)
+}
+
+export function BackTesting() {
+    var stockDataList = registered.map((ticker) => StockData(ticker))
     
     return (
         <section id="testimonials">
@@ -73,6 +76,7 @@ export function BackTesting() {
                       <StockGraphBox
                         {...stockDataList[i]}
                         barchartId={i}
+                        showControls={false}
                       />
                       {/* TODO: OFFLOAD GraphScrollListener TO HERE */}
                     </div>

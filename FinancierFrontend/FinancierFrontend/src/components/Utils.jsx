@@ -82,14 +82,16 @@ export function  getLogoName(name) {return name.replaceAll(" ", "_")}
 
 export const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur scelerisque, tortor nec mattis feugiat, velit purus euismod odio, quis vulputate velit urna sit amet enim. Maecenas vulputate auctor ligula sed sollicitudin."
 
-export const sectorList = ['Industrials',
-                    'Health Care',
-                    'Information Technology',
-                    'Communication Services',
-                    'Consumer Staples',
-                    'Utilities',
-                    'Financials',
-                    'Materials',
-                    'Real Estate',
-                    'Consumer Discretionary',
-                    'Energy']
+export const sectorList = [
+    'Industrials',
+    'Health Care',
+    'Information Technology',
+    'Communication Services',
+    'Consumer Staples',
+    'Utilities',
+    'Financials',
+    'Materials',
+    'Real Estate',
+    'Consumer Discretionary',
+    'Energy'
+]

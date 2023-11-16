@@ -29,7 +29,6 @@ export function StockInfoListing() {
     const [startDate, setStartDate] = useState(getDefaultDate()[1])
     const [endDate, setEndDate] = useState(getDefaultDate()[0])
     
-
     const baseUrl = "/api/fdr/stocks"
 
     const rateStock = (ticker) => {

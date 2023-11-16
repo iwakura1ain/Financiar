@@ -5,13 +5,13 @@ import {
     ComposedChart, LineChart, Line, Rectangle, BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
 
-import { useScrollDirection } from 'react-use-scroll-direction'
 
 
 import {CustomToolTip} from './StockGraphToolTip.jsx'
 import {LoadingDots, LoadingSpinny} from "./LoadingVisual.jsx"
 import {getWeightedAverage, getDefaultDate, getSlicedStockData} from "./Utils.jsx"
 
+import {registerStockData} from "../pages/BackTesting.jsx"
 
 const CustomBar = (props) => {
     const {Color} = props;
@@ -24,7 +24,6 @@ const CustomBar = (props) => {
         />
     )
 }
-
 
 const GraphScrollListener = ({barchartId, eventAddStatus, setEventAddStatus, visibleOffset, setVisibleOffset}) => {
     console.log("ADDING LISTENER FOR ", barchartId)
@@ -54,7 +53,6 @@ const GraphScrollListener = ({barchartId, eventAddStatus, setEventAddStatus, vis
     setEventAddStatus(true)
 }
 
-
 /*
   Component that renders data inside stockData.
 
@@ -82,8 +80,9 @@ export function StockGraphBox({
     fetchingStatus,
     startDate, setStartDate,
     endDate, setEndDate,
+    callback=(e)=>{},
     height=600, width=1600,
-    showControls=false,
+    showControls=true,
 }) {
     const [avgWeight, setAvgWeight] = useState(0.2)
     const [showAverage, setShowAverage] = useState(false)
@@ -203,6 +202,10 @@ export function StockGraphBox({
                   <div>
                     <p>LEN: {stockData ? stockData.data.length: 0}</p>
                   </div>
+                  
+                  <button onClick={() => {                       
+                      registerStockData(selected)
+                  }}>ADD</button>
 
                 </div>
             )
@@ -249,8 +252,9 @@ export function StockGraphBox({
                     <XAxis height={80} dataKey="Date" angle={-45} textAnchor='end'/>
                     <YAxis type="number" />
 
-                    <Tooltip content={<CustomToolTip />}  />
-
+                    {/* <ToolTipClickListener /> */}
+                    <Tooltip id="clickable-tooltip" content={<CustomToolTip />} /* cursor={<CustomCursor />} */  isAnimationActive={false}/>
+                    
                     <Line type="monotone" dataKey="Close" stroke="#646cffaa" dot={false} isAnimationActive={false} />
                     <Line
                       type="monotone"
@@ -282,10 +286,10 @@ export function StockGraphBox({
                 <XAxis height={80} dataKey="Date" angle={-45} textAnchor='end'/>
                 <YAxis type="number" />
 
-                <Tooltip content={<CustomToolTip />}  />
+                <Tooltip id="clickable-tooltip" content={<CustomToolTip />} /* cursor={<CustomCursor />} */ isAnimationActive={false}/>
 
-                <Bar dataKey="Bottom" stackId="a" fill="#FFFFFF" isAnimationActive={false} /> 
-                <Bar shape={CustomBar} dataKey="Area" stackId="a" isAnimationActive={false} />
+                <Bar dataKey="Bottom" stackId="a" fill="#FFFFFF" isAnimationActive={false} onClick={(e) => callback(e)}/> 
+                <Bar shape={CustomBar} dataKey="Area" stackId="a" isAnimationActive={false} onClick={(e) => callback(e)}/>
                 <Line
                   type="monotone"
                   dataKey={showAverage && !fetchingStatus ? "Average" : ""}
@@ -295,6 +299,33 @@ export function StockGraphBox({
                 />
               </ComposedChart>
             </>
+        )
+    }
+
+    const VolumeGraph = () => {
+        return (
+            <BarChart
+              className="volume-chart"
+              width={width}
+              height={height-220}
+              data={getSlicedStockData(stockData.data, visibleOffset)}
+
+              margin={{
+                  top: 20,
+                  right: 30,
+                  left: 80,
+                  bottom: 265,
+              }}>
+              
+              <Tooltip />
+              <Bar
+                dataKey={showVolume ? "Volume" : null}
+                fill="#8884d8"
+                activeBar={<Rectangle fill="#8f8e8c" stroke="blue" />}
+                isAnimationActive={false} 
+              />
+            </BarChart>
+
         )
     }
     
@@ -384,29 +415,7 @@ export function StockGraphBox({
 
           <div   id={`barchart-scrollable-${barchartId}`}>
             <MainGraph />
-            
-            <BarChart
-              className="volume-chart"
-              width={width}
-              height={height-220}
-        /* data={showVolume ? [...stockData.data, ...Array.apply(null, Array(stockData.count-stockData.data.length)).map(function () {})] : null} */
-              data={getSlicedStockData(stockData.data, visibleOffset)}
-
-              margin={{
-                  top: 20,
-                  right: 30,
-                  left: 80,
-                  bottom: 265,
-              }}>
-              
-              <Tooltip />
-              <Bar
-                dataKey={showVolume ? "Volume" : null}
-                fill="#8884d8"
-                activeBar={<Rectangle fill="#8f8e8c" stroke="blue" />}
-                isAnimationActive={false} 
-              />
-            </BarChart>
+            <VolumeGraph />
           </div>
         </div>
         

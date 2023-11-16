@@ -1,5 +1,4 @@
 export const CustomToolTip = ({ active, payload, label }) => {
-
     if (active && payload && payload.length) {
         
         return (
@@ -8,8 +7,8 @@ export const CustomToolTip = ({ active, payload, label }) => {
                 <div style={{display:"flex", justifyContent: "space-between"}}>
                   <p className="tooltip-date">{payload[0].payload.Date}</p>  
                   {payload[0].payload.Color == "red" ? 
-                    <img src="/src/assets/rising.svg" style={{color:"red", height:"20px", width:"20px"}}></img> : 
-                    <img src="/src/assets/falling.svg" style={{color:"blue", height:"20px", width:"20px"}}></img>}
+                   <img src="/src/assets/rising.svg" style={{color:"red", height:"20px", width:"20px"}}></img> : 
+                   <img src="/src/assets/falling.svg" style={{color:"blue", height:"20px", width:"20px"}}></img>}
                 </div>
                 {/* <p className="tooltip-label-start">Open:</p> <span className="tooltip-label-end">{payload[0].payload.Open}</span> */}
                 <p className="tooltip-label">Open: {payload[0].payload.Open}</p>

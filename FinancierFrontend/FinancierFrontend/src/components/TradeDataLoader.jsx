@@ -46,6 +46,7 @@ export function TradeDataLoader2({
     selected,
     startDate, setStartDate,
     endDate, setEndDate,
+    period, 
     stockData, setStockData,
     visibleOffset, setVisibleOffset,
     fetchingStatus, setFetchingStatus,
@@ -69,7 +70,6 @@ export function TradeDataLoader2({
     const [maxFetchNext, setMaxFetchNext] = useState(0)
     const [maxFetchBuff, setMaxFetchBuff] = useState([])
     const [maxFetchReady, setMaxFetchReady] = useState(false)
-
         
     useEffect(() => {
         console.log("PREFETCHING")        
@@ -122,7 +122,7 @@ export function TradeDataLoader2({
             await setMaxFetchEnd()
             
         })()        
-    }, [selected])
+    }, [selected, period])
 
     // set dates to fetch
     useEffect(() => {
@@ -165,7 +165,7 @@ export function TradeDataLoader2({
         await setFetchingStatus(true)
 
         var [res, resNext] = [{}, 0]
-        const fetchURL = `/api/fdr/stocks/${target}?start=${getFormattedDate(start)}&end=${getFormattedDate(end)}&page=${next}&flip=${flip}`
+        const fetchURL = `/api/fdr/stocks/${target}?period=${period}&start=${getFormattedDate(start)}&end=${getFormattedDate(end)}&page=${next}&flip=${flip}`
         await fetch(fetchURL, { headers:{ accept: 'application/json' } })
             .then(response => response.json())
             .then((json) => { // set stockdata

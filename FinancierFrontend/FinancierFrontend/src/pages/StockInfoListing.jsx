@@ -28,6 +28,7 @@ export function StockInfoListing({register, setRegister}) {
     const [fetchingStatus, setFetchingStatus] = useState(false)
     const [startDate, setStartDate] = useState(getDefaultDate()[1])
     const [endDate, setEndDate] = useState(getDefaultDate()[0])
+    const [period, setPeriod] = useState("week")
     
     const baseUrl = "/api/fdr/stocks"
 
@@ -87,6 +88,7 @@ export function StockInfoListing({register, setRegister}) {
               selected={selected}
               startDate={startDate} setStartDate={setStartDate}
               endDate={endDate} setEndDate={setEndDate}
+              period={period}
               stockData={stockData} setStockData={setStockData}
               visibleOffset={visibleOffset} setVisibleOffset={setVisibleOffset}
               fetchingStatus={fetchingStatus} setFetchingStatus={setFetchingStatus}
@@ -104,6 +106,7 @@ export function StockInfoListing({register, setRegister}) {
                 stockData={stockData} setStockData={setStockData}
                 visibleOffset={visibleOffset} setVisibleOffset={setVisibleOffset}
                 selected={selected} setSelected={setSelected}
+                period={period} setPeriod={setPeriod}
                 fetchingStatus={fetchingStatus}
                 register={register} setRegister={setRegister}
                 startDate={startDate} setStartDate={setStartDate}

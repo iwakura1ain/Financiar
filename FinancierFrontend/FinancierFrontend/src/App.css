@@ -195,13 +195,13 @@
 #barchart-zoom-in {
   position: absolute;
   right: 180px;
-  top: 40px;
+  top: 130px;
 }
 
 #barchart-zoom-out {
   position: absolute;
   right: 130px;
-  top: 40px;
+  top: 130px;
 }
 
 .barchart-zoom {

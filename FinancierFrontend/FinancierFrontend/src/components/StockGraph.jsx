@@ -80,6 +80,7 @@ export function StockGraphBox({
     startDate, setStartDate,
     endDate, setEndDate,
     register, setRegister,
+    period, setPeriod,
     callback=(e)=>{},
     height=600, width=1600,
     showControls=true,
@@ -236,6 +237,23 @@ export function StockGraphBox({
                       }}/>
                   </div>
                   <div>
+                    <label htmlFor="period">Period:</label>
+
+                    <select
+                      name="period"
+                      value={period}
+                      onChange={(event) => {
+                          console.log("PERIOD", event.target.value)
+                          setPeriod(event.target.value)
+                      }}>
+                      <option value="day">Day</option>
+                      <option value="week">Week</option>
+                      <option value="month">Month</option>
+                      <option value="quarter">Quarter</option>
+                      <option value="year">Year</option>
+                    </select>
+                  </div>
+                  <div>
                     <p>LEN: {stockData ? stockData.data.length: 0}</p>
                   </div>
 
@@ -320,7 +338,7 @@ export function StockGraphBox({
 
                 <Tooltip id="clickable-tooltip" content={<CustomToolTip />} /* cursor={<CustomCursor />} */ isAnimationActive={false}/>
 
-                <Bar dataKey="Bottom" stackId="a" fill="#FFFFFF" isAnimationActive={false} onClick={(e) => callback(e)}/> 
+                <Bar dataKey="Bottom" stackId="a" fill="#FFFFFF00" isAnimationActive={false} onClick={(e) => callback(e)}/> 
                 <Bar shape={CustomBar} dataKey="Area" stackId="a" isAnimationActive={false} onClick={(e) => callback(e)}/>
                 <Line
                   type="monotone"

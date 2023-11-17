@@ -78,12 +78,13 @@ def parse_week(data):
     return retval
 
 def parse_day(data):
-    data['Color'] = data.apply(lambda t: "red" if t['Open'] <= t['Close'] else "blue", axis=1)
+    data = data.drop(["year", "month", "week"], axis=1)
+    data["Color"] = data.apply(lambda t: "red" if t['Open'] <= t['Close'] else "blue", axis=1)
     data["Bottom"] = data.apply(lambda t: t["Open"]  if t['Color'] == "red" else t["Close"], axis=1)
     data["Area"] = data.apply(lambda t: abs(np.trunc(100 * (t["Open"] - t["Close"])) / 100), axis=1)
 
     data["Date"] = list(map(lambda d: str(d)[:-9], data["Date"]))
-
+    
     #return data.T.to_dict().values()
     return data.to_dict('records')
 
@@ -113,7 +114,6 @@ def query_fdr(**kwargs):
         "quarter": parse_quarter,
         "year": parse_year
     }
-
     
     return funcs[period](data) if period in list(funcs.keys()) else parse_day(data)
     

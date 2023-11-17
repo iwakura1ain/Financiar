@@ -67,10 +67,10 @@ class APIQueryAndModelMixin:
         kwargs.update({k:v for k, v in query_params.items()})
 
         data = cls.query_function(**kwargs)
-        retval = []
-        for d in data.iloc:
-            #Trade.objects.update_or_create(**d)
-            retval.append({**d})
+        # retval = []
+        # for d in data.iloc:
+        #     #Trade.objects.update_or_create(**d)
+        #     retval.append({**d})
 
-        return retval
+        return data
         

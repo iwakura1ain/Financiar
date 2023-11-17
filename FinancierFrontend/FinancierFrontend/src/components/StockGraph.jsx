@@ -160,8 +160,8 @@ export function StockGraphBox({
         if (showControls)
             return (
                 <div className="barchart-controls">
+                  <GraphRegister />
                   <div>
-                    <GraphRegister />
                     <label htmlFor="start">Start date : </label>
                     <input
                       type="date"

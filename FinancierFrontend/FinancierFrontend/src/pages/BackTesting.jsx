@@ -25,6 +25,7 @@ function StockData (
     stockData=undefined,
     visibleOffset=[0, 180],
     fetchingStatus=false,
+    period="week",
     startDate=getDefaultDate()[1],
     endDate=getDefaultDate()[0]
 ) {
@@ -38,7 +39,8 @@ function StockData (
         target[`${name}`] = temp
         target[`set${capitalize(name)}`] = setTemp
     }
-    
+
+    setValue(period, "period")
     setValue(selected, "selected")
     setValue(stockData, "stockData")
     setValue(visibleOffset, "visibleOffset")

@@ -1,0 +1,18 @@
+version: "0.9"
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: ./FinancierFrontend/FinancierFrontend/Dockerfile
+    restart: on-faliure
+    hostname: frontend-container
+    ports:
+      - "5173:5173"
+  backend:
+    build:
+      context: .
+      dockerfile: ./FinancierBackend/Docker
+    restart: on-faliure
+    hostname: backend-container
+    ports:
+      - "8000:8000"

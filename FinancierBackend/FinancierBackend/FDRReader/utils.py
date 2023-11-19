@@ -10,7 +10,7 @@ def parse_slice(data):
     return {
         "Open": data["Open"].iloc[0],
         "Close": data["Close"].iloc[-1],
-        "Adj Close": data["Adj Close"].iloc[-1],
+        # "Adj Close": data["Adj Close"].iloc[-1],
         "High": max(data["High"]),
         "Low": min(data["Low"]),
         "Volume": sum(data["Volume"]),
@@ -104,7 +104,7 @@ def query_fdr(**kwargs):
     data = data.dropna()
     data = set_dates(data)
 
-    for k in ["Open", "High", "Low", "Close", "Adj Close"]:
+    for k in ["Open", "High", "Low", "Close"]:
         data[k] = np.trunc(100 * data[k]) / 100
 
     funcs = {

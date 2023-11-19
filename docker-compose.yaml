@@ -5,22 +5,27 @@ services:
       context: .
       dockerfile: ./FinancierFrontend/Dockerfile
     restart: on-failure
-    hostname: financiar-frontend
     ports:
       - "5173:5173"
     networks:
       default:
         aliases:
           - financierfrontend
+          - financiar-frontend
+    volumes:
+      - ./FinancierFrontend/FinancierFrontend:/FinancierFrontend
+
   backend:
     build:
       context: .
       dockerfile: ./FinancierBackend/Dockerfile
     restart: on-failure
-    hostname: financiar-backend
     ports:
       - "8000:8000"
     networks:
       default:
         aliases:
           - financierbackend
+          - financiar-backend
+    volumes:
+      - ./FinancierBackend/FinancierBackend:/FinancierBackend

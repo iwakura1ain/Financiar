@@ -30,7 +30,7 @@ export function StockInfoListing({register, setRegister}) {
     const [endDate, setEndDate] = useState(getDefaultDate()[0])
     const [period, setPeriod] = useState("week")
     
-    const baseUrl = "/api/fdr/stocks"
+    const baseUrl = "http://financiar-backend:8000/api/fdr/stocks"
 
     const rateStock = (ticker) => {
         fetch(`/api/fdr/stocks/${ticker}/rate`, {headers:{method: "PUT", accept: 'application/json'}})

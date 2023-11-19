@@ -1,7 +1,7 @@
 FROM python:latest
 ENV PYTHONUNBUFFERED 1
 
-COPY ./FinancierBackend /FinancierBackend/
+COPY ./FinancierBackend/FinancierBackend /FinancierBackend/
 
 WORKDIR /FinancierBackend
 

@@ -1,10 +1,14 @@
 FROM bayesimpact/react-base:${REACT_BASE_TAG:-latest}
 
-COPY ./FinancierFrontend /FinancierFrontend/
+COPY ./FinancierFrontend/FinancierFrontend /FinancierFrontend/
 
 WORKDIR /FinancierFrontend
 
-RUN npm install dev
+RUN ls
+
+RUN npm install
+
+EXPOSE 5173
 
 CMD ["npm", "run", "dev"]
 

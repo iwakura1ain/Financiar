@@ -26,6 +26,14 @@
 - *buy/sell 페이지 만들어야 함*
 - typescript로 리팩터링?
 
+* How to build docker image
+- frontend at 127.0.0.1:5173
+- backend at 127.0.0.1:8000/api/fdr/stocks
+#+begin_src bash
+  cd /path/to/Financiar/
+  docker compose build
+#+end_src
+
 * 프론트 실행 방법
 : npm 있어야함 
 #+begin_src bash

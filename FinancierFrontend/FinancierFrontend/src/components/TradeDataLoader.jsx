@@ -165,8 +165,11 @@ export function TradeDataLoader2({
         await setFetchingStatus(true)
 
         var [res, resNext] = [{}, 0]
-        const fetchURL = `http://financiar-backend:8000/api/fdr/stocks/${target}?period=${period}&start=${getFormattedDate(start)}&end=${getFormattedDate(end)}&page=${next}&flip=${flip}`
-        await fetch(fetchURL, { headers:{ accept: 'application/json' } })
+        const fetchURL = `http://localhost:8000/api/fdr/stocks/${target}?period=${period}&start=${getFormattedDate(start)}&end=${getFormattedDate(end)}&page=${next}&flip=${flip}`
+        await fetch(fetchURL, {
+            headers:{
+                accept: 'application/json',
+            }})
             .then(response => response.json())
             .then((json) => { // set stockdata
                 res = json

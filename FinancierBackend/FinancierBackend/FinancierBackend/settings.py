@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     "Comments.apps.CommentsConfig",
 ]
 
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -120,10 +122,11 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 100,
 }
 
-CORS_ALLOWED_ORIGINS = (
+CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://localhost:8000",
-)
+    "http://localhost:5173",
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

@@ -29,3 +29,16 @@ services:
           - financiar-backend
     volumes:
       - ./FinancierBackend/FinancierBackend:/FinancierBackend
+
+  database:
+    #container_name: dbservice
+    image: mariadb:latest
+    restart: on-failure # always
+    env_file:
+      ./db-env
+    environment:
+      TZ: Asia/Seoul
+    volumes:
+      - ./db-init.sql:/docker-entrypoint-initdb.d/maria-init.sql
+    ports:
+      - "3306:3306"

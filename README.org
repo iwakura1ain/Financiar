@@ -32,6 +32,7 @@
 #+begin_src bash
   cd /path/to/Financiar/
   docker compose build
+  docker compose up
 #+end_src
 
 * 프론트 실행 방법

@@ -7,6 +7,7 @@ import {PIPGraphBox} from "../components/PicInPicGraph.jsx"
 import {TradeDataLoader2} from "../components/TradeDataLoader.jsx"
 import {LoadingDots} from "../components/LoadingVisual.jsx"
 import {getDefaultDate} from "../components/Utils.jsx"
+import {backendURL} from "../components/Utils.jsx"
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 
@@ -29,8 +30,6 @@ export function StockInfoListing({register, setRegister}) {
     const [startDate, setStartDate] = useState(getDefaultDate()[1])
     const [endDate, setEndDate] = useState(getDefaultDate()[0])
     const [period, setPeriod] = useState("week")
-    
-    const baseUrl = "http://localhost:8000/api/fdr/stocks"
 
     const rateStock = (ticker) => {
         fetch(`/api/fdr/stocks/${ticker}/rate`, {headers:{method: "PUT", accept: 'application/json'}})
@@ -48,7 +47,7 @@ export function StockInfoListing({register, setRegister}) {
         let nextPage = nextUrl.searchParams.get("page")
         
         console.log(`fetching ${nextPage}`)
-        let fetchUrl = `${baseUrl}?name=${searchName}&sector=${searchSector}`
+        const fetchUrl = `${backendURL}/api/fdr/stocks?name=${searchName}&sector=${searchSector}`
         fetch(`${fetchUrl}&page=${nextPage}`, { headers:{accept: 'application/json'} })
             .then(response => (response.json()))
             .then(json => {
@@ -64,7 +63,7 @@ export function StockInfoListing({register, setRegister}) {
     }
        
     useEffect(() => {
-        let fetchUrl = `${baseUrl}?name=${searchName}&sector=${searchSector}`
+        const fetchUrl = `${backendURL}/api/fdr/stocks?name=${searchName}&sector=${searchSector}`
         fetch(fetchUrl, { headers:{accept: 'application/json'} })
             .then(response => (response.json()))
             .then(json => {

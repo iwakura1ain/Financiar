@@ -3,7 +3,8 @@ import {useState, useEffect} from 'react';
 import {CustomToolTip} from './StockGraphToolTip.jsx'
 import {LoadingDots} from "./LoadingVisual.jsx"
 
-import {getFormattedDate} from "./Utils.jsx"
+import {getFormattedDate, backendURL} from "./Utils.jsx"
+ 
 
 function CleanTradeData(trade) {
     const [bottom, area, color] =
@@ -161,11 +162,16 @@ export function TradeDataLoader2({
 
     // fetch paged data 
     const fetchData = async (target, start, end, next, flip) => {
-        await console.log("SETTING FETCHING STATUS TRUE")
         await setFetchingStatus(true)
 
         var [res, resNext] = [{}, 0]
-        const fetchURL = `http://localhost:8000/api/fdr/stocks/${target}?period=${period}&start=${getFormattedDate(start)}&end=${getFormattedDate(end)}&page=${next}&flip=${flip}`
+        const fetchURL = `${backendURL}/api/fdr/stocks/${target}?`
+              + `period=${period}`
+              + `&start=${getFormattedDate(start)}`
+              + `&end=${getFormattedDate(end)}`
+              + `&page=${next}`
+              + `&flip=${flip}`
+        
         await fetch(fetchURL, {
             headers:{
                 accept: 'application/json',
@@ -182,7 +188,7 @@ export function TradeDataLoader2({
                 }
 
             })
-            .then(() => (console.log("SUCCESS")))
+            .then(() => (console.log("FETCH SUCCESS")))
             .catch(console.log)
 
         console.log(res, resNext)

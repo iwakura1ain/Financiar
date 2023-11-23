@@ -2,6 +2,8 @@ import FinanceDataReader as fdr
 import numpy as np
 import pandas as pd
 
+from .cache import get_cache, set_cache
+
 def parse_slice(data):
     data["Date"] = list(map(lambda d: str(d)[:-9], data["Date"]))
 
@@ -98,14 +100,18 @@ def query_fdr(**kwargs):
     if start is None or end is None:
         start="2020-01-01"
         end="2021-01-01"
+
     
     data = fdr.DataReader(ticker, start, end)
     data = data.reset_index()
-    data = data.dropna()
+    #data = data.dropna()
+    data = data.fillna(-1)
     data = set_dates(data)
 
     for k in ["Open", "High", "Low", "Close"]:
         data[k] = np.trunc(100 * data[k]) / 100
+
+    
 
     funcs = {
         "day": parse_day,

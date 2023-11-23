@@ -42,3 +42,13 @@ services:
       - ./db-init.sql:/docker-entrypoint-initdb.d/maria-init.sql
     ports:
       - "3306:3306"
+
+  redis:
+    image: redis:latest
+    restart: on-failure
+    ports:
+      - 6379:6379
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./redis:/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf

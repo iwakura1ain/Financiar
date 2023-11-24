@@ -2,7 +2,7 @@ import FinanceDataReader as fdr
 import numpy as np
 import pandas as pd
 
-from .cache import get_cache, set_cache
+from .cache import get_cache, set_cache_df, set_cache_list
 
 def parse_slice(data):
     data["Date"] = list(map(lambda d: str(d)[:-9], data["Date"]))
@@ -85,11 +85,14 @@ def parse_day(data):
     data["Bottom"] = data.apply(lambda t: t["Open"]  if t['Color'] == "red" else t["Close"], axis=1)
     data["Area"] = data.apply(lambda t: abs(np.trunc(100 * (t["Open"] - t["Close"])) / 100), axis=1)
 
-    data["Date"] = list(map(lambda d: str(d)[:-9], data["Date"]))
+    #data["Date"] = list(map(lambda d: str(d)[:-9], data["Date"]))
     
     #return data.T.to_dict().values()
     return data.to_dict('records')
 
+
+def get_date_str(row):
+    return str(row["Date"])[:10]
 
 def query_fdr(**kwargs):
     start = kwargs.get("start")
@@ -101,17 +104,32 @@ def query_fdr(**kwargs):
         start="2020-01-01"
         end="2021-01-01"
 
+    # caching
+    data, uncached = get_cache(start, end, ticker)
+    for u_start, u_end in uncached:
+        tmp = fdr.DataReader(ticker, u_start, u_end)
+        tmp = tmp.dropna()
+        tmp = tmp.reset_index()
+        tmp["Date"] = tmp["Date"].map(lambda t: t.strftime("%Y-%m-%d"))
+        
     
-    data = fdr.DataReader(ticker, start, end)
-    data = data.reset_index()
-    #data = data.dropna()
-    data = data.fillna(-1)
-    data = set_dates(data)
+        set_cache_df(tmp, ticker)
+        data.update({f"{row['Date']}": row.to_dict() for i, row in tmp.iterrows()})
 
+        invalid = [{"Date":k, "Open": -1, "High":-1, "Low":-1, "Close": -1} for k, v in data.items() if v is None]
+        set_cache_list(invalid, ticker)
+
+
+    print(data)
+    data = pd.DataFrame.from_records([d for d in data.values() if d is not None])
+    data = data.replace({-1:None})
+    data = data.reset_index()
+    data = data.dropna()
+    data = set_dates(data)
+    
+    
     for k in ["Open", "High", "Low", "Close"]:
         data[k] = np.trunc(100 * data[k]) / 100
-
-    
 
     funcs = {
         "day": parse_day,

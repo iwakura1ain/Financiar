@@ -152,7 +152,7 @@ export function StockGraphBox({
             }
         }
         
-        return (<button onClick={() => callback()}>{registerButtonText}</button>)
+        return (<button className='barchart-register' onClick={() => callback()}>{registerButtonText}</button>)
 
     }
     
@@ -161,7 +161,7 @@ export function StockGraphBox({
             return (
                 <div className="barchart-controls">
                   <GraphRegister />
-                  <div>
+                  {/* <div>
                     <label htmlFor="start">Start date : </label>
                     <input
                       type="date"
@@ -171,8 +171,8 @@ export function StockGraphBox({
                       onChange={(event) =>{
                           setStartDate(event.target.value)
                       }}/> 
-                  </div>
-                  <div>
+                  </div> */}
+                  {/* <div>
                     <label htmlFor="end">End date : </label>
                     <input
                       type="date"
@@ -182,9 +182,9 @@ export function StockGraphBox({
                       onChange={(event) => {
                           setEndDate(event.target.value)
                       }}/>
-                  </div>
-                  <div>
-                    <label htmlFor="end">Volume : </label>
+                  </div> */}
+                  <div className='controls-btn'>
+                    <label htmlFor="end">Volume</label>
                     <input
                       type="checkbox"
                       defaultChecked={true}
@@ -192,8 +192,8 @@ export function StockGraphBox({
                           setShowVolume(!showVolume)
                       }}/>
                   </div>
-                  <div>
-                    <label htmlFor="end">Average : </label>
+                  <div className='controls-btn'>
+                    <label htmlFor="end">Average</label>
                     <input
                       type="checkbox"
                       
@@ -201,8 +201,8 @@ export function StockGraphBox({
                           setShowAverage(!showAverage)
                       }}/>
                   </div>
-                  <div>
-                    <label htmlFor="end">Weight : </label>
+                  <div className='controls-btn'>
+                    <label htmlFor="end">Weight</label>
                     <input
                       type="number"
                       max={1.0}
@@ -213,7 +213,7 @@ export function StockGraphBox({
                           setAvgWeight(event.target.value)
                       }}/>
                   </div>
-                  <div>
+                  {/* <div>
                     <label htmlFor="end">A (offset from end): </label>
                     <input
                       type="number"
@@ -223,9 +223,9 @@ export function StockGraphBox({
                       onChange={(event) => {
                           setVisibleOffset([+event.target.value, visibleOffset[1]])
                       }}/>
-                  </div>
+                  </div> */}
 
-                  <div>
+                  {/* <div>
                     <label htmlFor="end">B (len of data) : </label>
                     <input
                       type="number"
@@ -235,9 +235,9 @@ export function StockGraphBox({
                       onChange={(event) => {
                           setVisibleOffset([visibleOffset[0], +event.target.value])
                       }}/>
-                  </div>
-                  <div>
-                    <label htmlFor="period">Period:</label>
+                  </div> */}
+                  <div className='controls-btn'>
+                    <label htmlFor="period">Period</label>
 
                     <select
                       name="period"
@@ -253,16 +253,16 @@ export function StockGraphBox({
                       <option value="year">Year</option>
                     </select>
                   </div>
-                  <div>
+                  {/* <div>
                     <p>LEN: {stockData ? stockData.data.length: 0}</p>
-                  </div>
+                  </div> */}
 
                 </div>
             )
     }
 
     const GraphZoomButton = () => (
-        <>
+        <div>
           <button
             className="barchart-zoom"
             id="barchart-zoom-in"
@@ -280,7 +280,7 @@ export function StockGraphBox({
             }}>
             <img src="/src/assets/minus.svg" />
           </button>
-        </>
+        </div>
     )
     
     const MainGraph = () => {
@@ -422,7 +422,6 @@ export function StockGraphBox({
                 visibleOffset={visibleOffset}
                 setVisibleOffset={setVisibleOffset}
               />              
-              <GraphControls />
               <GraphZoomButton />             
 
               <div   id={`barchart-scrollable-${barchartId}`}>
@@ -442,6 +441,7 @@ export function StockGraphBox({
                   <CartesianGrid strokeDasharray="3 3" />
                 </ComposedChart>
               </div>
+              <GraphControls />
             </div>
         )        
     
@@ -456,8 +456,8 @@ export function StockGraphBox({
             visibleOffset={visibleOffset}
             setVisibleOffset={setVisibleOffset}
           />
-          <GraphControls />
           <GraphZoomButton />
+          
 
           {/* <LoadingDots status={fetchingStatus}/> */}
           <LoadingSpinny status={fetchingStatus}/>
@@ -466,6 +466,7 @@ export function StockGraphBox({
             <MainGraph />
             <VolumeGraph />
           </div>
+          <GraphControls />
         </div>
         
     )

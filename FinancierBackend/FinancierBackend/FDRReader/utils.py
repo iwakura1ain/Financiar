@@ -5,7 +5,7 @@ import pandas as pd
 from .cache import get_cache, set_cache_df, set_cache_list
 
 def parse_slice(data):
-    data["Date"] = list(map(lambda d: str(d)[:-9], data["Date"]))
+    #data["Date"] = list(map(lambda d: str(d)[:-9], data["Date"]))
 
     isRising = lambda data: data["Open"].iloc[0] <= data["Close"].iloc[-1]     
     

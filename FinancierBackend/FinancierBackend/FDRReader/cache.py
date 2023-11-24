@@ -37,9 +37,6 @@ def get_cache(start, end, ticker):
     keys = [f"{ticker}-{d}" for d in dates]
     vals = rconn.mget(keys=keys)
     vals = list(map(lambda v:None if v is None else json.loads(v), vals))
-
-    print("CACHED", len({k:v for k, v in zip(keys, vals)}))
-    print("UNCACHED", get_empty_date_ranges(dates, vals))
     
     return {k:v for k, v in zip(dates, vals)}, get_empty_date_ranges(dates, vals)
     

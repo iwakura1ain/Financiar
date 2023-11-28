@@ -31,7 +31,7 @@ def get_indices(dates, data):
 
 def set_dates(data):
     data2 = data.copy()
-    data2.index = pd.to_datetime(data2.Date)
+    data2.index = pd.to_datetime(data2["Date"])
     data2["year"] = data2.index.year
     data2["month"] = data2.index.month
     data2["week"] = data2.index.strftime("%V")

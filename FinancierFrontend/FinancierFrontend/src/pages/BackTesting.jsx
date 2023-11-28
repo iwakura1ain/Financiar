@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 
 import {StockGraphBox} from "../components/StockGraph.jsx"
 import {TradeDataLoader2} from "../components/TradeDataLoader.jsx"
-import {getDefaultDate} from "../components/Utils.jsx"
+import {getDefaultDate, getDefaultVisibleOffset} from "../components/Utils.jsx"
 import {ProfitGraphBox} from "../components/ProfitGraph.jsx"
 // import {Registered} from "./StockInfoListing.jsx"
 
@@ -23,11 +23,11 @@ import {ProfitGraphBox} from "../components/ProfitGraph.jsx"
 function StockData (
     selected,
     stockData=undefined,
-    visibleOffset=[0, 180],
+    visibleOffset=getDefaultVisibleOffset("week"),
     fetchingStatus=false,
     period="week",
-    startDate=getDefaultDate()[1],
-    endDate=getDefaultDate()[0]
+    startDate=getDefaultDate("week")[0],
+    endDate=getDefaultDate("week")[1]
 ) {
     var target = new Object()
     

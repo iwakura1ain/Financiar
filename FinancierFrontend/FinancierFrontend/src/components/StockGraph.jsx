@@ -9,7 +9,7 @@ import {
 
 import {CustomToolTip} from './StockGraphToolTip.jsx'
 import {LoadingDots, LoadingSpinny} from "./LoadingVisual.jsx"
-import {getWeightedAverage, getDefaultDate, getSlicedStockData} from "./Utils.jsx"
+import {getWeightedAverage, getDefaultDate, getSlicedStockData, getFormattedDate, getOffsetDate, getDefaultVisibleOffset} from "./Utils.jsx"
 
 
 const CustomBar = (props) => {
@@ -243,8 +243,14 @@ export function StockGraphBox({
                       name="period"
                       value={period}
                       onChange={(event) => {
-                          console.log("PERIOD", event.target.value)
                           setPeriod(event.target.value)
+                          setVisibleOffset(getDefaultVisibleOffset(event.target.value))
+
+                          const defaultDates = getDefaultDate(event.target.value)
+                          setStartDate(defaultDates[0])
+                          setEndDate(defaultDates[1])
+
+                          
                       }}>
                       <option value="day">Day</option>
                       <option value="week">Week</option>
@@ -423,7 +429,8 @@ export function StockGraphBox({
                 setVisibleOffset={setVisibleOffset}
               />              
               <GraphControls />
-              <GraphZoomButton />             
+              <GraphZoomButton />
+              <LoadingSpinny status={fetchingStatus}/>
 
               <div   id={`barchart-scrollable-${barchartId}`}>
                 <ComposedChart

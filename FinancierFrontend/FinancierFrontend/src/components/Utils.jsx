@@ -34,42 +34,59 @@ export function getSlicedStockData(data, visibleOffset) {
     return [...padding, ...data.slice(start > 0 ? start : 0, end)]
 }
 
-export function getDefaultDate() {    
-    // Create a date object from a date string
-    var date = new Date();
 
-    var prevDate = new Date();
-    prevDate.setFullYear(date.getFullYear() - 1);
+export function getFormattedDate(val) {
+    if (val === undefined)
+        return undefined
 
-    const getFormatted = (date) => {
-        // Get year, month, and day part from the date
-        var year = date.toLocaleString("default", { year: "numeric" });
-        var month = date.toLocaleString("default", { month: "2-digit" });
-        var day = date.toLocaleString("default", { day: "2-digit" });
-
-        return year + "-" + month + "-" + day;
-    }
-    
-    return [getFormatted(date), getFormatted(prevDate)]
-}
-
-export function getFormattedDate(date, offset=false) {
-    if (date === undefined)
-        return date
-    
-    var val = new Date(date);
-
-    if (offset) {
-        val.setMonth(val.getMonth() - 6);
-    }
-    
     // Get year, month, and day part from the date
     var year = val.toLocaleString("default", { year: "numeric" });
     var month = val.toLocaleString("default", { month: "2-digit" });
     var day = val.toLocaleString("default", { day: "2-digit" });
-
+    
     return year + "-" + month + "-" + day;
 }
+
+export function getOffsetDate(date, period="default") {
+    var val = new Date(date)
+    
+    switch (period) {
+    case "day": val.setMonth(val.getMonth() - 2); return val;
+    case "week": val.setMonth(val.getMonth() - 4); return val;
+    case "month": val.setMonth(val.getMonth() - 48); return val;
+    case "quarter": val.setMonth(val.getMonth() - 60); return val;
+    case "year": val.setMonth(val.getMonth() - 60); return val;
+    default: return val;
+    }
+}
+
+export function getDefaultVisibleOffset(period) {
+    switch (period) {
+    case "day": return [0, 180];
+    case "week": return [0, 104];
+    case "month": return [0, 88]; 
+    case "quarter": return [0, 40]; 
+    case "year": return [0, 10];
+    default: return [0, 180];
+    }
+}
+
+export function getDefaultDate(period="default") {
+    var currentDate = new Date()
+    var offsetDate = new Date()
+
+    switch(period) {
+    case "day": offsetDate.setMonth(offsetDate.getMonth() - 10); break;
+    case "week": offsetDate.setMonth(offsetDate.getMonth() - 24); break;
+    case "month": offsetDate.setMonth(offsetDate.getMonth() - 100); break;
+    case "quarter": offsetDate.setMonth(offsetDate.getMonth() - 120); break;
+    case "year": offsetDate.setMonth(offsetDate.getMonth() - 120); break;
+    default: offsetDate.setMonth(offsetDate.getMonth() - 24); break;
+    }
+    
+    return [getFormattedDate(offsetDate), getFormattedDate(currentDate)]
+}
+
 
 export function getWeightedAverage(trade, current, num, weight) {
     current = (((trade.Open + trade.Close)/2) + current*num*weight) / (num*weight + 1)
@@ -77,6 +94,7 @@ export function getWeightedAverage(trade, current, num, weight) {
 
     return [current, num]
 }
+
 
 export function  getLogoName(name) {return name.replaceAll(" ", "_")}
 
@@ -97,3 +115,10 @@ export const sectorList = [
     'Consumer Discretionary',
     'Energy'
 ]
+
+
+
+
+
+
+

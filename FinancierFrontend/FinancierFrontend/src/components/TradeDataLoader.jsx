@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react';
 import {CustomToolTip} from './StockGraphToolTip.jsx'
 import {LoadingDots} from "./LoadingVisual.jsx"
 
-import {getFormattedDate, backendURL} from "./Utils.jsx"
+import {getFormattedDate, getOffsetDate, getDefaultDate, backendURL} from "./Utils.jsx"
  
 
 function CleanTradeData(trade) {
@@ -79,9 +79,8 @@ export function TradeDataLoader2({
 
         // prefetch min
         if (visibleOffset[0] + visibleOffset[1] > stockData.data.length - 80) {
-            console.log("setting start date to ", startDate)
             setFetchingStatus(true)
-            setStartDate((currStartDate) => (getFormattedDate(currStartDate, true)))
+            setStartDate((currStartDate) => (getFormattedDate(getOffsetDate(currStartDate, period))))
         }
 
         // // TODO: truncate
@@ -107,6 +106,10 @@ export function TradeDataLoader2({
 
             await setMinFetchNext(0)
             await setMaxFetchNext(0)
+
+            const defaultDates = getDefaultDate(period)
+            await setStartDate(defaultDates[0])
+            await setEndDate(defaultDates[1])
 
             await setMinFetchBuff([])
             await setMaxFetchBuff([])

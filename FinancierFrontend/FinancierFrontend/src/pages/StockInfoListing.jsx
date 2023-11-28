@@ -6,10 +6,11 @@ import {StockGraphBox} from "../components/StockGraph.jsx"
 import {PIPGraphBox} from "../components/PicInPicGraph.jsx"
 import {TradeDataLoader2} from "../components/TradeDataLoader.jsx"
 import {LoadingDots} from "../components/LoadingVisual.jsx"
-import {getDefaultDate} from "../components/Utils.jsx"
+import {getDefaultDate, getDefaultVisibleOffset} from "../components/Utils.jsx"
 import {backendURL} from "../components/Utils.jsx"
 
 import InfiniteScroll from 'react-infinite-scroll-component';
+
 
 
 export function StockInfoListing({register, setRegister}) {
@@ -20,16 +21,19 @@ export function StockInfoListing({register, setRegister}) {
     // ============ stock listing =================
     const [stocks, setStocks] = useState([])
     const [selected, setSelected] = useState()
-    
     const [paginateNext, setPaginateNext] = useState("")
 
+    // ============ trade data ranges =================
+    const [period, setPeriod] = useState("week")
+    const [visibleOffset, setVisibleOffset] = useState(getDefaultVisibleOffset(period)) //  [a, b] => stockData.data: [ |---- b ---| ... a ... ]
+    
+    const defaultDates = getDefaultDate("week")
+    const [startDate, setStartDate] = useState(defaultDates[0])
+    const [endDate, setEndDate] = useState(defaultDates[1])
+    
     // ============= trade data for selected stock ===================
     const [stockData, setStockData] = useState()
-    const [visibleOffset, setVisibleOffset] = useState([0, 180]) //  [a, b] => stockData.data: [ |---- b ---| ... a ... ]
-    const [fetchingStatus, setFetchingStatus] = useState(false)
-    const [startDate, setStartDate] = useState(getDefaultDate()[1])
-    const [endDate, setEndDate] = useState(getDefaultDate()[0])
-    const [period, setPeriod] = useState("week")
+    const [fetchingStatus, setFetchingStatus] = useState(false)    
 
     const rateStock = (ticker) => {
         fetch(`/api/fdr/stocks/${ticker}/rate`, {headers:{method: "PUT", accept: 'application/json'}})

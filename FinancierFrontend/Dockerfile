@@ -6,6 +6,8 @@ WORKDIR /FinancierFrontend
 
 RUN ls
 
+RUN apt install nodejs
+
 RUN npm install
 
 EXPOSE 5173

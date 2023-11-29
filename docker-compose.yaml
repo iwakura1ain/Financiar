@@ -19,6 +19,9 @@ services:
     build:
       context: .
       dockerfile: ./FinancierBackend/Dockerfile
+    depends_on:
+      - database
+      - redis
     restart: on-failure
     ports:
       - "8000:8000"
@@ -31,7 +34,6 @@ services:
       - ./FinancierBackend/FinancierBackend:/FinancierBackend
 
   database:
-    #container_name: dbservice
     image: mariadb:latest
     restart: on-failure # always
     env_file:

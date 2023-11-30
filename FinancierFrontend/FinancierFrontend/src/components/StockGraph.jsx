@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 
 
 import {
-    ComposedChart, LineChart, Line, Rectangle, BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
+    ComposedChart, LineChart, Line, Rectangle, BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Scatter, 
 } from 'recharts';
 
 
@@ -15,10 +15,41 @@ import {getWeightedAverage, getDefaultDate, getSlicedStockData, getFormattedDate
 const CustomBar = (props) => {
     const {Color} = props;
 
+    console.log("BAR", props)
+    
+    return (
+        <>
+          <Rectangle
+            {...props}
+            fill={Color == "red" ? "#f25e8d" : "#605ef2"}
+            className="recharts-bar-rectangle"
+          />
+        </>
+    )
+}
+
+
+const CustomScatterHigh = (props) => {
+    const {Color} = props;
+
     return (
         <Rectangle
           {...props}
-          fill={Color == "red" ? "#FF0000" : "#0000FF"}
+          height={2}
+          fill="red"
+          className="recharts-bar-rectangle"
+        />
+    )
+}
+
+const CustomScatterLow = (props) => {
+    const {Color} = props;
+
+    return (
+        <Rectangle
+          {...props}
+          height={2}
+          fill="blue"
           className="recharts-bar-rectangle"
         />
     )
@@ -290,14 +321,16 @@ export function StockGraphBox({
     )
     
     const MainGraph = () => {
+        let slicedStockData = getSlicedStockData(stockData.data, visibleOffset)
+        
         if (visibleOffset[1] > 250)
-            return (
+            return ( // linechart when zoomed out
                 <>
                   <LineChart
                     className="barchart-chart"
                     width={width}
                     height={height}
-                    data={getSlicedStockData(stockData.data, visibleOffset)}
+                    data={slicedStockData}
                     margin={{
                         top: 20,
                         right: 30,
@@ -324,14 +357,14 @@ export function StockGraphBox({
                 </>
             )
 
-        return (
+        return (  //normal chart when zoomed in 
             <>
               <ComposedChart
                 className="barchart-chart"
                 width={width}
                 height={height}
             /* data={[...stockData.data, ...Array.apply(null, Array(stockData.count-stockData.data.length)).map(function () {})]} */
-                data={getSlicedStockData(stockData.data, visibleOffset)}
+                data={slicedStockData}
                 margin={{
                     top: 20,
                     right: 30,
@@ -353,6 +386,8 @@ export function StockGraphBox({
                   dot={false}
                   strokeDasharray="5 5"
                 />
+                <Scatter shape={CustomScatterHigh} name="High" dataKey="High" fill="red" isAnimationActive={false}/>
+                <Scatter shape={CustomScatterLow} name="Low" dataKey="Low" fill="Blue" isAnimationActive={false}/>
               </ComposedChart>
             </>
         )

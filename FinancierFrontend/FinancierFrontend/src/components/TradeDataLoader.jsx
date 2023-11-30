@@ -71,6 +71,14 @@ export function TradeDataLoader2({
     const [maxFetchNext, setMaxFetchNext] = useState(0)
     const [maxFetchBuff, setMaxFetchBuff] = useState([])
     const [maxFetchReady, setMaxFetchReady] = useState(false)
+
+    const prefetchCount = {
+        "day": 80,
+        "week": 20,
+        "month": 10,
+        "quarter": 2,
+        "year": 2
+    }
         
     useEffect(() => {
         console.log("PREFETCHING")        
@@ -78,7 +86,7 @@ export function TradeDataLoader2({
             return
 
         // prefetch min
-        if (visibleOffset[0] + visibleOffset[1] > stockData.data.length - 80) {
+        if (visibleOffset[0] + visibleOffset[1] > stockData.data.length - prefetchCount[period]) {
             setFetchingStatus(true)
             setStartDate((currStartDate) => (getFormattedDate(getOffsetDate(currStartDate, period))))
         }
@@ -90,7 +98,7 @@ export function TradeDataLoader2({
         //     }))
         //     setVisibleOffset((currVisibleOffset) => ([currVisibleOffset[0]-100, currVisibleOffset[1]]))
         // }
-    }, [visibleOffset])
+    }, [visibleOffset, stockData, fetchingStatus])
 
     // reset stockData and buffers when different stock selected
     useEffect(() => {

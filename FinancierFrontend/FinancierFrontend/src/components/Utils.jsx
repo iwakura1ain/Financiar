@@ -54,8 +54,8 @@ export function getOffsetDate(date, period="default") {
     case "day": val.setMonth(val.getMonth() - 2); return val;
     case "week": val.setMonth(val.getMonth() - 4); return val;
     case "month": val.setMonth(val.getMonth() - 48); return val;
-    case "quarter": val.setMonth(val.getMonth() - 60); return val;
-    case "year": val.setMonth(val.getMonth() - 60); return val;
+    case "quarter": val.setMonth(val.getMonth() - 48); return val;
+    case "year": val.setMonth(val.getMonth() - 48); return val;
     default: return val;
     }
 }

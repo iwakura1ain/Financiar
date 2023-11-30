@@ -7,14 +7,16 @@ from .cache import get_cache, set_cache_df, set_cache_list
 def parse_slice(data):
     #data["Date"] = list(map(lambda d: str(d)[:-9], data["Date"]))
 
-    isRising = lambda data: data["Open"].iloc[0] <= data["Close"].iloc[-1]     
-    
+    isRising = lambda data: data["Open"].iloc[0] <= data["Close"].iloc[-1]
+
     return {
         "Open": data["Open"].iloc[0],
         "Close": data["Close"].iloc[-1],
         # "Adj Close": data["Adj Close"].iloc[-1],
-        "High": max(data["High"]),
-        "Low": min(data["Low"]),
+        # "High": max(data["High"]),
+        # "Low": min(data["Low"]),
+        "High": data[["Low", "High", "Close", "Open"]].max(skipna=True).max(),
+        "Low": data[["Low", "High", "Close", "Open"]].min(skipna=True).min(),
         "Volume": sum(data["Volume"]),
         "Color": "red" if isRising(data) else "blue",
         "Date": str(data["Date"].iloc[0]),

@@ -6,29 +6,28 @@
 - 과거 주식 대해 buy/sell -> 수익률 표출, drawdown, 여러 종목 hedging
 
 * 프로젝트 진행상황
-- 브랜치 관리 X (거의다 혼자 작업중여서 딱히 없었음) -> 필요하면 합의
-- 코드리뷰 X -> 필요하면 합의
-- 유닛테스트? CI/CD?
 - dependabot issue 해결 필요!
 ** 백엔드
-- 종목 대한 데이터, 아이콘, 기본정보 크롤링 완료 -> sqlite3 디비 안에 들어있음 -> postgres로 export 필요  
-- 디플로이 안됨 -> 개인컴터로 디플로이
-- *거래 데이터 캐싱 필요함*, redis 구현 필요
-- 주식 데이터, 거래 데이터 paginated REST api 구현 완료
+- +종목 대한 데이터, 아이콘, 기본정보 크롤링 완료 -> sqlite3 디비 안에 들어있음 -> postgres로 export 필요+ -> export 완료 
+- +디플로이 안됨 -> 개인컴터로 디플로이+ -> docker compose 완료
+- +거래 데이터 캐싱 필요함, redis 구현 필요+ -> redis cache 완료 
+- +주식 데이터, 거래 데이터 paginated REST api+ -> 구현 완료
 - API 명세서 X -> 필요하면 만들어줌 
 ** 프론트
 - favicon, title, cdn 등 필요 
-- 페이지 레이아웃, 종목 search 완료
-- 거래 데이터 표출 그래프 90% 완료 -> 그래프 대한 스크롤 기능 완료 -> 그래프 크기 하드코딩 구현중
+- +페이지 레이아웃, 종목 search+ 완료
+- +거래 데이터 표출 그래프 90% 완료 -> 그래프 대한 스크롤 기능 완료+ -> 그래프 크기 하드코딩 구현중
 - css 하드코딩 수정중, 모바일 지원 필요
-- state 중앙관리 X, 페이지별 컴포넌트 나누기 필요
-- 거래 데이터 불러오는 알고리즘 안정화 필요 -> 어느정도 안정화 완료
-- *buy/sell 페이지 만들어야 함*
-- typescript로 리팩터링?
+- state 중앙관리 X, +페이지별 컴포넌트 나누기 필요+
+- +거래 데이터 불러오는 알고리즘 안정화 필요+ -> 어느정도 안정화 완료
+- +buy/sell 페이지 만들어야 함+ -> buy/sell API 구현 필요 
+- +typescript로 리팩터링?+
 
 * How to build docker image
 - frontend at 127.0.0.1:5173
 - backend at 127.0.0.1:8000/api/fdr/stocks
+- redis cache at 127.0.0.1:6379
+- mariadb at 127.0.0.1:3306
 #+begin_src bash
   cd /path/to/Financiar/
   docker compose build
@@ -53,8 +52,8 @@
 - navbar
 - search bar
 - stocks listing
-- footer
-  : TODO: 화면 가로로 꽉 안채워짐 
+- backtesting
+- footer  
 
 * 백엔드 실행 방법 
 : python, django 있어야 함 => 가이드 링크 : https://docs.djangoproject.com/ko/4.2/intro/install/

@@ -1,4 +1,4 @@
-version: "0.9"
+version: "3.0"
 services:
   frontend:
     build:
@@ -20,8 +20,10 @@ services:
       context: .
       dockerfile: ./FinancierBackend/Dockerfile
     depends_on:
-      - database
-      - redis
+      database:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     restart: on-failure
     ports:
       - "8000:8000"
@@ -44,6 +46,12 @@ services:
       - ./db-init.sql:/docker-entrypoint-initdb.d/maria-init.sql
     ports:
       - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mariadb", "financiar", "-u", "testusr", "--password=1234"]
+      interval: 5s
+      retries: 5
+      start_period: 5s
+      timeout: 10s
 
   redis:
     image: redis:latest
@@ -54,3 +62,9 @@ services:
     volumes:
       - ./redis:/data
       - ./redis.conf:/usr/local/etc/redis/redis.conf
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      retries: 5
+      start_period: 5s
+      timeout: 10s

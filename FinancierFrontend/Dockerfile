@@ -6,7 +6,7 @@ WORKDIR /FinancierFrontend
 
 RUN ls
 
-RUN apt install nodejs
+RUN apt install nodejs -y
 
 RUN npm install
 

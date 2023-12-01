@@ -1,35 +1,5 @@
 version: "0.9"
 services:
-  frontend:
-    build:
-      context: .
-      dockerfile: ./FinancierFrontend/Dockerfile
-    restart: on-failure
-    ports:
-      - "5173:5173"
-    networks:
-      default:
-        aliases:
-          - financierfrontend
-          - financiar-frontend
-    volumes:
-      - ./FinancierFrontend/FinancierFrontend:/FinancierFrontend
-
-  backend:
-    build:
-      context: .
-      dockerfile: ./FinancierBackend/Dockerfile
-    restart: on-failure
-    ports:
-      - "8000:8000"
-    networks:
-      default:
-        aliases:
-          - financierbackend
-          - financiar-backend
-    volumes:
-      - ./FinancierBackend/FinancierBackend:/FinancierBackend
-
   database:
     #container_name: dbservice
     image: mariadb:latest
@@ -52,3 +22,40 @@ services:
     volumes:
       - ./redis:/data
       - ./redis.conf:/usr/local/etc/redis/redis.conf
+      
+  # frontend:
+  #   platform: linux/arm64
+  #   build:
+  #     context: .
+  #     dockerfile: ./FinancierFrontend/Dockerfile
+  #   restart: on-failure
+  #   ports:
+  #     - "5173:5173"
+  #   networks:
+  #     default:
+  #       aliases:
+  #         - financierfrontend
+  #         - financiar-frontend
+    # volumes:
+    #   - frontend_data:/FinancierFrontend
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./FinancierBackend/Dockerfile
+    depends_on:
+      - database
+      - redis
+    restart: on-failure
+    ports:
+      - "8000:8000"
+    networks:
+      default:
+        aliases:
+          - financierbackend
+          - financiar-backend
+    volumes:
+      - ./FinancierBackend/FinancierBackend:/FinancierBackend
+
+# volumes:
+#   frontend_data:

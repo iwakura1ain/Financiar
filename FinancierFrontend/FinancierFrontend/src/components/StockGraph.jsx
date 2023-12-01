@@ -6,7 +6,7 @@ import {
 } from 'recharts';
 
 
-
+import { StockPreview } from './StockPreview.jsx';
 import {CustomToolTip} from './StockGraphToolTip.jsx'
 import {LoadingDots, LoadingSpinny} from "./LoadingVisual.jsx"
 import {getWeightedAverage, getDefaultDate, getSlicedStockData, getFormattedDate, getOffsetDate, getDefaultVisibleOffset} from "./Utils.jsx"
@@ -82,7 +82,7 @@ export function StockGraphBox({
     register, setRegister,
     period, setPeriod,
     callback=(e)=>{},
-    height=600, width=1600,
+    height=600, width=1000,
     showControls=true,
 }) {
     const [avgWeight, setAvgWeight] = useState(0.2)
@@ -124,20 +124,7 @@ export function StockGraphBox({
 
         //console.log('width:', width, 'height:', height);
     }
-    GraphSize(); 
-
-    const StockPreview = () => {
-      if (selected) {
-        // 가져올 데이터: closing price, highest(Period), lowest(Period)
-      }
-      else {
-        return (
-          <div className='barchart-preview'>
-
-          </div>
-        )
-      }
-    }
+    // GraphSize(); 
 
     // TODO: refactor into component
     const GraphRegister = () => {
@@ -373,47 +360,49 @@ export function StockGraphBox({
     }
 
     if (!stockData)
-        return (            
-            <div
-              className='barchart-wrapper'
-              id={`barchart-scrollable-${barchartId}`}
-            >
+      return (            
+          <div
+            className='barchart-wrapper'
+            id={`barchart-scrollable-${barchartId}`}
+          >
+            <GraphScrollListener
+              barchartId={barchartId}
+              eventAddStatus={eventAddStatus}
+              setEventAddStatus={setEventAddStatus}
+              visibleOffset={visibleOffset}
+              setVisibleOffset={setVisibleOffset}
+            />              
+            {/* <GraphControls /> */}
+            <GraphZoomButton />
+            <LoadingSpinny status={fetchingStatus}/>
 
-              <GraphScrollListener
-                barchartId={barchartId}
-                eventAddStatus={eventAddStatus}
-                setEventAddStatus={setEventAddStatus}
-                visibleOffset={visibleOffset}
-                setVisibleOffset={setVisibleOffset}
-              />              
-              <GraphControls />
-              <GraphZoomButton />
-              <LoadingSpinny status={fetchingStatus}/>
-
-              <div   id={`barchart-scrollable-${barchartId}`}>
-                <ComposedChart
-                  className="barchart-chart"
-                  width={width}
-                  height={height}
-                  data={null}
-                  margin={{
-                      top: 20,
-                      right: 30,
-                      left: 20,
-                      bottom: 70,
-                  }}>
-                  <XAxis height={80} angle={-45} textAnchor='end'/>
-                  <YAxis type="number" />
-                  <CartesianGrid strokeDasharray="3 3" />
-                </ComposedChart>
-              </div>
+            <div   id={`barchart-scrollable-${barchartId}`}>
+              <ComposedChart
+                className="barchart-chart"
+                width={width}
+                height={height}
+                data={null}
+                margin={{
+                    top: 20,
+                    right: 30,
+                    left: 20,
+                    bottom: 70,
+                }}>
+                <XAxis height={80} angle={-45} textAnchor='end'/>
+                <YAxis type="number" />
+                <CartesianGrid strokeDasharray="3 3" />
+              </ComposedChart>
+              {/* <GraphControls /> */}
             </div>
-        )        
-    
+          </div>
+      )        
+
+    console.log('StockGraph.jsx: ', stockData);
     return (
         <div
           className='barchart-wrapper'
-        >
+        > 
+          {/* <GraphControls /> */}
           <GraphScrollListener
             barchartId={barchartId}
             eventAddStatus={eventAddStatus}
@@ -421,16 +410,16 @@ export function StockGraphBox({
             visibleOffset={visibleOffset}
             setVisibleOffset={setVisibleOffset}
           />
-          <GraphControls />
+          <StockPreview stockData={stockData}/>
           <GraphZoomButton />
 
           {/* <LoadingDots status={fetchingStatus}/> */}
           <LoadingSpinny status={fetchingStatus}/>
-
           <div   id={`barchart-scrollable-${barchartId}`}>
             <MainGraph />
             <VolumeGraph />
           </div>
+          <GraphControls />
         </div>
         
     )

@@ -6,10 +6,12 @@ WORKDIR /FinancierFrontend
 
 RUN ls
 
+# RUN apt-get install -y nodejs
+
+# RUN npm i -g vite
+
 RUN npm install
 
 EXPOSE 5173
 
 CMD ["npm", "run", "dev"]
-
-

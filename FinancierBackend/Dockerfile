@@ -2,6 +2,7 @@ FROM python:latest
 ENV PYTHONUNBUFFERED 1
 
 COPY ./FinancierBackend/FinancierBackend /FinancierBackend/
+COPY ./FinancierCrawling/export-with-info.json /FinancierBackend/export-with-info.json
 
 WORKDIR /FinancierBackend
 

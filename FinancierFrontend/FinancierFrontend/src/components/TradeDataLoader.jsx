@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 
 import {CustomToolTip} from './StockGraphToolTip.jsx'
 import {LoadingDots} from "./LoadingVisual.jsx"
+import { StockPreview } from './StockPreview.jsx';
 
 import {getFormattedDate, getOffsetDate, getDefaultDate, backendURL} from "./Utils.jsx"
  
@@ -73,7 +74,7 @@ export function TradeDataLoader2({
     const [maxFetchReady, setMaxFetchReady] = useState(false)
         
     useEffect(() => {
-        console.log("PREFETCHING")        
+        // console.log("PREFETCHING")        
         if (stockData === undefined || fetchingStatus)
             return
 
@@ -101,7 +102,7 @@ export function TradeDataLoader2({
             if (selected === undefined)
                 return
             
-            console.log("SELECTED", selected)
+            // console.log("SELECTED", selected)
             setFetchingStatus(true)
 
             await setMinFetchNext(0)
@@ -194,7 +195,7 @@ export function TradeDataLoader2({
             .then(() => (console.log("FETCH SUCCESS")))
             .catch(console.log)
 
-        console.log(res, resNext)
+        // console.log(res, resNext)
         return [res, resNext]
     }
     
@@ -206,7 +207,7 @@ export function TradeDataLoader2({
                 return
             }
 
-            console.log("fetching min")
+            // console.log("fetching min")
             const [res, resNext] = await fetchData(selected, minFetchStart, minFetchEnd, minFetchNext, true)
             let {data, ...info} = res
             data = await data.reverse()
@@ -225,7 +226,7 @@ export function TradeDataLoader2({
                 return
             }
 
-            console.log("fetching max")
+            // console.log("fetching max")
             const [res, resNext] = await fetchData(selected, maxFetchStart, maxFetchEnd, maxFetchNext, false)
             let {data, ...info} = res
 
@@ -265,13 +266,13 @@ export function TradeDataLoader2({
             var changed = false
             if (minFetchBuff.length != 0){
                 newStockData = await [...minFetchBuff, ...newStockData]
-                console.log("FETCHED MIN", newStockData.length)
+                // console.log("FETCHED MIN", newStockData.length)
                 changed = true
             }
 
             if (maxFetchBuff.length != 0){
                 newStockData = await [...newStockData, ...maxFetchBuff]            
-                console.log("FETCHED MAX", newStockData.length)
+                // console.log("FETCHED MAX", newStockData.length)
                 await setVisibleOffset((prevOffset) => ([prevOffset[0], prevOffset[1] + maxFetchBuff.length]))
                 changed = true
             }
@@ -292,13 +293,13 @@ export function TradeDataLoader2({
             }
 
             if (minFetchNext == 0 && maxFetchNext == 0 && fetchingStatus) {
-                console.log("SETTING FETCHING STATUS FALSE")
+                // console.log("SETTING FETCHING STATUS FALSE")
                 await setFetchingStatus(false)
                 await setMinFetchReady(false)
                 await setMaxFetchReady(false)
             }
                 
-            console.log("FETCHSTATUS", fetchingStatus)
+            // console.log("FETCHSTATUS", fetchingStatus)
         })()
         
     }, [minFetchBuff, maxFetchBuff])

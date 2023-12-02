@@ -10,6 +10,7 @@ import {getDefaultDate, getDefaultVisibleOffset} from "../components/Utils.jsx"
 import {backendURL} from "../components/Utils.jsx"
 
 import InfiniteScroll from 'react-infinite-scroll-component';
+// import { StockPreview } from "../components/StockPreview.jsx"
 
 
 
@@ -103,7 +104,6 @@ export function StockInfoListing({register, setRegister}) {
                 <h2 className='testimonials-title'>Financiar</h2>
                 <p>Access all stocks anytime, anywhere, with ease.</p>
               </div>
-
               <StockGraphBox
                 barchartId={200}
                 stockData={stockData} setStockData={setStockData}

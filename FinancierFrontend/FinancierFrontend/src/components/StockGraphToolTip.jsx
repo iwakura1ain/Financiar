@@ -1,6 +1,5 @@
 export const CustomToolTip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
-        
         return (
             <div className="custom-tooltip">
               <div className="tooltip-container">

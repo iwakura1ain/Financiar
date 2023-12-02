@@ -6,7 +6,7 @@ import {
 } from 'recharts';
 
 
-
+import { StockPreview } from './StockPreview.jsx';
 import {CustomToolTip} from './StockGraphToolTip.jsx'
 import {LoadingDots, LoadingSpinny} from "./LoadingVisual.jsx"
 import {getWeightedAverage, getDefaultDate, getSlicedStockData, getFormattedDate, getOffsetDate, getDefaultVisibleOffset} from "./Utils.jsx"
@@ -113,7 +113,7 @@ export function StockGraphBox({
     register, setRegister,
     period, setPeriod,
     callback=(e)=>{},
-    height=600, width=1600,
+    height=600, width=1000,
     showControls=true,
 }) {
     const [avgWeight, setAvgWeight] = useState(0.2)
@@ -155,7 +155,7 @@ export function StockGraphBox({
 
         //console.log('width:', width, 'height:', height);
     }
-    GraphSize(); 
+    // GraphSize(); 
 
     // TODO: refactor into component
     const GraphRegister = () => {
@@ -188,115 +188,60 @@ export function StockGraphBox({
     }
     
     const GraphControls = () => {
-        if (showControls)
-            return (
-                <div className="barchart-controls">
-                  <GraphRegister />
-                  <div>
-                    <label htmlFor="start">Start date : </label>
-                    <input
-                      type="date"
-                      id="start"
-                      max={getDefaultDate()[0]}
-                      value={startDate}
-                      onChange={(event) =>{
-                          setStartDate(event.target.value)
-                      }}/> 
-                  </div>
-                  <div>
-                    <label htmlFor="end">End date : </label>
-                    <input
-                      type="date"
-                      id="end"
-                      max={getDefaultDate()[0]}
-                      value={endDate}
-                      onChange={(event) => {
-                          setEndDate(event.target.value)
-                      }}/>
-                  </div>
-                  <div>
-                    <label htmlFor="end">Volume : </label>
-                    <input
-                      type="checkbox"
-                      defaultChecked={true}
-                      onChange={() => {
-                          setShowVolume(!showVolume)
-                      }}/>
-                  </div>
-                  <div>
-                    <label htmlFor="end">Average : </label>
-                    <input
-                      type="checkbox"
-                      
-                      onChange={() => {                        
-                          setShowAverage(!showAverage)
-                      }}/>
-                  </div>
-                  <div>
-                    <label htmlFor="end">Weight : </label>
-                    <input
-                      type="number"
-                      max={1.0}
-                      min={0.0}
-                      step={0.05}
-                      value={avgWeight}
-                      onChange={(event) => {
-                          setAvgWeight(event.target.value)
-                      }}/>
-                  </div>
-                  <div>
-                    <label htmlFor="end">A (offset from end): </label>
-                    <input
-                      type="number"
-                      step={10}
-                      min={0}
-                      value={visibleOffset[0]}
-                      onChange={(event) => {
-                          setVisibleOffset([+event.target.value, visibleOffset[1]])
-                      }}/>
-                  </div>
-
-                  <div>
-                    <label htmlFor="end">B (len of data) : </label>
-                    <input
-                      type="number"
-                      step={1}
-                      min={0}
-                      value={visibleOffset[1]}
-                      onChange={(event) => {
-                          setVisibleOffset([visibleOffset[0], +event.target.value])
-                      }}/>
-                  </div>
-                  <div>
-                    <label htmlFor="period">Period:</label>
-
-                    <select
-                      name="period"
-                      value={period}
-                      onChange={(event) => {
-                          setPeriod(event.target.value)
-                          setVisibleOffset(getDefaultVisibleOffset(event.target.value))
-
-                          const defaultDates = getDefaultDate(event.target.value)
-                          setStartDate(defaultDates[0])
-                          setEndDate(defaultDates[1])
-
-                          
-                      }}>
-                      <option value="day">Day</option>
-                      <option value="week">Week</option>
-                      <option value="month">Month</option>
-                      <option value="quarter">Quarter</option>
-                      <option value="year">Year</option>
-                    </select>
-                  </div>
-                  <div>
-                    <p>LEN: {stockData ? stockData.data.length: 0}</p>
-                  </div>
-
+      if (showControls)
+          return (
+              <div className="barchart-controls">
+                <GraphRegister />
+                <div className='controls-btn'>
+                  <label htmlFor="end">Volume</label>
+                  <input
+                    type="checkbox"
+                    defaultChecked={true}
+                    onChange={() => {
+                        setShowVolume(!showVolume)
+                    }}/>
                 </div>
-            )
-    }
+                <div className='controls-btn'>
+                  <label htmlFor="end">Average</label>
+                  <input
+                    type="checkbox"
+                    
+                    onChange={() => {                        
+                        setShowAverage(!showAverage)
+                    }}/>
+                </div>
+                <div className='controls-btn'>
+                  <label htmlFor="end">Weight</label>
+                  <input
+                    type="number"
+                    max={1.0}
+                    min={0.0}
+                    step={0.05}
+                    value={avgWeight}
+                    onChange={(event) => {
+                        setAvgWeight(event.target.value)
+                    }}/>
+                </div>
+                <div className='controls-btn'>
+                  <label htmlFor="period">Period</label>
+
+                  <select
+                    name="period"
+                    value={period}
+                    onChange={(event) => {
+                        console.log("PERIOD", event.target.value)
+                        setPeriod(event.target.value)
+                    }}>
+                    <option value="day">Day</option>
+                    <option value="week">Week</option>
+                    <option value="month">Month</option>
+                    <option value="quarter">Quarter</option>
+                    <option value="year">Year</option>
+                  </select>
+                </div>
+              </div>
+          )
+  }
 
     const GraphZoomButton = () => (
         <>
@@ -450,47 +395,49 @@ export function StockGraphBox({
     }
 
     if (!stockData)
-        return (            
-            <div
-              className='barchart-wrapper'
-              id={`barchart-scrollable-${barchartId}`}
-            >
+      return (            
+          <div
+            className='barchart-wrapper'
+            id={`barchart-scrollable-${barchartId}`}
+          >
+            <GraphScrollListener
+              barchartId={barchartId}
+              eventAddStatus={eventAddStatus}
+              setEventAddStatus={setEventAddStatus}
+              visibleOffset={visibleOffset}
+              setVisibleOffset={setVisibleOffset}
+            />              
+            {/* <GraphControls /> */}
+            <GraphZoomButton />
+            <LoadingSpinny status={fetchingStatus}/>
 
-              <GraphScrollListener
-                barchartId={barchartId}
-                eventAddStatus={eventAddStatus}
-                setEventAddStatus={setEventAddStatus}
-                visibleOffset={visibleOffset}
-                setVisibleOffset={setVisibleOffset}
-              />              
-              <GraphControls />
-              <GraphZoomButton />
-              <LoadingSpinny status={fetchingStatus}/>
-
-              <div   id={`barchart-scrollable-${barchartId}`}>
-                <ComposedChart
-                  className="barchart-chart"
-                  width={width}
-                  height={height}
-                  data={null}
-                  margin={{
-                      top: 20,
-                      right: 30,
-                      left: 20,
-                      bottom: 70,
-                  }}>
-                  <XAxis height={80} angle={-45} textAnchor='end'/>
-                  <YAxis type="number" />
-                  <CartesianGrid strokeDasharray="3 3" />
-                </ComposedChart>
-              </div>
+            <div   id={`barchart-scrollable-${barchartId}`}>
+              <ComposedChart
+                className="barchart-chart"
+                width={width}
+                height={height}
+                data={null}
+                margin={{
+                    top: 20,
+                    right: 30,
+                    left: 20,
+                    bottom: 70,
+                }}>
+                <XAxis height={80} angle={-45} textAnchor='end'/>
+                <YAxis type="number" />
+                <CartesianGrid strokeDasharray="3 3" />
+              </ComposedChart>
+              {/* <GraphControls /> */}
             </div>
-        )        
-    
+          </div>
+      )        
+
+    console.log('StockGraph.jsx: ', stockData);
     return (
         <div
           className='barchart-wrapper'
-        >
+        > 
+          {/* <GraphControls /> */}
           <GraphScrollListener
             barchartId={barchartId}
             eventAddStatus={eventAddStatus}
@@ -498,16 +445,16 @@ export function StockGraphBox({
             visibleOffset={visibleOffset}
             setVisibleOffset={setVisibleOffset}
           />
-          <GraphControls />
+          <StockPreview stockData={stockData}/>
           <GraphZoomButton />
 
           {/* <LoadingDots status={fetchingStatus}/> */}
           <LoadingSpinny status={fetchingStatus}/>
-
           <div   id={`barchart-scrollable-${barchartId}`}>
             <MainGraph />
             <VolumeGraph />
           </div>
+          <GraphControls />
         </div>
         
     )

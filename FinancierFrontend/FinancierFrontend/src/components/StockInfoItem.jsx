@@ -12,15 +12,6 @@ export function StockInfoItem({
     sector="finance", 
     desc="No Description"}) {
 
-
-    // before: testimonials-box > personal-info > testimonials-button > (testimonials-wrapper + testimonials-desc)
-    // after: testimonials-box > testimonials-outer-wrapper > testimonials-stock > testimonials-head + testmonials-body
-
-    // before: testimonials-wrapper > NONE + testmonials-flex 
-    // before: testimonials-flex > testimonials-name-info > testimonials-name + testimonials-info
-    // after: testimonials-head > testimonials-icon + testimonials-head-wrapper
-    // after: testimonials-head-wrapper > testimonials-name-info > testimonials-name + testimonials-info
-
     const elementStyle = () => register.has(ticker) ? {border: "5px solid #0095f7"} : {}
     
     return (  

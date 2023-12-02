@@ -1,3 +1,56 @@
+.preview-wrapper{
+  width: 100%;
+  height: 100px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.preview-label{
+  display: flex;
+}
+
+.label-name, .label-ticker, .preview-sector{
+  font-size: 1.5em;
+  margin-right: 10px;
+}
+
+.label-name{
+  font-weight: bolder;
+}
+
+.label-ticker{
+  font-weight: 400;
+}
+
+.preview-sector{
+  font-weight: 200;
+}
+
+.preview-stock{
+  display: flex;
+}
+
+.stock-open, .stock-close, .stock-high, .stock-bottom, .stock-date{
+  font-size: 1.2em;
+  margin-right: 15px;
+  font-weight: 300;
+  color: black;
+}
+
+.stock-high, .red{
+  color: rgb(253, 66, 66);
+}
+
+.stock-bottom, .blue{
+  color: #264eff;
+}
+
+.stock-date {
+  opacity: 0.3;
+}
+
 /* ==============================================
   1. Root 
   ===============================================*/
@@ -226,24 +279,81 @@
   margin-top: -5px;
 }
 
-.barchart-controls{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-  gap: 20px;
-  margin-bottom: 20px;
-  
+/* GraphRegister, will be refactored into a component */
+.barchart-controls button{
+  background-color: #0095f7;
 }
 
+.barchart-controls{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  margin-top: -170px;
+}
+
+.controls-btn label{
+  margin-right: 5px;
+  margin-bottom: 0px;
+}
+
+.barchart-controls input[type="number"]{
+  outline: none;
+  border: none;
+  padding: 3px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.barchart-controls input[type="number"]::-webkit-outer-spin-button,
+.barchart-controls input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.barchart-controls select {
+  padding: 2px;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  text-align: center;
+  transition: all 0.3s linear;
+
+  &:hover{
+    background-color: #0095f7;
+  }
+}
+
+.barchart-controls select {
+  -webkit-appearance:none;
+  -moz-appearance:none; 
+  appearance:none;
+  outline: none;
+  border: none;
+}
+
+.barchart-controls select::-ms-expand{
+  display:none;
+}
 
 .barchart-chart{
-  margin-bottom: 120px;
+  /* margin-bottom: 120px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+}
+
+.recharts-cartesian-grid{
+  top: 0;
+  left: 0;
 }
 
 .volume-chart {
   display: inline-block;
-  margin-top: -405px;
+  margin-top: -242px;
   top:-22px;
 }
 
@@ -256,13 +366,20 @@
   margin: 20px;
 }
 
-.barchart-btn{
-  background-color: #0095f7;
-  transition: 0.3s ease-out;
-}
+.controls-btn{
+  /* width: 100%; */
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  padding: 5px;
+  height: 100%;
+  color: white;
+  background-color: #5f7f93;
+  /* transition: 0.3s ease-out;
 
-.barchart-btn:hover{
-  background-color: #f79000;
+  &:hover{
+    background-color: #f79000;
+  } */
 }
 
 /*-------------------------------------
@@ -273,7 +390,7 @@
   position: relative;
   width: 100%;
   height: 100px;
-  margin-top: 78px;
+  margin-top: 100px;
   display: flex;
   background-color: #fff;
   border-radius: 10px;

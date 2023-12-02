@@ -1,6 +1,7 @@
 version: "3.0"
 services:
   frontend:
+    #platform: linux/arm64
     build:
       context: .
       dockerfile: ./FinancierFrontend/Dockerfile
@@ -62,6 +63,7 @@ services:
     volumes:
       - ./redis:/data
       - ./redis.conf:/usr/local/etc/redis/redis.conf
+
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s

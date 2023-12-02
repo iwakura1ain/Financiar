@@ -155,7 +155,7 @@ export function StockGraphBox({
 
         //console.log('width:', width, 'height:', height);
     }
-    // GraphSize(); 
+    GraphSize(); 
 
     // TODO: refactor into component
     const GraphRegister = () => {
@@ -446,6 +446,7 @@ export function StockGraphBox({
             setVisibleOffset={setVisibleOffset}
           />
           <StockPreview stockData={stockData}/>
+          <GraphControls />
           <GraphZoomButton />
 
           {/* <LoadingDots status={fetchingStatus}/> */}
@@ -454,7 +455,7 @@ export function StockGraphBox({
             <MainGraph />
             <VolumeGraph />
           </div>
-          <GraphControls />
+
         </div>
         
     )

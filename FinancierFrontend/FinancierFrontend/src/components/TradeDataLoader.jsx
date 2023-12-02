@@ -99,7 +99,7 @@ export function TradeDataLoader2({
         //     }))
         //     setVisibleOffset((currVisibleOffset) => ([currVisibleOffset[0]-100, currVisibleOffset[1]]))
         // }
-    }, [visibleOffset, stockData, fetchingStatus])
+    }, [visibleOffset, stockData])
 
     // reset stockData and buffers when different stock selected
     useEffect(() => {

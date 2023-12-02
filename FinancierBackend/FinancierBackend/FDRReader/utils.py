@@ -119,7 +119,6 @@ def query_fdr(**kwargs):
 
     invalid = [{"Date":k, "Open": -1, "High":-1, "Low":-1, "Close": -1} for k, v in data.items() if v is None]
     set_cache_list(invalid, ticker)
-
     
     data = pd.DataFrame.from_records([d for d in data.values() if d is not None])
     #data = pd.DataFrame.from_records([d for d in data.values()])

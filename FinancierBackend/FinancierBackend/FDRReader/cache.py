@@ -30,8 +30,8 @@ def set_cache_list(vals, ticker):
     
 def set_cache_df(vals, ticker):
     #rconn.mset({v["Date"]:json.dumps(v.to_dict()) for i, v in vals.iterrows()})
-    
-    rconn.mset({f"{ticker}-{v['Date']}":json.dumps(v.to_dict()) for i, v in vals.iterrows()})
+    if len(vals) > 0:
+        rconn.mset({f"{ticker}-{v['Date']}":json.dumps(v.to_dict()) for i, v in vals.iterrows()})
     
 def get_cache(start, end, ticker):
     dates = list(map(lambda d: str(d)[:10], pd.date_range(start=start, end=end)))

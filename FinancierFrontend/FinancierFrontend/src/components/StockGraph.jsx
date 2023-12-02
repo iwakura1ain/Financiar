@@ -15,7 +15,7 @@ import {getWeightedAverage, getDefaultDate, getSlicedStockData, getFormattedDate
 const CustomBar = (props) => {
     const {Color} = props;
 
-    console.log("BAR", props)
+
     
     return (
         <>
@@ -231,6 +231,11 @@ export function StockGraphBox({
                     onChange={(event) => {
                         console.log("PERIOD", event.target.value)
                         setPeriod(event.target.value)
+                        setVisibleOffset(getDefaultVisibleOffset(event.target.value))
+
+                        const defaultDates = getDefaultDate(event.target.value)
+                        setStartDate(defaultDates[0])
+                        setEndDate(defaultDates[1])
                     }}>
                     <option value="day">Day</option>
                     <option value="week">Week</option>
@@ -343,7 +348,7 @@ export function StockGraphBox({
             <BarChart
               className="volume-chart"
               width={width}
-              height={height-220}
+              height={height-320}
               data={getSlicedStockData(stockData.data, visibleOffset)}
 
               margin={{

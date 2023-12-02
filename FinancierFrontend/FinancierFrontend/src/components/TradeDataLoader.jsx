@@ -4,7 +4,7 @@ import {CustomToolTip} from './StockGraphToolTip.jsx'
 import {LoadingDots} from "./LoadingVisual.jsx"
 import { StockPreview } from './StockPreview.jsx';
 
-import {getFormattedDate, getOffsetDate, getDefaultDate, backendURL} from "./Utils.jsx"
+import {getFormattedDate, getDefaultVisibleOffset ,getOffsetDate, getDefaultDate, backendURL} from "./Utils.jsx"
  
 
 function CleanTradeData(trade) {
@@ -83,11 +83,13 @@ export function TradeDataLoader2({
         
     useEffect(() => {
         // console.log("PREFETCHING")        
-        if (stockData === undefined || fetchingStatus)
+        if (stockData === undefined || fetchingStatus == true)
             return
 
         // prefetch min
         if (visibleOffset[0] + visibleOffset[1] > stockData.data.length - prefetchCount[period]) {
+            console.log("PREFETCH", getFormattedDate(getOffsetDate(startDate, period)))
+            console.log("SETTING FETCHING STATUS TRUE")            
             setFetchingStatus(true)
             setStartDate((currStartDate) => (getFormattedDate(getOffsetDate(currStartDate, period))))
         }
@@ -99,7 +101,7 @@ export function TradeDataLoader2({
         //     }))
         //     setVisibleOffset((currVisibleOffset) => ([currVisibleOffset[0]-100, currVisibleOffset[1]]))
         // }
-    }, [visibleOffset, stockData])
+    }, [visibleOffset, fetchingStatus])
 
     // reset stockData and buffers when different stock selected
     useEffect(() => {
@@ -112,6 +114,8 @@ export function TradeDataLoader2({
             
             // console.log("SELECTED", selected)
             setFetchingStatus(true)
+
+            await setVisibleOffset(getDefaultVisibleOffset(period))
 
             await setMinFetchNext(0)
             await setMaxFetchNext(0)
@@ -200,10 +204,10 @@ export function TradeDataLoader2({
                 }
 
             })
-            .then(() => (console.log("FETCH SUCCESS")))
+            // .then(() => (console.log("FETCH SUCCESS")))
             .catch(console.log)
 
-        // console.log(res, resNext)
+        // console.log("fetching next", resNext)
         return [res, resNext]
     }
     
@@ -292,7 +296,7 @@ export function TradeDataLoader2({
                     data: newStockData
                 })
 
-                await console.log("FETCHED INFO", stockData)
+                // await console.log("FETCHED INFO", stockData)
                 
                 // setPrevStartDate(new Date(newStockData[0].Date))
                 // setPrevEndDate(new Date(newStockData[newStockData.length-1].Date))
@@ -301,10 +305,11 @@ export function TradeDataLoader2({
             }
 
             if (minFetchNext == 0 && maxFetchNext == 0 && fetchingStatus) {
-                // console.log("SETTING FETCHING STATUS FALSE")
+                console.log("SETTING FETCHING STATUS FALSE")
                 await setFetchingStatus(false)
                 await setMinFetchReady(false)
                 await setMaxFetchReady(false)
+                console.log("FETCHED", stockData)
             }
                 
             // console.log("FETCHSTATUS", fetchingStatus)
@@ -314,4 +319,7 @@ export function TradeDataLoader2({
 
     return (<></>)            
 }
+
+
+
 

@@ -437,11 +437,8 @@ export function StockGraphBox({
           </div>
       )        
 
-    console.log('StockGraph.jsx: ', stockData);
     return (
-        <div
-          className='barchart-wrapper'
-        > 
+        <div className='barchart-wrapper'> 
           {/* <GraphControls /> */}
           <GraphScrollListener
             barchartId={barchartId}

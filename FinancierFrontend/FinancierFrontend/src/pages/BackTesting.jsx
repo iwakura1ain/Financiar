@@ -78,6 +78,7 @@ export function BackTesting ({register, setRegister}) {
                         barchartId={i}
                         showControls={false}
                         register={register} setRegister={setRegister}
+                        callback={(e) => {console.log(e)}}
                       />
                       {/* TODO: OFFLOAD GraphScrollListener TO HERE */}
                     </div>

@@ -1,56 +1,3 @@
-.preview-wrapper{
-  width: 100%;
-  height: 100px;
-  color: black;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-}
-
-.preview-label{
-  display: flex;
-}
-
-.label-name, .label-ticker, .preview-sector{
-  font-size: 1.5em;
-  margin-right: 10px;
-}
-
-.label-name{
-  font-weight: bolder;
-}
-
-.label-ticker{
-  font-weight: 400;
-}
-
-.preview-sector{
-  font-weight: 200;
-}
-
-.preview-stock{
-  display: flex;
-}
-
-.stock-open, .stock-close, .stock-high, .stock-bottom, .stock-date{
-  font-size: 1.2em;
-  margin-right: 15px;
-  font-weight: 300;
-  color: black;
-}
-
-.stock-high, .red{
-  color: rgb(253, 66, 66);
-}
-
-.stock-bottom, .blue{
-  color: #264eff;
-}
-
-.stock-date {
-  opacity: 0.3;
-}
-
 /* ==============================================
   1. Root 
   ===============================================*/
@@ -199,7 +146,8 @@
   float: right;
 }
 
-.burgur-bar.clicked:nth-child(1){
+/* deprecated */
+/* .burgur-bar.clicked:nth-child(1){
   transform: rotate(45deg) translate(0.75em, 1.25em);
   transition: ease-out 0.5s;
 }
@@ -217,12 +165,72 @@
 .burgur-bar.unclicked{
   transform: rotate(0) translate(0);
   transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-
+} */
 
 /* ==============================================
-   3. Barchart
+   3. StockPreview
+   ===============================================*/
+
+.preview-wrapper{
+  width: 100%;
+  height: 100px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.preview-label{
+  display: flex;
+}
+
+.label-name, .label-ticker, .preview-sector{
+  font-size: 1.5em;
+  margin-right: 10px;
+}
+
+.label-name{
+  font-weight: bolder;
+}
+
+.label-ticker{
+  font-weight: 400;
+}
+
+.preview-sector{
+  font-weight: 200;
+}
+
+.preview-stock{
+  display: flex;
+}
+
+.stock-open, .stock-close, .stock-high, .stock-bottom, .stock-date{
+  font-size: 1.2em;
+  margin-right: 10px;
+  font-weight: 300;
+  color: black;
+}
+
+.stock-close-wrapper img{
+  margin-left: -5px;
+  margin-right: 10px;
+}
+
+.stock-high, .red{
+  color: rgb(253, 66, 66);
+}
+
+.stock-bottom, .blue{
+  color: #264eff;
+}
+
+.stock-date {
+  opacity: 0.3;
+}
+
+/* ==============================================
+   4. Barchart
    ===============================================*/
 
 .barchart-loading {
@@ -302,9 +310,10 @@
 .barchart-controls input[type="number"]{
   outline: none;
   border: none;
-  padding: 3px;
+  padding: 2px 4px;
   border-radius: 8px;
   text-align: center;
+  margin-left: 5px;
 }
 
 .barchart-controls input[type="number"]::-webkit-outer-spin-button,
@@ -313,29 +322,65 @@
     margin: 0;
 }
 
-.barchart-controls select {
-  padding: 2px;
-  outline: none;
-  border: none;
-  border-radius: 8px;
-  text-align: center;
-  transition: all 0.3s linear;
+.controls-btn{
+  /* width: 100%; */
+  width: 10rem;
+  height: 100%;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+  padding: 5px;
+
+  color: white;
+  background-color: #0095f7;
+  font-weight: bold;
+
+  cursor: pointer;
+ 
   &:hover{
-    background-color: #0095f7;
+    background-color: #264eff;
   }
 }
 
-.barchart-controls select {
-  -webkit-appearance:none;
-  -moz-appearance:none; 
-  appearance:none;
-  outline: none;
-  border: none;
+.controls-btn.btn-clicked{
+  background-color: #264eff !important;
+  /* box-shadow: 1px 3px 2px 2px rgb(125, 125, 125); */
 }
 
-.barchart-controls select::-ms-expand{
-  display:none;
+.controls-btn .btn-select{
+  /* display: inline-block; */
+  background-color: #252d32;
+  width: 15%;
+  position: absolute;
+  border-radius: 10px;
+  top: 10px;
+}
+
+.btn-select>ul{
+  position: relative;
+  margin: 0px;
+  z-index: 1000;
+}
+
+.select-option:hover{
+  background-color: #697f8c;
+}
+
+.select-option-first:hover{
+  background-color: #697f8c;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.select-option-last:hover{
+  background-color: #697f8c;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.btn-select.hide{
+  display: none;
 }
 
 .barchart-chart{
@@ -366,24 +411,8 @@
   margin: 20px;
 }
 
-.controls-btn{
-  /* width: 100%; */
-  display: flex;
-  align-items: center;
-  border-radius: 8px;
-  padding: 5px;
-  height: 100%;
-  color: white;
-  background-color: #5f7f93;
-  /* transition: 0.3s ease-out;
-
-  &:hover{
-    background-color: #f79000;
-  } */
-}
-
 /*-------------------------------------
-  4.  searchbar
+  5.  searchbar
   --------------------------------------*/
 
 .searchbar-search-box{
@@ -514,7 +543,7 @@
 }
 
 /* ==============================================
-  5. testimonials
+  6. testimonials
   ===============================================*/
 
 #stock-items {
@@ -715,7 +744,7 @@
 }
 
 /* ==============================================
-  6. Footer
+  7. Footer
   ===============================================*/
 
 ul{
@@ -782,7 +811,7 @@ footer small {
   color: #0095f7;
 }
 /* ============================================================
-   12. tooltip
+   8. tooltip
    ============================================================ */
 
 .custom-tooltip{
@@ -862,12 +891,11 @@ footer small {
 }
 
 /* ============================================================
-   14.  loading visual
+   9.  loading visual
    ============================================================ */
 
 
 /* loading dots */
-
 .loader-outer {
   position: absolute;
   left: 170px;
@@ -964,7 +992,7 @@ footer small {
 }
 
 /* ============================================================
-   15.  backtesting
+   10.  backtesting
    ============================================================ */
 
 .backtest-box {
@@ -987,7 +1015,7 @@ footer small {
 
 
 /* ============================================================
-   10.  media query - 1200px
+   11.  media query - 1200px
    ============================================================ */
 @media (max-width: 1200px) {
   .searchbar-search-box{
@@ -1024,7 +1052,7 @@ footer small {
 }
 
 /* ============================================================
-   11.  media query - 992px
+   12.  media query - 992px
    ============================================================ */
 @media (max-width: 992px){
   .searchbar-search-box{
@@ -1045,7 +1073,7 @@ footer small {
 }
 
 /* ============================================================
-   12.  media query - 768px
+   13.  media query - 768px
    ============================================================ */
 
 /* @media (max-width: 768px) {

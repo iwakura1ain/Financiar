@@ -18,12 +18,12 @@ export const StockPreview = ({stockData}) => {
                     <div className="stock-open">Opening {stockData.data[latestStockData].Open}</div>
                     {
                         stockData.data[latestStockData].Color === 'red' 
-                        ? <div style={{display:'flex', alignItems: 'center'}}>
+                        ? <div className="stock-close-wrapper" style={{display:'flex', alignItems: 'center'}}>
                             <div className="stock-close" style={{marginRight:'5px'}}>Closing</div>
                             <div className="stock-close red">{stockData.data[latestStockData].Close}</div> 
                             <img src="/src/assets/rising.svg" style={{color:"red", height:"20px", width:"20px", marginRight:"10px", marginLeft: "-12px" }}></img>
                           </div>
-                        : <div style={{display:'flex', alignItems: 'center'}}>
+                        : <div className="stock-close-wrapper" style={{display:'flex', alignItems: 'center'}}>
                             <div className="stock-close" style={{marginRight:'5px'}}>Closing</div>
                             <div className="stock-close blue">{stockData.data[latestStockData].Close}</div> 
                             <img src="/src/assets/falling.svg" style={{color:"blue", height:"20px", width:"20px"}}></img>

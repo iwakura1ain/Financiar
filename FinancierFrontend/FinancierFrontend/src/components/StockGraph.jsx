@@ -119,6 +119,7 @@ export function StockGraphBox({
     const [avgWeight, setAvgWeight] = useState(0.2)
     const [showAverage, setShowAverage] = useState(false)
     const [showVolume, setShowVolume] = useState(false)
+    const [showOptions, setShowOptions] = useState(false)
     const [visibility, setVisibility] = useState(true)
     const [eventAddStatus, setEventAddStatus] = useState(false)
 
@@ -188,27 +189,30 @@ export function StockGraphBox({
     }
     
     const GraphControls = () => {
+
+      const capitalLetterUpperCase = (word) => {
+        return word.charAt(0).toUpperCase() + word.slice(1)
+      }
+
       if (showControls)
           return (
               <div className="barchart-controls">
                 <GraphRegister />
-                <div className='controls-btn'>
-                  <label htmlFor="end">Volume</label>
-                  <input
-                    type="checkbox"
-                    defaultChecked={true}
-                    onChange={() => {
-                        setShowVolume(!showVolume)
-                    }}/>
+                <div 
+                  className={'controls-btn' + (showVolume ? ' btn-clicked' : '')}
+                  onClick={() => {
+                    setShowVolume(!showVolume)
+                  }}
+                  >
+                  Volume
                 </div>
-                <div className='controls-btn'>
-                  <label htmlFor="end">Average</label>
-                  <input
-                    type="checkbox"
-                    
-                    onChange={() => {                        
-                        setShowAverage(!showAverage)
-                    }}/>
+                <div 
+                  className={'controls-btn' + (showAverage ? ' btn-clicked' : '')}
+                  onClick={() => {
+                    setShowAverage(!showAverage)
+                  }}
+                  >
+                  Average
                 </div>
                 <div className='controls-btn'>
                   <label htmlFor="end">Weight</label>
@@ -220,29 +224,58 @@ export function StockGraphBox({
                     value={avgWeight}
                     onChange={(event) => {
                         setAvgWeight(event.target.value)
-                    }}/>
+                    }}
+                    />
                 </div>
-                <div className='controls-btn'>
-                  <label htmlFor="period">Period</label>
+                <div 
+                  className='controls-btn'
+                  onClick={ () => {setShowOptions(!showOptions)}}>
+                  {capitalLetterUpperCase(period)}
+                  
+                  <div className={'btn-select' + (showOptions ? '' : ' hide')}>
+                      <ul>
+                        <li className='select-option-first' onClick={ (event) => {
+                          setPeriod(event.target.innerText.toLowerCase())
+                          setVisibleOffset(getDefaultVisibleOffset(event.target.innerText.toLowerCase()))
 
-                  <select
-                    name="period"
-                    value={period}
-                    onChange={(event) => {
-                        console.log("PERIOD", event.target.value)
-                        setPeriod(event.target.value)
-                        setVisibleOffset(getDefaultVisibleOffset(event.target.value))
+                          const defaultDates = getDefaultDate(event.target.innerText.toLowerCase())
+                          setStartDate(defaultDates[0])
+                          setEndDate(defaultDates[1])
+                          }}>Day</li>
+                        <li className='select-option' onClick={ (event) => {
+                          setPeriod(event.target.innerText)
+                          setVisibleOffset(getDefaultVisibleOffset(event.target.innerText.toLowerCase()))
 
-                        const defaultDates = getDefaultDate(event.target.value)
-                        setStartDate(defaultDates[0])
-                        setEndDate(defaultDates[1])
-                    }}>
-                    <option value="day">Day</option>
-                    <option value="week">Week</option>
-                    <option value="month">Month</option>
-                    <option value="quarter">Quarter</option>
-                    <option value="year">Year</option>
-                  </select>
+                          const defaultDates = getDefaultDate(event.target.innerText.toLowerCase())
+                          setStartDate(defaultDates[0])
+                          setEndDate(defaultDates[1])
+                          }}>Week</li>
+                        <li className='select-option' onClick={ (event) => {
+                          setPeriod(event.target.innerText)
+                          setVisibleOffset(getDefaultVisibleOffset(event.target.innerText.toLowerCase()))
+
+                          const defaultDates = getDefaultDate(event.target.innerText.toLowerCase())
+                          setStartDate(defaultDates[0])
+                          setEndDate(defaultDates[1])
+                          }}>Month</li>
+                        <li className='select-option' onClick={ (event) => {
+                          setPeriod(event.target.innerText)
+                          setVisibleOffset(getDefaultVisibleOffset(event.target.innerText.toLowerCase()))
+
+                          const defaultDates = getDefaultDate(event.target.innerText.toLowerCase())
+                          setStartDate(defaultDates[0])
+                          setEndDate(defaultDates[1])
+                          }}>Quarter</li>
+                        <li className='select-option-last' onClick={ (event) => {
+                          setPeriod(event.target.innerText)
+                          setVisibleOffset(getDefaultVisibleOffset(event.target.innerText.toLowerCase()))
+
+                          const defaultDates = getDefaultDate(event.target.innerText.toLowerCase())
+                          setStartDate(defaultDates[0])
+                          setEndDate(defaultDates[1])
+                          }}>Year</li>
+                      </ul>
+                  </div>
                 </div>
               </div>
           )

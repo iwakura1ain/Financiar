@@ -14,8 +14,6 @@ import {getWeightedAverage, getDefaultDate, getSlicedStockData, getFormattedDate
 
 const CustomBar = (props) => {
     const {Color} = props;
-
-
     
     return (
         <>
@@ -35,7 +33,8 @@ const CustomScatterHigh = (props) => {
     return (
         <Rectangle
           {...props}
-          height={2}
+          height={1}
+          
           fill="red"
           className="recharts-bar-rectangle"
         />
@@ -48,7 +47,8 @@ const CustomScatterLow = (props) => {
     return (
         <Rectangle
           {...props}
-          height={2}
+          height={1}
+          
           fill="blue"
           className="recharts-bar-rectangle"
         />
@@ -125,15 +125,14 @@ export function StockGraphBox({
 
     const [registerButtonText, setRegisterButtonText] = useState()
 
+    const [chartType, setChartType] = useState("bar")
+
     useEffect(() => {
         setRegisterButtonText(register.has(selected) ? "Remove" : "Add")
     }, [register, selected])
     
     // TODO: refactor into object
     const GraphSize = () => {
-        // console.log('outer-width:',window.outerWidth, 'outer-height:', window.outerHeight);
-        // console.log('inner-width:',window.innerWidth, 'inner-height:', window.innerHeight);
-        
         if(window.innerWidth >= 2160) {
             width = window.innerWidth*0.7
             height = 700
@@ -153,8 +152,6 @@ export function StockGraphBox({
             width = window.innerWidth*0.7
             height = 500
         }
-
-        //console.log('width:', width, 'height:', height);
     }
     GraphSize(); 
 
@@ -184,7 +181,7 @@ export function StockGraphBox({
             }
         }
         
-        return (<button onClick={() => callback()}>{registerButtonText}</button>)
+        return (<button className="barchart-register" onClick={() => callback()}>{registerButtonText}</button>)
 
     }
     
@@ -206,6 +203,7 @@ export function StockGraphBox({
                   >
                   Volume
                 </div>
+
                 <div 
                   className={'controls-btn' + (showAverage ? ' btn-clicked' : '')}
                   onClick={() => {
@@ -214,6 +212,7 @@ export function StockGraphBox({
                   >
                   Average
                 </div>
+
                 <div className='controls-btn'>
                   <label htmlFor="end">Weight</label>
                   <input
@@ -224,63 +223,135 @@ export function StockGraphBox({
                     value={avgWeight}
                     onChange={(event) => {
                         setAvgWeight(event.target.value)
-                    }}
-                    />
+                    }}/>
                 </div>
-                <div 
-                  className='controls-btn'
-                  onClick={ () => {setShowOptions(!showOptions)}}>
-                  {capitalLetterUpperCase(period)}
-                  
-                  <div className={'btn-select' + (showOptions ? '' : ' hide')}>
-                      <ul>
-                        <li className='select-option-first' onClick={ (event) => {
-                          setPeriod(event.target.innerText.toLowerCase())
-                          setVisibleOffset(getDefaultVisibleOffset(event.target.innerText.toLowerCase()))
 
-                          const defaultDates = getDefaultDate(event.target.innerText.toLowerCase())
+                  <div className='controls-btn'>
+                    <label htmlFor="period">Period</label>
+                    <select
+                      name="period"
+                      value={period}
+                      onChange={(event) => {
+                          console.log("PERIOD", event.target.value)
+                          setPeriod(event.target.value)
+                          setVisibleOffset(getDefaultVisibleOffset(event.target.value))
+
+                          const defaultDates = getDefaultDate(event.target.value)
                           setStartDate(defaultDates[0])
                           setEndDate(defaultDates[1])
-                          }}>Day</li>
-                        <li className='select-option' onClick={ (event) => {
-                          setPeriod(event.target.innerText)
-                          setVisibleOffset(getDefaultVisibleOffset(event.target.innerText.toLowerCase()))
-
-                          const defaultDates = getDefaultDate(event.target.innerText.toLowerCase())
-                          setStartDate(defaultDates[0])
-                          setEndDate(defaultDates[1])
-                          }}>Week</li>
-                        <li className='select-option' onClick={ (event) => {
-                          setPeriod(event.target.innerText)
-                          setVisibleOffset(getDefaultVisibleOffset(event.target.innerText.toLowerCase()))
-
-                          const defaultDates = getDefaultDate(event.target.innerText.toLowerCase())
-                          setStartDate(defaultDates[0])
-                          setEndDate(defaultDates[1])
-                          }}>Month</li>
-                        <li className='select-option' onClick={ (event) => {
-                          setPeriod(event.target.innerText)
-                          setVisibleOffset(getDefaultVisibleOffset(event.target.innerText.toLowerCase()))
-
-                          const defaultDates = getDefaultDate(event.target.innerText.toLowerCase())
-                          setStartDate(defaultDates[0])
-                          setEndDate(defaultDates[1])
-                          }}>Quarter</li>
-                        <li className='select-option-last' onClick={ (event) => {
-                          setPeriod(event.target.innerText)
-                          setVisibleOffset(getDefaultVisibleOffset(event.target.innerText.toLowerCase()))
-
-                          const defaultDates = getDefaultDate(event.target.innerText.toLowerCase())
-                          setStartDate(defaultDates[0])
-                          setEndDate(defaultDates[1])
-                          }}>Year</li>
-                      </ul>
+                      }}>
+                      <option value="day">Day</option>
+                      <option value="week">Week</option>
+                      <option value="month">Month</option>
+                      <option value="quarter">Quarter</option>
+                      <option value="year">Year</option>
+                    </select>
                   </div>
+                
                 </div>
-              </div>
           )
   }
 
+    const GraphControls2 = () => {        
+        return (
+            <div className="barchart-controls">
+              
+              <GraphRegister />
+              <img
+                src="/src/assets/spacer.svg"
+                style={{height:"35px", width:"35px", marginTop: "5px", marginLeft:"-10px", marginRight:"8px", opacity:"0.3" }}
+              />
+
+              <div style={{paddingTop:"5px"}}>
+                <label className="controls-label" htmlFor="chart">Chart :</label>
+                <select
+                  name="chart"
+                  value={chartType}
+                  className="controls-dropdown"
+                  onChange={(event) => {
+                      setChartType(event.target.value)
+                  }}>
+                  <option value="line">Line</option>
+                  <option value="bar">Bar</option>
+                  <option value="candle">Candle</option>
+                </select>
+              </div>
+              
+              <div style={{paddingTop:"5px"}}>
+                <label className="controls-label" htmlFor="period">Period :</label>
+                <select
+                  name="period"
+                  value={period}
+                  className="controls-dropdown"
+                  onChange={(event) => {
+                      setPeriod(event.target.value)
+                      setVisibleOffset(getDefaultVisibleOffset(event.target.value))
+
+                      const defaultDates = getDefaultDate(event.target.value)
+                      setStartDate(defaultDates[0])
+                      setEndDate(defaultDates[1])
+                  }}>
+                  <option value="day">Day</option>
+                  <option value="week">Week</option>
+                  <option value="month">Month</option>
+                  <option value="quarter">Quarter</option>
+                  <option value="year">Year</option>
+                </select>
+              </div>
+
+              <div >
+                <label className="controls-label">Average : </label>
+                <input
+                  type="checkbox"
+                  className="controls-checkbox"
+                  defaultChecked={showAverage}
+                  onChange={() => {                        
+                      setShowAverage(!showAverage)
+                  }}/>
+                <input
+                  type="number"
+                  max={1.0}
+                  min={0.0}
+                  step={0.05}
+                  className="controls-number"
+                  value={avgWeight}
+                  onKeyDown={(e) => {
+                      e.preventDefault()
+                      return false
+                  }}
+                  onChange={(event) => {
+                      setAvgWeight(event.target.value)
+                  }}/>
+              </div>
+
+              
+              <div>
+                <label className="controls-label" htmlFor="volume">Volume : </label>
+                <input
+                  type="checkbox"
+                  name="volume"
+                  defaultChecked={showVolume}
+                  className="controls-checkbox"
+                  onChange={() => {
+                      setShowVolume(!showVolume)
+                  }}/>
+              </div>
+              <img
+                src="/src/assets/spacer.svg"
+                style={{height:"35px", width:"35px", marginTop: "5px", marginLeft:"-20px", opacity:"0.3" }}
+              />
+
+
+             
+              <button
+                className="controls-visibility"
+                onClick={() => setVisibility((currVisibility) => !currVisibility)}
+              >{visibility ? "Hide" : "Show"}</button>
+            </div>
+                        
+        )
+    }
+    
     const GraphZoomButton = () => (
         <>
           <button
@@ -306,7 +377,7 @@ export function StockGraphBox({
     const MainGraph = () => {
         let slicedStockData = getSlicedStockData(stockData.data, visibleOffset)
         
-        if (visibleOffset[1] > 250)
+        if (chartType == "line"){
             return ( // linechart when zoomed out
                 <>
                   <LineChart
@@ -339,6 +410,42 @@ export function StockGraphBox({
                   </LineChart>
                 </>
             )
+        }
+        else if (chartType == "candle") {
+            return (  //normal chart when zoomed in 
+                <>
+                  <ComposedChart
+                    className="barchart-chart"
+                    width={width}
+                    height={height}
+                    data={slicedStockData}
+                    margin={{
+                        top: 20,
+                        right: 30,
+                        left: 20,
+                        bottom: 70,
+                    }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis height={80} dataKey="Date" angle={-45} textAnchor='end'/>
+                    <YAxis type="number" />
+
+                    <Tooltip id="clickable-tooltip" content={<CustomToolTip />} /* cursor={<CustomCursor />} */ isAnimationActive={false}/>
+
+                    <Bar dataKey="Bottom" stackId="a" fill="#FFFFFF00" isAnimationActive={false} onClick={(e) => callback(e)}/> 
+                    <Bar shape={CustomBar} dataKey="Area" stackId="a" isAnimationActive={false} onClick={(e) => callback(e)}/>
+                    <Line
+                      type="monotone"
+                      dataKey={showAverage && !fetchingStatus ? "Average" : ""}
+                      stroke="#0095f7"
+                      dot={false}
+                      strokeDasharray="5 5"
+                    />
+                    <Scatter shape={CustomScatterHigh} name="High" dataKey="High" fill="red" isAnimationActive={false}/>
+                    <Scatter shape={CustomScatterLow} name="Low" dataKey="Low" fill="Blue" isAnimationActive={false}/>
+                  </ComposedChart>
+                </>
+            )
+        }
 
         return (  //normal chart when zoomed in 
             <>
@@ -369,8 +476,7 @@ export function StockGraphBox({
                   dot={false}
                   strokeDasharray="5 5"
                 />
-                <Scatter shape={CustomScatterHigh} name="High" dataKey="High" fill="red" isAnimationActive={false}/>
-                <Scatter shape={CustomScatterLow} name="Low" dataKey="Low" fill="Blue" isAnimationActive={false}/>
+                
               </ComposedChart>
             </>
         )
@@ -381,14 +487,14 @@ export function StockGraphBox({
             <BarChart
               className="volume-chart"
               width={width}
-              height={height-320}
+              height={height-100}
               data={getSlicedStockData(stockData.data, visibleOffset)}
 
               margin={{
                   top: 20,
                   right: 30,
                   left: 80,
-                  bottom: 265,
+                  bottom: 385,
               }}>
               
               <Tooltip />
@@ -428,7 +534,10 @@ export function StockGraphBox({
     
     if (!visibility) {
         return (
-            <GraphControls />
+            <>
+              <StockPreview stockData={stockData}/>
+              <GraphControls2 />
+            </>
         )
     }
 
@@ -444,8 +553,9 @@ export function StockGraphBox({
               setEventAddStatus={setEventAddStatus}
               visibleOffset={visibleOffset}
               setVisibleOffset={setVisibleOffset}
-            />              
-            {/* <GraphControls /> */}
+            />
+            <StockPreview stockData={stockData}/>
+            <GraphControls2 />
             <GraphZoomButton />
             <LoadingSpinny status={fetchingStatus}/>
 
@@ -472,7 +582,6 @@ export function StockGraphBox({
 
     return (
         <div className='barchart-wrapper'> 
-          {/* <GraphControls /> */}
           <GraphScrollListener
             barchartId={barchartId}
             eventAddStatus={eventAddStatus}
@@ -481,7 +590,7 @@ export function StockGraphBox({
             setVisibleOffset={setVisibleOffset}
           />
           <StockPreview stockData={stockData}/>
-          <GraphControls />
+          <GraphControls2 />
           <GraphZoomButton />
 
           {/* <LoadingDots status={fetchingStatus}/> */}
@@ -496,6 +605,11 @@ export function StockGraphBox({
     )
 
 }
+
+
+
+
+
 
 
 

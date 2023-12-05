@@ -172,8 +172,8 @@
    ===============================================*/
 
 .preview-wrapper{
-  width: 100%;
-  height: 100px;
+  width: 80%;
+  height: 80px;
   color: black;
   display: flex;
   flex-direction: column;
@@ -185,7 +185,7 @@
 }
 
 .label-name, .label-ticker, .preview-sector{
-  font-size: 1.5em;
+  font-size: 1.1em;
   margin-right: 10px;
 }
 
@@ -206,10 +206,10 @@
 }
 
 .stock-open, .stock-close, .stock-high, .stock-bottom, .stock-date{
-  font-size: 1.2em;
+  font-size: 0.9em;
   margin-right: 10px;
   font-weight: 300;
-  color: black;
+  color: #252d32;
 }
 
 .stock-close-wrapper img{
@@ -288,18 +288,75 @@
 }
 
 /* GraphRegister, will be refactored into a component */
-.barchart-controls button{
+.barchart-register{
   background-color: #0095f7;
+  font-size: 1.5em;
+  font-weight: bold;
+  width: 100px;
+  color: white;
+  margin-right: 20px;
+  margin-top: 3px;
+}
+
+input[type=checkbox]{  
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 5px;  
+}
+
+.barchart-controls div{
+  padding-top: 12px;
+  margin-right: 28px;
+  opacity: 0.7;
+  padding-top: 0px;
+  margin-top:10px;
+}
+/* .controls-checkbox{
+   margin: 10px;
+   height: 12px;
+   width: 12px;
+   padding: none;
+   } */
+
+.controls-dropdown{  
+  height: 18px;
+  width: 50px;
+  border: none;
+}
+
+.controls-number{
+  padding-left: 0px;
+  margin-left: -12px;
+  background: none;
+  font-size: 13px;
+  padding: none;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+  opacity: 1;
 }
 
 .barchart-controls{
+  vertical-align: middle;
+  width: 80%;
+  
+  height: 80px;
+  color: #252d32;
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 100%;
+  flex-direction: row;
+  align-items: start;
+  font-size: 0.6em;
+  margin-bottom: -8px;
+  margin-top: 10px;
+}
+
+.controls-label {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin: auto;
+  margin-right: 10px;
   height: 100%;
-  border-radius: 8px;
-  margin-top: 20px;
 }
 
 .controls-btn label{
@@ -307,23 +364,31 @@
   margin-bottom: 0px;
 }
 
+
+
 .barchart-controls input[type="number"]{
   outline: none;
   border: none;
-  padding: 2px 4px;
-  border-radius: 8px;
-  text-align: center;
+  /* border: 1px solid grey;
+     border-radius: 3px; */
+  padding: 0px;
   margin-left: 5px;
+  width: 40px;
+  text-align: center;
 }
 
 .barchart-controls input[type="number"]::-webkit-outer-spin-button,
 .barchart-controls input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
+    
     margin: 0;
 }
 
 .controls-btn{
-  /* width: 100%; */
+  background: #aeb3bd;
+  border-radius: 8px;
+  z-index: 1;
+  opacity: 0.6;
+
   width: 10rem;
   height: 100%;
 
@@ -334,19 +399,27 @@
   border-radius: 10px;
   padding: 5px;
 
-  color: white;
-  background-color: #0095f7;
+  color: #252d32;
+  
   font-weight: bold;
 
   cursor: pointer;
- 
+  
   &:hover{
-    background-color: #264eff;
+    opacity: 0.9;
   }
 }
 
+.controls-visibility {
+  margin-left: auto;
+  background: #aeb3bd;
+  margin-top: 10px;
+}
+
 .controls-btn.btn-clicked{
-  background-color: #264eff !important;
+  /* background-color: #264eff !important; */
+  background: #aeb3bd;
+  opacity: 0.9;
   /* box-shadow: 1px 3px 2px 2px rgb(125, 125, 125); */
 }
 

@@ -113,7 +113,8 @@ export function StockGraphBox({
     register, setRegister,
     period, setPeriod,
     callback=(e)=>{},
-    height=600, width=1000,
+    height=600,
+    width, setWidth,
     showControls=true,
 }) {
     const [avgWeight, setAvgWeight] = useState(0.2)
@@ -130,30 +131,18 @@ export function StockGraphBox({
     useEffect(() => {
         setRegisterButtonText(register.has(selected) ? "Remove" : "Add")
     }, [register, selected])
-    
-    // TODO: refactor into object
-    const GraphSize = () => {
-        if(window.innerWidth >= 2160) {
-            width = window.innerWidth*0.7
-            height = 700
-        }
 
-        if(window.innerWidth >= 1440 && window.innerWidth < 2160) {
-            width = window.innerWidth*0.7
-            height = 600
-        }
+    useEffect(() => {
+      window.addEventListener('resize', handleGraphResize);
+      return () => {
+        window.removeEventListener('resize', handleGraphResize);
+      }
+    }, []);
 
-        if(window.innerWidth >= 992 && window.innerWidth < 1440) {
-            width = window.innerWidth*0.9
-            height = 540
-        }
-
-        if(window.innerWidth >= 768 && window.innerWidth < 992) {
-            width = window.innerWidth*0.7
-            height = 500
-        }
+    const handleGraphResize = () => {
+      // console.log('HANDLE RESIZE:', window.innerWidth);
+      setWidth(window.innerWidth * 0.8 - 80);
     }
-    GraphSize(); 
 
     // TODO: refactor into component
     const GraphRegister = () => {
@@ -263,7 +252,7 @@ export function StockGraphBox({
               />
 
               <div style={{paddingTop:"5px"}}>
-                <label className="controls-label" htmlFor="chart">Chart :</label>
+                <label className="controls-label" htmlFor="chart">Chart</label>
                 <select
                   name="chart"
                   value={chartType}
@@ -278,7 +267,7 @@ export function StockGraphBox({
               </div>
               
               <div style={{paddingTop:"5px"}}>
-                <label className="controls-label" htmlFor="period">Period :</label>
+                <label className="controls-label" htmlFor="period">Period</label>
                 <select
                   name="period"
                   value={period}
@@ -300,7 +289,7 @@ export function StockGraphBox({
               </div>
 
               <div >
-                <label className="controls-label">Average : </label>
+                <label className="controls-label">Average</label>
                 <input
                   type="checkbox"
                   className="controls-checkbox"

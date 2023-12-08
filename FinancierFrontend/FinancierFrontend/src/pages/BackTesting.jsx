@@ -51,7 +51,7 @@ function StockData (
     return target
 }
 
-export function BackTesting ({register, setRegister}) {
+export function BackTesting ({register, setRegister, width, setWidth}) {
     var stockDataList = Array.from(register).map((ticker) => StockData(ticker))
     
     return (
@@ -78,6 +78,7 @@ export function BackTesting ({register, setRegister}) {
                         barchartId={i}
                         showControls={false}
                         register={register} setRegister={setRegister}
+                        width={width} setWidth={setWidth}
                         callback={(e) => {console.log(e)}}
                       />
                       {/* TODO: OFFLOAD GraphScrollListener TO HERE */}

@@ -14,7 +14,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 
 
-export function StockInfoListing({register, setRegister}) {
+export function StockInfoListing({register, setRegister, width, setWidth}) {
     // ============= searchbar ====================
     const [searchName, setSearchName] = useState("")
     const [searchSector, setSearchSector] = useState("")
@@ -113,7 +113,8 @@ export function StockInfoListing({register, setRegister}) {
                 fetchingStatus={fetchingStatus}
                 register={register} setRegister={setRegister}
                 startDate={startDate} setStartDate={setStartDate}
-                endDate={endDate} setEndDate={setEndDate}                 
+                endDate={endDate} setEndDate={setEndDate}        
+                width={width} setWidth={setWidth}
               />
               
               <SearchBar

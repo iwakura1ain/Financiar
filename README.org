@@ -12,7 +12,6 @@
 - +디플로이 안됨 -> 개인컴터로 디플로이+ -> docker compose 완료
 - +거래 데이터 캐싱 필요함, redis 구현 필요+ -> redis cache 완료 
 - +주식 데이터, 거래 데이터 paginated REST api+ -> 구현 완료
-- API 명세서 X -> 필요하면 만들어줌 
 ** 프론트
 - favicon, title, cdn 등 필요 
 - +페이지 레이아웃, 종목 search+ 완료

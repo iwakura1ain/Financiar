@@ -1,7 +1,6 @@
 version: "3.0"
 services:
   frontend:
-    #platform: linux/arm64
     build:
       context: .
       dockerfile: ./FinancierFrontend/Dockerfile

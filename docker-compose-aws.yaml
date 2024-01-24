@@ -1,0 +1,51 @@
+version: "3.0"
+services:
+  frontend:
+    image: iwakura1ain/financiar-frontend:v0.9
+    ports:
+      - "5173:5173"
+
+  backend:
+    image: iwakura1ain/financiar-backend:v1.0
+    # depends_on:
+    #   database:
+    #     condition: service_healthy
+    #   redis:
+    #     condition: service_healthy
+    ports:
+      - "8000:8000"
+
+  database:
+    image: mariadb:latest
+    environment:
+      TZ: Asia/Seoul
+      MYSQL_HOST: 0.0.0.0
+      MYSQL_PORT: 3306
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: financiar
+      MYSQL_USER: testusr
+      MYSQL_PASSWORD: 1234
+    ports:
+      - "3306:3306"
+  #   healthcheck:
+  #     test: ["CMD", "mariadb", "financiar", "-u", "testusr", "--password=1234"]
+  #     interval: 5s
+  #     retries: 5
+  #     start_period: 5s
+  #     timeout: 10s
+
+  redis:
+    # image: redis:latest
+    image: iwakura1ain/financiar-redis:v0.9
+    ports:
+      - 6379:6379
+    # command: redis-server /usr/local/etc/redis/redis.conf
+    # volumes:
+    #   - ./redis:/data
+    #   - ./redis.conf:/usr/local/etc/redis/redis.conf
+    # healthcheck:
+    #   test: ["CMD", "redis-cli", "ping"]
+    #   interval: 5s
+    #   retries: 5
+    #   start_period: 5s
+    #   timeout: 10s

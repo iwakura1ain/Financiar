@@ -191,6 +191,7 @@ export function TradeDataLoader2({
         await fetch(fetchURL, {
             headers:{
                 accept: 'application/json',
+                
             }})
             .then(response => response.json())
             .then((json) => { // set stockdata

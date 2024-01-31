@@ -79,7 +79,7 @@ export function SearchBar({name, setName, sector, setSector}) {
                 }
               />
               
-              <Dropdown />
+              {/* <Dropdown /> */}
             </form>
 
 	    

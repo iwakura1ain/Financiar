@@ -172,8 +172,8 @@
    ===============================================*/
 
 .preview-wrapper{
-  width: 80%;
-  height: 80px;
+  width: 100%;
+  margin-bottom: 10px;
   color: black;
   display: flex;
   flex-direction: column;
@@ -203,6 +203,18 @@
 
 .preview-stock{
   display: flex;
+}
+
+@media (max-width: 900px) {
+  .stock-high {
+    display: none;
+  }
+  .stock-bottom {
+    display: none;
+  }
+  .stock-date {
+    display: none;
+  }
 }
 
 .stock-open, .stock-close, .stock-high, .stock-bottom, .stock-date{
@@ -246,24 +258,21 @@
 .barchart-wrapper{
   position: relative;
   width: 100%;
-  height: 600px;
+  height: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
 }
 
-#barchart-zoom-in {
-  position: absolute;
-  right: 180px;
-  top: 130px;
+.barchart-chart-wrapper{
+  position: relative;
+  width: 100%;
+  height: 450px;
 }
 
-#barchart-zoom-out {
-  position: absolute;
-  right: 130px;
-  top: 130px;
-}
+
+
 
 .barchart-zoom {
   background: #aeb3bd;
@@ -271,21 +280,23 @@
   z-index: 1;
   opacity: 0.3;
   width: 30px;
-  height:40px;
+  height:30px;
+  padding: 3px;
+  margin-left: 10px;
 }
+
+
+.barchart-zoom>img {
+  height:20px;
+  width: 20px;
+  margin: auto;
+}
+
 
 .barchart-zoom:hover {
   opacity: 0.7;
 }
 
-/* hard */
-.barchart-zoom>img {
-  height:20px;
-  width: 20px;
-  margin: 0px;
-  margin-left: -10px;
-  margin-top: -5px;
-}
 
 /* GraphRegister, will be refactored into a component */
 .barchart-register{
@@ -299,9 +310,11 @@
 }
 
 input[type=checkbox]{  
-  margin-left: 0px;
-  margin-right: 0px;
-  margin-top: 5px;  
+  padding: 0px;
+  margin: auto;
+  margin-bottom: 2.5px;
+  display: inline-block;
+  vertical-align: bottom;
 }
 
 .barchart-controls div{
@@ -337,18 +350,67 @@ input[type=number]::-webkit-outer-spin-button {
   opacity: 1;
 }
 
+input {
+  margin: 0px;
+  padding: 0px;
+}
+
 .barchart-controls{
-  vertical-align: middle;
-  width: 80%;
-  
-  height: 80px;
+  /* vertical-align: middle; */
+  width: 100%;
   color: #252d32;
   display: flex;
   flex-direction: row;
   align-items: start;
   font-size: 0.6em;
-  margin-bottom: -8px;
-  margin-top: 10px;
+  /* margin-bottom: -8px;
+     margin-top: 10px; */
+}
+
+.barchart-controls > div {
+  margin-top: 15px;
+}
+
+@media (max-width: 1200px) {
+  .barchart-controls > div {
+    margin: 5px;
+    margin-top: 15px;
+  }
+
+  .barchart-zoom {
+    height: 20px;
+    width: 20px;
+  }
+  
+  .barchart-zoom>img {
+    height:10px;
+    width: 10px;
+    margin: auto;
+  }
+
+
+  .barchart-controls > img {
+    display: none;
+  }
+}
+
+@media (max-width: 926px) {
+  .barchart-controls > div {
+    margin: 3px;
+  }
+
+  .barchart-controls > img {
+    display: none;
+  }
+
+  .barchart-zoom {
+    display: none;
+  }
+
+  .controls-visibility {
+    display: none;
+  }
+
 }
 
 .controls-label {
@@ -492,7 +554,6 @@ input[type=number]::-webkit-outer-spin-button {
   position: relative;
   width: 100%;
   height: 100px;
-  margin-top: 100px;
   display: flex;
   background-color: #fff;
   border-radius: 10px;
@@ -565,6 +626,12 @@ input[type=number]::-webkit-outer-spin-button {
 .searchbar-label{
   margin: -2.5px -10px;
   padding: 15px 20px;
+}
+
+@media (max-width: 827px) {
+  .searchbar-label {
+    display: none;
+  }
 }
 
 .searchbar-input{
@@ -816,314 +883,333 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-box-orient: vertical;
 }
 
-/* ==============================================
-  7. Footer
-  ===============================================*/
 
-ul{
-  list-style: none;
-  padding-left: 0px;
-}
+  /* ==============================================
+     7. Footer
+     ===============================================*/
 
-footer {
-  width: 100%;
-  background-color: #292c31;
-  padding: 60px 0;
-  color: #62656a;
-  
-}
-
-footer h5 {
-  color: #aeb3bd;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  margin-bottom: 20px;
-}
-
-footer p {
-  font-size: 12px;
-  font-weight: 300;
-  color: #62656a;
-  text-align: justify;
-  padding: 0px;
-}
-
-footer li {
-  font-size: 14px;
-  font-weight: 300;
-  letter-spacing: .05em;
-  line-height: 1.5;
-  margin-bottom: 10px;
-}
-
-footer a {
-  color: #62656a;
-}
-
-footer a:hover {
-  color: #0095f7;
-  text-decoration: none;
-}
-
-footer i {
-  font-size: 25px;
-  color: #62656a;
-  margin-right: 10px;
-}
-
-footer i:hover {
-  color: #0095f7;
-}
-
-footer small {
-  color: #62656a;
-  float: right;
-}
-
-.external-links {
-  color: #0095f7;
-}
-/* ============================================================
-   8. tooltip
-   ============================================================ */
-
-.custom-tooltip{
-
-}
-
-.tooltip-container{
-  width: 11em;
-  display: inline-block;
-  padding: 10px 10px 0 10px;
-  background-color: white;
-  font-size: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.518);
-  border-radius: 8px;
-}
-
-.tooltip-date{
-  font-size: 14px;
-  color: #252d32a5;
-}
-
-.tooltip-label{
-  text-align: start;
-}
-
-/* .tooltip-label-start{
-  text-align:start;
-}
-
-.tooltip-label-end{
-  text-align:end;
-} */
-
-
-/* ============================================================
-   13.  pic-in-pic
-   ============================================================ */
-/* hard */
-/* recharts-surface에 width 하드코딩 되어있음 */
-.pic-in-pic-box {
-  z-index: 1;
-  position: fixed; 
-  bottom: 0%;
-  right: 1%;
-  bottom: 30px;
-  width: 400px;
-  height: 250px;
-  float:right;  
-}
-
-.pic-in-pic-graph {
-  border: 3px dotted #778694d7;
-  border-radius: 0 0 15px 15px;
-  background-color: white;
-  box-shadow: 5px 3px 3px #778694d7;
-  animation: fadeInDown 1s
-}
-
-/* hard */
-.pic-in-pic-button {
-  border: 3px dotted #778694d7;
-  background-color: #0095f7;
-  border-radius: 10px 10px 0 0;
-  width: 80px;
-  height: 40px;
-  margin-left: 320px;
-  animation: fadeInDown 1.8s;
-}
-
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* ============================================================
-   9.  loading visual
-   ============================================================ */
-
-
-/* loading dots */
-.loader-outer {
-  position: absolute;
-  left: 170px;
-  top: 170px;
-}
-
-/* hard */
-.loader>span {
-  width: 10px;
-  height: 10px;
-  display: inline;
-  background: #778694;
-  border-radius: 50%;
-  position: relative;
-  margin: 0 5px;
-  opacity: 0.5;
-  z-index: 1;
-}
-
-.loader {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 100px;
-}
-
-.dot-1 {
-  animation: anim 1s linear 0s infinite;
-}
-
-.dot-2 {
-  animation: anim 1s linear 0.25s infinite;
-}
-
-.dot-3 {
-  animation: anim 1s linear 0.50s infinite;
-}
-
-.dot-4 {
-  animation: anim 1s linear 0.75s infinite;
-}
-
-@keyframes anim {
-  0% {
-    top: 0;
+  ul{
+    list-style: none;
+    padding-left: 0px;
   }
 
-  50% {
-    top: 15px;
+  footer {
+    width: 100%;
+    background-color: #292c31;
+    padding: 60px 0;
+    color: #62656a;
+    
   }
 
-  100% {
-    top: 0;
-  }
-}
-
-.lds-ring {
-  position: absolute;
-  left: 170px;
-  top: 40px;
-}
-
-/* hard */
-.lds-ring div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  margin: 8px;
-  border: 8px solid #778690;
-  border-radius: 50%;
-  opacity: 0.9;
-  z-index: 1;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #778690 transparent transparent transparent;
-}
-.lds-ring div:nth-child(1) {
-  animation-delay: -0.45s;
-}
-.lds-ring div:nth-child(2) {
-  animation-delay: -0.3s;
-}
-.lds-ring div:nth-child(3) {
-  animation-delay: -0.15s;
-}
-@keyframes lds-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/* ============================================================
-   10.  backtesting
-   ============================================================ */
-
-.backtest-box {
-  background-color: #ffffff;
-  box-shadow: 0 0 1px 0 rgba(0,12,32,0.04), 0 10px 16px 0 rgba(10,31,68,0.06);
-  border-radius: 30px;
-  padding-top: 20px;
-  margin: 10px;
-  padding-bottom: 40px;
-}
-
-.backtest-profit-box {
-  border: 5px solid #0095f7;
-  background-color: #F8F9FB;
-  box-shadow: 0 0 1px 0 rgba(0,12,32,0.04), 0 10px 16px 0 rgba(10,31,68,0.06);
-  border-radius: 30px;
-  padding-top: 20px;
-  margin-bottom: 70px;
-}
-
-
-/* ============================================================
-   11.  media query - 1200px
-   ============================================================ */
-@media (max-width: 1200px) {
-  .searchbar-search-box{
-    height: 80px;
+  footer h5 {
+    color: #aeb3bd;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin-bottom: 20px;
   }
 
-  .searchbar-label{
-    font-size: 20px;
-  }
-
-  .testimonials-name{
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: .05em;
-    margin-top: 5px;
-    margin-bottom: 0px;
-    text-align: center;
-  }
-
-  .testimonials-desc{
+  footer p {
     font-size: 12px;
+    font-weight: 300;
+    color: #62656a;
+    text-align: justify;
     padding: 0px;
-    white-space:inherit;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
   }
 
-  /* .pic-in-pic-box{
+  footer li {
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: .05em;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
 
-     } */   
-}
+  footer a {
+    color: #62656a;
+  }
 
+  footer a:hover {
+    color: #0095f7;
+    text-decoration: none;
+  }
+
+  footer i {
+    font-size: 25px;
+    color: #62656a;
+    margin-right: 10px;
+  }
+
+  footer i:hover {
+    color: #0095f7;
+  }
+
+  footer small {
+    color: #62656a;
+    float: right;
+  }
+
+  .external-links {
+    color: #0095f7;
+  }
+  /* ============================================================
+     8. tooltip
+     ============================================================ */
+
+  .custom-tooltip{
+
+  }
+
+  .tooltip-container{
+    width: 11em;
+    display: inline-block;
+    padding: 10px 10px 0 10px;
+    background-color: white;
+    font-size: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.518);
+    border-radius: 8px;
+  }
+
+  .tooltip-date{
+    font-size: 14px;
+    color: #252d32a5;
+  }
+
+  .tooltip-label{
+    text-align: start;
+  }
+
+  /* .tooltip-label-start{
+     text-align:start;
+     }
+
+     .tooltip-label-end{
+     text-align:end;
+     } */
+
+
+  /* ============================================================
+     13.  pic-in-pic
+     ============================================================ */
+
+  .pic-in-pic-box {
+    z-index: 1;
+    position: fixed; 
+    bottom: 0%;
+    right: 20px;
+    bottom: 10px;
+    width: 400px;
+    height: 250px;
+    float:right;  
+  }
+
+  @media (max-width: 926px) {
+    .pic-in-pic-box > div {
+      display: none;
+    }
+    .pic-in-pic-button {
+      position: fixed;
+      right: 20px;
+      bottom: 10px;
+    }
+  }
+
+
+  .pic-in-pic-graph {
+    border: 3px dotted #778694d7;
+    border-radius: 0 0 15px 15px;
+    background-color: white;
+    box-shadow: 5px 3px 3px #778694d7;
+    animation: fadeInDown 1s
+  }
+
+
+  .pic-in-pic-button {
+    border: 3px dotted #778694d7;
+    background-color: #0095f7;
+    border-radius: 10px 10px 0 0;
+    width: 80px;
+    height: 40px;
+    margin-left: 320px;
+    animation: fadeInDown 1.8s;
+  }
+
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* ============================================================
+     9.  loading visual
+     ============================================================ */
+
+
+  /* loading dots */
+  .loader-outer {
+    position: absolute;
+    left: 170px;
+    top: 170px;
+  }
+
+  /* hard */
+  .loader>span {
+    width: 10px;
+    height: 10px;
+    display: inline;
+    background: #778694;
+    border-radius: 50%;
+    position: relative;
+    margin: 0 5px;
+    opacity: 0.5;
+    z-index: 1;
+  }
+
+  .loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 100px;
+  }
+
+  .dot-1 {
+    animation: anim 1s linear 0s infinite;
+  }
+
+  .dot-2 {
+    animation: anim 1s linear 0.25s infinite;
+  }
+
+  .dot-3 {
+    animation: anim 1s linear 0.50s infinite;
+  }
+
+  .dot-4 {
+    animation: anim 1s linear 0.75s infinite;
+  }
+
+  @keyframes anim {
+    0% {
+      top: 0;
+    }
+
+    50% {
+      top: 15px;
+    }
+
+    100% {
+      top: 0;
+    }
+  }
+
+  .lds-ring {
+    position: absolute;
+    left: 170px;
+    top: 40px;
+  }
+
+  /* hard */
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    margin: 8px;
+    border: 8px solid #778690;
+    border-radius: 50%;
+    opacity: 0.9;
+    z-index: 1;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #778690 transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* ============================================================
+     10.  backtesting
+     ============================================================ */
+
+  .backtest-box {
+    background-color: #ffffff;
+    box-shadow: 0 0 1px 0 rgba(0,12,32,0.04), 0 10px 16px 0 rgba(10,31,68,0.06);
+    border-radius: 30px;
+    padding-top: 20px;
+    margin: 10px;
+    padding-bottom: 40px;
+  }
+
+  .backtest-profit-box {
+    border: 5px solid #0095f7;
+    background-color: #F8F9FB;
+    box-shadow: 0 0 1px 0 rgba(0,12,32,0.04), 0 10px 16px 0 rgba(10,31,68,0.06);
+    border-radius: 30px;
+    padding-top: 20px;
+    margin-bottom: 70px;
+  }
+
+
+  /* ============================================================
+     11.  media query - 1200px
+     ============================================================ */
+  @media (max-width: 1200px) {
+    .searchbar-search-box{
+      height: 80px;
+    }
+
+    .searchbar-label{
+      font-size: 20px;
+    }
+
+    .testimonials-name{
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      margin-top: 5px;
+      margin-bottom: 0px;
+      text-align: center;
+    }
+
+    .testimonials-desc{
+      font-size: 10px;
+      padding: 0px;
+      white-space:inherit;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      
+    }
+
+    /* .pic-in-pic-box{
+
+       } */   
+  }
+
+/* @media (max-width: 700px) {
+   .testimonials-desc{
+   display: none;
+   }
+   }
+ */
 /* ============================================================
    12.  media query - 992px
    ============================================================ */
@@ -1145,25 +1231,25 @@ footer small {
      } */
 }
 
-/* ============================================================
-   13.  media query - 768px
-   ============================================================ */
+  /* ============================================================
+     13.  media query - 768px
+     ============================================================ */
 
-/* @media (max-width: 768px) {
-   html, body{
-   width: 100%;
-   height: 100%;
-   }
+  /* @media (max-width: 768px) {
+     html, body{
+     width: 100%;
+     height: 100%;
+     }
 
-   #root {
-   width: 100%;
-   height: 100%;
-   }
+     #root {
+     width: 100%;
+     height: 100%;
+     }
 
-   .testimonials{
-   width: 100%;
-   }
-   } */
+     .testimonials{
+     width: 100%;
+     }
+     } */
 
 
 

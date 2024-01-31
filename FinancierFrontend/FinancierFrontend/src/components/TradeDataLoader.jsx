@@ -83,11 +83,14 @@ export function TradeDataLoader2({
         
     useEffect(() => {
         // console.log("PREFETCHING")        
-        if (stockData === undefined || fetchingStatus == true)
+        if (stockData === undefined || fetchingStatus == true){
+          
             return
+        }
 
         // prefetch min
         if (visibleOffset[0] + visibleOffset[1] > stockData.data.length - prefetchCount[period]) {
+            
             console.log("PREFETCH", getFormattedDate(getOffsetDate(startDate, period)))
             console.log("SETTING FETCHING STATUS TRUE")            
             setFetchingStatus(true)

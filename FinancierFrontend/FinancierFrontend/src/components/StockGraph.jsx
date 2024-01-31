@@ -1,8 +1,8 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useMemo} from 'react';
 
 
 import {
-    ComposedChart, LineChart, Line, Rectangle, BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Scatter, 
+    ComposedChart, LineChart, Line, Rectangle, BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Scatter,  ResponsiveContainer
 } from 'recharts';
 
 
@@ -112,8 +112,7 @@ export function StockGraphBox({
     endDate, setEndDate,
     register, setRegister,
     period, setPeriod,
-    callback=(e)=>{},
-    height=600, width=1000,
+    callback=(e)=>{},     
     showControls=true,
 }) {
     const [avgWeight, setAvgWeight] = useState(0.2)
@@ -127,35 +126,23 @@ export function StockGraphBox({
 
     const [chartType, setChartType] = useState("bar")
 
+    const [graphWidth, setGraphWidth] = useState(600)
+    const [graphHeight, setGraphHeight] = useState(500)
+
+    window.addEventListener('resize', function(event) {
+        setGraphWidth(document.getElementById(`barchart-scrollable-${barchartId}`).offsetWidth)
+    }, true)
+    
     useEffect(() => {
         setRegisterButtonText(register.has(selected) ? "Remove" : "Add")
     }, [register, selected])
+
+    useEffect(() => {
+        setGraphWidth(document.getElementById(`barchart-scrollable-${barchartId}`).offsetWidth) 
+    }, [])
     
-    // TODO: refactor into object
-    const GraphSize = () => {
-        if(window.innerWidth >= 2160) {
-            width = window.innerWidth*0.7
-            height = 700
-        }
+    
 
-        if(window.innerWidth >= 1440 && window.innerWidth < 2160) {
-            width = window.innerWidth*0.7
-            height = 600
-        }
-
-        if(window.innerWidth >= 992 && window.innerWidth < 1440) {
-            width = window.innerWidth*0.9
-            height = 540
-        }
-
-        if(window.innerWidth >= 768 && window.innerWidth < 992) {
-            width = window.innerWidth*0.7
-            height = 500
-        }
-    }
-    GraphSize(); 
-
-    // TODO: refactor into component
     const GraphRegister = () => {
         const callback = () => {
             if (register.has(selected))
@@ -262,8 +249,8 @@ export function StockGraphBox({
                 style={{height:"35px", width:"35px", marginTop: "5px", marginLeft:"-10px", marginRight:"8px", opacity:"0.3" }}
               />
 
-              <div style={{paddingTop:"5px"}}>
-                <label className="controls-label" htmlFor="chart">Chart :</label>
+              <div >
+                <label className="controls-label" htmlFor="chart">Chart</label>
                 <select
                   name="chart"
                   value={chartType}
@@ -277,8 +264,8 @@ export function StockGraphBox({
                 </select>
               </div>
               
-              <div style={{paddingTop:"5px"}}>
-                <label className="controls-label" htmlFor="period">Period :</label>
+              <div>
+                <label className="controls-label" htmlFor="period">Period</label>
                 <select
                   name="period"
                   value={period}
@@ -300,7 +287,7 @@ export function StockGraphBox({
               </div>
 
               <div >
-                <label className="controls-label">Average : </label>
+                <label className="controls-label">Average</label>
                 <input
                   type="checkbox"
                   className="controls-checkbox"
@@ -308,6 +295,10 @@ export function StockGraphBox({
                   onChange={() => {                        
                       setShowAverage(!showAverage)
                   }}/>
+              </div>
+
+              <div>
+                <label className="controls-label">Weight</label>
                 <input
                   type="number"
                   max={1.0}
@@ -326,7 +317,7 @@ export function StockGraphBox({
 
               
               <div>
-                <label className="controls-label" htmlFor="volume">Volume : </label>
+                <label className="controls-label" htmlFor="volume">Volume</label>
                 <input
                   type="checkbox"
                   name="volume"
@@ -342,18 +333,18 @@ export function StockGraphBox({
               />
 
 
-             
-              <button
-                className="controls-visibility"
-                onClick={() => setVisibility((currVisibility) => !currVisibility)}
-              >{visibility ? "Hide" : "Show"}</button>
+              <GraphZoomButton />
+              {/* <button */}
+              {/*   className="controls-visibility" */}
+              {/*   onClick={() => setVisibility((currVisibility) => !currVisibility)} */}
+              {/* >{visibility ? "Hide" : "Show"}</button> */}
             </div>
                         
         )
     }
     
     const GraphZoomButton = () => (
-        <>
+        <div>
           <button
             className="barchart-zoom"
             id="barchart-zoom-in"
@@ -362,7 +353,6 @@ export function StockGraphBox({
             }}>
             <img src="/src/assets/plus.svg"  />
           </button>
-          
           <button
             className="barchart-zoom"
             id="barchart-zoom-out"
@@ -371,7 +361,7 @@ export function StockGraphBox({
             }}>
             <img src="/src/assets/minus.svg" />
           </button>
-        </>
+        </div>
     )
     
     const MainGraph = () => {
@@ -382,13 +372,12 @@ export function StockGraphBox({
                 <>
                   <LineChart
                     className="barchart-chart"
-                    width={width}
-                    height={height}
+                    height={graphHeight}
+                    width={graphWidth}
                     data={slicedStockData}
                     margin={{
                         top: 20,
-                        right: 30,
-                        left: 20,
+                        left: -20,
                         bottom: 70,
                     }}>
                     <CartesianGrid strokeDasharray="3 3" />
@@ -416,13 +405,12 @@ export function StockGraphBox({
                 <>
                   <ComposedChart
                     className="barchart-chart"
-                    width={width}
-                    height={height}
+                    height={graphHeight}
+                    width={graphWidth}
                     data={slicedStockData}
                     margin={{
                         top: 20,
-                        right: 30,
-                        left: 20,
+                        left: -20,
                         bottom: 70,
                     }}>
                     <CartesianGrid strokeDasharray="3 3" />
@@ -451,14 +439,12 @@ export function StockGraphBox({
             <>
               <ComposedChart
                 className="barchart-chart"
-                width={width}
-                height={height}
-            /* data={[...stockData.data, ...Array.apply(null, Array(stockData.count-stockData.data.length)).map(function () {})]} */
+                height={graphHeight}
+                width={graphWidth}
                 data={slicedStockData}
                 margin={{
                     top: 20,
-                    right: 30,
-                    left: 20,
+                    left: -20,
                     bottom: 70,
                 }}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -486,14 +472,11 @@ export function StockGraphBox({
         return (
             <BarChart
               className="volume-chart"
-              width={width}
-              height={height-100}
+              height={graphHeight}
+              width={graphWidth}
               data={getSlicedStockData(stockData.data, visibleOffset)}
-
               margin={{
                   top: 20,
-                  right: 30,
-                  left: 80,
                   bottom: 385,
               }}>
               
@@ -505,7 +488,6 @@ export function StockGraphBox({
                 isAnimationActive={false} 
               />
             </BarChart>
-
         )
     }
     
@@ -546,42 +528,42 @@ export function StockGraphBox({
           <div
             className='barchart-wrapper'
             id={`barchart-scrollable-${barchartId}`}
+            style={{height: "0px"}}
           >
-            <GraphScrollListener
-              barchartId={barchartId}
-              eventAddStatus={eventAddStatus}
-              setEventAddStatus={setEventAddStatus}
-              visibleOffset={visibleOffset}
-              setVisibleOffset={setVisibleOffset}
-            />
+            {/* <GraphScrollListener */}
+            {/*   barchartId={barchartId} */}
+            {/*   eventAddStatus={eventAddStatus} */}
+            {/*   setEventAddStatus={setEventAddStatus} */}
+            {/*   visibleOffset={visibleOffset} */}
+            {/*   setVisibleOffset={setVisibleOffset} */}
+            {/* /> */}
             <StockPreview stockData={stockData}/>
             <GraphControls2 />
-            <GraphZoomButton />
-            <LoadingSpinny status={fetchingStatus}/>
+            {/* <GraphZoomButton /> */}
+            {/* <LoadingSpinny status={fetchingStatus}/> */}
 
             <div   id={`barchart-scrollable-${barchartId}`}>
               <ComposedChart
                 className="barchart-chart"
-                width={width}
-                height={height}
+                height={graphHeight}
+                width={graphWidth}
                 data={null}
                 margin={{
                     top: 20,
-                    right: 30,
-                    left: 20,
-                    bottom: 70,
+                    bottom: 385,
                 }}>
+
                 <XAxis height={80} angle={-45} textAnchor='end'/>
                 <YAxis type="number" />
                 <CartesianGrid strokeDasharray="3 3" />
               </ComposedChart>
-              {/* <GraphControls /> */}
+            {/*   {/\* <GraphControls /> *\/} */}
             </div>
           </div>
       )        
 
     return (
-        <div className='barchart-wrapper'> 
+        <div className='barchart-wrapper fadeInDown'>
           <GraphScrollListener
             barchartId={barchartId}
             eventAddStatus={eventAddStatus}
@@ -591,13 +573,11 @@ export function StockGraphBox({
           />
           <StockPreview stockData={stockData}/>
           <GraphControls2 />
-          <GraphZoomButton />
 
-          {/* <LoadingDots status={fetchingStatus}/> */}
-          <LoadingSpinny status={fetchingStatus}/>
-          <div   id={`barchart-scrollable-${barchartId}`}>
-            <MainGraph />
-            <VolumeGraph />
+          {/* <LoadingSpinny status={fetchingStatus}/> */}
+          <div className="barchart-chart-wrapper"  id={`barchart-scrollable-${barchartId}`}>
+              <MainGraph />
+              <VolumeGraph />
           </div>
 
         </div>
@@ -605,6 +585,7 @@ export function StockGraphBox({
     )
 
 }
+
 
 
 

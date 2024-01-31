@@ -31,6 +31,7 @@ export function StockInfoListing({register, setRegister}) {
     const defaultDates = getDefaultDate("week")
     const [startDate, setStartDate] = useState(defaultDates[0])
     const [endDate, setEndDate] = useState(defaultDates[1])
+
     
     // ============= trade data for selected stock ===================
     const [stockData, setStockData] = useState()
@@ -98,9 +99,10 @@ export function StockInfoListing({register, setRegister}) {
               fetchingStatus={fetchingStatus} setFetchingStatus={setFetchingStatus}
             />
             
-            <div className="testimonials-container width-full">
+            <div className="testimonials-container width-full" id="main-title">
               
               <div className="title-block animated fadeInDown">
+                <img src="/public/vite.svg" style={{height:"50px", width:"50px"}}></img>
                 <h2 className='testimonials-title'>Financiar</h2>
                 <p>Access all stocks anytime, anywhere, with ease.</p>
               </div>
@@ -130,7 +132,7 @@ export function StockInfoListing({register, setRegister}) {
                   next={getNextPage}
                   hasMore={true}
                   loader={
-                      <LoadingDots />
+                      <LoadingDots /> 
                   }
                   endMessage={
                       <p style={{ textAlign: 'center' }}>

@@ -1,30 +1,3 @@
-// TODO: refactor into object
-// export const GraphSize = () => {
-//     // console.log('outer-width:',window.outerWidth, 'outer-height:', window.outerHeight);
-//     // console.log('inner-width:',window.innerWidth, 'inner-height:', window.innerHeight);
-    
-//     if(window.innerWidth >= 2160) {
-//         width = window.innerWidth*0.7
-//         height = 700
-//     }
-
-//     if(window.innerWidth >= 1440 && window.innerWidth < 2160) {
-//         width = window.innerWidth*0.7
-//         height = 600
-//     }
-
-//     if(window.innerWidth >= 992 && window.innerWidth < 1440) {
-//         width = window.innerWidth*0.9
-//         height = 540
-//     }
-
-//     if(window.innerWidth >= 768 && window.innerWidth < 992) {
-//         width = window.innerWidth*0.7
-//         height = 500
-//     }
-
-//     console.log('width:', width, 'height:', height);
-// }
 
 export function getSlicedStockData(data, visibleOffset) {
     let start = data.length - (visibleOffset[0] + visibleOffset[1])
@@ -99,7 +72,7 @@ export function getWeightedAverage(trade, current, num, weight) {
 export function  getLogoName(name) {return name.replaceAll(" ", "_")}
 
 // export const backendURL = "http://localhost:8000"
-export const backendURL = "http://financ-LoadB-H39IbTRlr5el-32ad447233d6e4ff.elb.ap-southeast-2.amazonaws.com:8000"
+export const backendURL = "http:financ-LoadB-H39IbTRlr5el-32ad447233d6e4ff.elb.ap-southeast-2.amazonaws.com:8000"
 
 export const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur scelerisque, tortor nec mattis feugiat, velit purus euismod odio, quis vulputate velit urna sit amet enim. Maecenas vulputate auctor ligula sed sollicitudin."
 

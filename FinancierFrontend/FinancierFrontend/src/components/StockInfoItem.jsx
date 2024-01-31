@@ -22,6 +22,7 @@ export function StockInfoItem({
                 
                 <button className="testimonials-button" onClick={() => {
                     setSelected((prevSelected) => {
+
                         if (prevSelected)
                             document.getElementById(`stock-item-${prevSelected}`).style.outline = "unset"
 
@@ -43,7 +44,6 @@ export function StockInfoItem({
                           <small className="testimonials-info">{sector} | {ticker}</small>
                         </div>
                         <button onClick={() => {
-                            console.log("RATE PRESSED")
                             rateStock(ticker)
                         }}>
                           <span className="rating">{rating} <i className="icon ion-md-star"></i></span>

@@ -73,31 +73,19 @@ export function PIPGraphBox({
             <div className="pic-in-pic-box">
               <button
                 className="pic-in-pic-button"
-                style={{position:"fixed", bottom:"20px", right: "20px"}}             
+                style={{position:"fixed", bottom:"10px", right: "20px"}}             
                 onClick={() => {
                     document.getElementById(`stock-item-${selected}`)
                         .scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
                 }}
-              >Back</button>
+              >BACK</button>
             </div>
         )
     }        
 
     return (
         <div>
-          <LineChart
-            className="barchart-chart pic-in-pic-graph"
-            width={width}
-            height={height}            
-            margin={{
-                top: 15,
-                right: 30,
-                left: 30,
-                bottom: 18,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-          </LineChart>
+          
         </div>
     )
 

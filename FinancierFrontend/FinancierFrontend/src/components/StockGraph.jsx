@@ -518,7 +518,7 @@ export function StockGraphBox({
         return (
             <>
               <StockPreview stockData={stockData}/>
-              <GraphControls2 />
+              
             </>
         )
     }
@@ -538,26 +538,26 @@ export function StockGraphBox({
             {/*   setVisibleOffset={setVisibleOffset} */}
             {/* /> */}
             <StockPreview stockData={stockData}/>
-            <GraphControls2 />
+            {/* <GraphControls2 /> */}
             {/* <GraphZoomButton /> */}
             {/* <LoadingSpinny status={fetchingStatus}/> */}
 
             <div   id={`barchart-scrollable-${barchartId}`}>
-              <ComposedChart
-                className="barchart-chart"
-                height={graphHeight}
-                width={graphWidth}
-                data={null}
-                margin={{
-                    top: 20,
-                    bottom: 385,
-                }}>
+            {/*   <ComposedChart */}
+            {/*     className="barchart-chart" */}
+            {/*     height={graphHeight} */}
+            {/*     width={graphWidth} */}
+            {/*     data={null} */}
+            {/*     margin={{ */}
+            {/*         top: 20, */}
+            {/*         bottom: 385, */}
+            {/*     }}> */}
 
-                <XAxis height={80} angle={-45} textAnchor='end'/>
-                <YAxis type="number" />
-                <CartesianGrid strokeDasharray="3 3" />
-              </ComposedChart>
-            {/*   {/\* <GraphControls /> *\/} */}
+            {/*     <XAxis height={80} angle={-45} textAnchor='end'/> */}
+            {/*     <YAxis type="number" /> */}
+            {/*     <CartesianGrid strokeDasharray="3 3" /> */}
+            {/*   </ComposedChart> */}
+            {/* {/\*   {/\\* <GraphControls /> *\\/} *\/} */}
             </div>
           </div>
       )        

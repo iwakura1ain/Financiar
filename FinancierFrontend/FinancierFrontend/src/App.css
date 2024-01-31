@@ -173,11 +173,12 @@
 
 .preview-wrapper{
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
   color: black;
   display: flex;
   flex-direction: column;
   align-items: start;
+  
 }
 
 .preview-label{
@@ -213,6 +214,19 @@
     display: none;
   }
   .stock-date {
+    display: none;
+  }
+}
+
+
+@media (max-width: 458px) {
+  .stock-close {
+    display: none;
+  }
+  .stock-open {
+    display: none;
+  }
+  .stock-close-wrapper img{
     display: none;
   }
 }
@@ -394,6 +408,7 @@ input {
   }
 }
 
+
 @media (max-width: 926px) {
   .barchart-controls > div {
     margin: 3px;
@@ -411,6 +426,12 @@ input {
     display: none;
   }
 
+}
+
+@media (max-width: 530px) {
+  .barchart-controls {
+    display: none;
+  }
 }
 
 .controls-label {
@@ -558,6 +579,7 @@ input {
   background-color: #fff;
   border-radius: 10px;
   z-index: 30;
+  top: 60px;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.09); 
 }
 
@@ -611,6 +633,47 @@ input {
   /* display: flex; */
 }
 
+.double-searchbar-form {
+  display: none;
+}
+
+@media (max-width: 827px) {
+  .double-searchbar-form {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    margin-top: 40px;
+    animation: fadeInDown 1.8s;
+  }
+
+  .single-searchbar-form{
+    display: none;
+  }
+
+  .searchbar-btn {
+    display: none;
+  }
+  .searchbar-search-box {
+    box-shadow: none;
+    top: 30px;
+  }
+}
+
+.double-searchbar-form > form{
+  align-items: center;
+  
+}
+
+.double-searchbar-input {
+  height: 60px;
+}
+
+.double-searchbar-form-button {
+  font-size: 80%;
+  border-radius: 0 5px 5px 0;
+  background-color: #0095f7;
+  height: 120px;
+}
 
 .single-searchbar-form:first-child{
   border-right: 1px solid #53627c2a;
@@ -630,6 +693,10 @@ input {
 
 @media (max-width: 827px) {
   .searchbar-label {
+    display: none;
+  }
+
+  .single-searchbar-form {
     display: none;
   }
 }
@@ -691,6 +758,10 @@ input {
   z-index: 30;
 }
 
+.stock-items {
+  margin-top: 70px;
+}
+
 #testimonials {
   width: 80%;
   min-width: 80%;
@@ -704,6 +775,7 @@ input {
   align-items: center;
   /* display: content; */ 
   z-index: 1;
+  margin-bottom: 80px;
 }
 
 .testimonials-container{

@@ -39,6 +39,54 @@ export function SearchBar({name, setName, sector, setSector}) {
     
     return (
 	<div className="searchbar-search-box animated fadeInDown">
+          <div className="double-searchbar-form">
+            <div>
+              <form onSubmit={(event) => {
+                  event.preventDefault();
+                  setName(searchName)
+              }}
+                    className="double-searchbar-input">
+	        <input
+                  className="searchbar-input"
+	      	  type="text"
+                  placeholder="Name"
+                  value={searchName}
+                  onChange={(event) =>
+                      setSearchName(event.target.value)
+                  }/>              
+                
+              </form>
+              <form onSubmit={(event) => {
+                  event.preventDefault();
+                  setSector(searchSector)
+              }}
+                    className="double-searchbar-input"
+              >
+	        <input
+                  className="searchbar-input"
+	    	  type="text"
+                  placeholder="Sector"
+                  value={searchSector}
+                  onChange={(event) =>
+                      setSearchSector(event.target.value)
+                  }
+                />
+                
+                {/* <Dropdown /> */}
+              </form>
+            </div>
+            <button
+              className="double-searchbar-form-button"
+              onClick={() => {
+                  setSearchName("")
+                  setSearchSector("")
+                  setName("")
+                  setSector("")                
+              }}
+            >
+              Clear
+            </button>
+          </div>
           
 	  <div className="single-searchbar-form">
 	    <h3 className="searchbar-label">Name</h3>
@@ -56,6 +104,7 @@ export function SearchBar({name, setName, sector, setSector}) {
                 }/>              
               
             </form>
+            
 	    
 	    <div className="searchbar-form-icon">
 	      <i className="flaticon-list-with-dots"></i>
@@ -82,7 +131,6 @@ export function SearchBar({name, setName, sector, setSector}) {
               {/* <Dropdown /> */}
             </form>
 
-	    
 	    <div className="searchbar-form-icon">
 	      <i className="flaticon-gps-fixed-indicator"></i>
 	    </div>

@@ -130,7 +130,11 @@ export function StockGraphBox({
     const [graphHeight, setGraphHeight] = useState(500)
 
     window.addEventListener('resize', function(event) {
-        setGraphWidth(document.getElementById(`barchart-scrollable-${barchartId}`).offsetWidth)
+        let tmp = document.getElementById(`barchart-scrollable-${barchartId}`).offsetWidth
+        if (tmp < 530) 
+            tmp = window.innerWidth-10
+        
+        setGraphWidth(tmp)
     }, true)
     
     useEffect(() => {
@@ -138,7 +142,10 @@ export function StockGraphBox({
     }, [register, selected])
 
     useEffect(() => {
-        setGraphWidth(document.getElementById(`barchart-scrollable-${barchartId}`).offsetWidth) 
+        let tmp = document.getElementById(`barchart-scrollable-${barchartId}`).offsetWidth
+        if (tmp < 530) 
+            tmp = window.innerWidth-10
+        setGraphWidth(tmp)
     }, [])
     
     

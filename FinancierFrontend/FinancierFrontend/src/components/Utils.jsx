@@ -72,7 +72,7 @@ export function getWeightedAverage(trade, current, num, weight) {
 export function  getLogoName(name) {return name.replaceAll(" ", "_")}
 
 // export const backendURL = "http://localhost:8000"
-export const backendURL = "http:///financ-LoadB-H39IbTRlr5el-32ad447233d6e4ff.elb.ap-southeast-2.amazonaws.com:8000"
+export const backendURL = "http://financ-LoadB-H39IbTRlr5el-32ad447233d6e4ff.elb.ap-southeast-2.amazonaws.com:8000"
 
 
 export const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur scelerisque, tortor nec mattis feugiat, velit purus euismod odio, quis vulputate velit urna sit amet enim. Maecenas vulputate auctor ligula sed sollicitudin."

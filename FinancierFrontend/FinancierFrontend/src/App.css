@@ -582,7 +582,7 @@ input {
 .volume-chart {
   display: inline-block;
   margin-top: -242px;
-  top: -22px;
+  top: -93px;
 }
 
 .barchart-toggle {
@@ -1256,12 +1256,19 @@ input {
      10.  backtesting
      ============================================================ */
 
+#select-prompt {
+  position: relative;
+  top: 200px;
+  margin: auto;
+}
+
   .backtest-box {
     background-color: #ffffff;
     box-shadow: 0 0 1px 0 rgba(0,12,32,0.04), 0 10px 16px 0 rgba(10,31,68,0.06);
     border-radius: 30px;
     padding-top: 20px;
     margin: 10px;
+    padding: 20px;
     padding-bottom: 40px;
   }
 

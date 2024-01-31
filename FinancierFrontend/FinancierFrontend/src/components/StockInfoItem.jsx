@@ -20,13 +20,12 @@ export function StockInfoItem({
             <div className="testimonials-box" id={`stock-item-${ticker}`} style={elementStyle()}>
               <div className="row personal-info">
                 
-                <button className="testimonials-button" onClick={() => {
+                <button className="testimonials-button" onMouseDown={() => {
                     setSelected((prevSelected) => {
-
-                        if (prevSelected)
+                        if (prevSelected) 
                             document.getElementById(`stock-item-${prevSelected}`).style.outline = "unset"
-
-                        document.getElementById(`stock-item-${ticker}`).style.outline = "1px solid #0095f7"
+                       
+                        document.getElementById(`stock-item-${ticker}`).style.outline = "1px solid #0095f7"                        
 
                         return ticker
                     })

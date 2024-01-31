@@ -57,6 +57,9 @@ const CustomScatterLow = (props) => {
 
 const GraphScrollListener = ({barchartId, eventAddStatus, setEventAddStatus, visibleOffset, setVisibleOffset}) => {
     //console.log("ADDING LISTENER FOR ", barchartId)
+
+    if (window.innerWidth < 768)
+        return
     
     var element = document.getElementById(`barchart-scrollable-${barchartId}`)
     if (element == null || eventAddStatus)
@@ -129,14 +132,22 @@ export function StockGraphBox({
     const [graphWidth, setGraphWidth] = useState(600)
     const [graphHeight, setGraphHeight] = useState(570)
 
-    window.addEventListener('resize', function(event) {
-        let tmp = document.getElementById(`barchart-scrollable-${barchartId}`).offsetWidth
-        if (tmp < 530)
-            setVisibleOffset((prevVisibleOffset) => ([prevVisibleOffset[0], prevVisibleOffset[0]/2]))
-            tmp = window.innerWidth-30
+    const [stockDataLen, setStockDataLen] = useState(0)
+
+    useMemo(() => {
         
-        setGraphWidth(tmp)
-    }, true)
+        
+        window.addEventListener('resize', function(event) {
+            let tmp = document.getElementById(`barchart-scrollable-${barchartId}`).offsetWidth
+            if (tmp < 530)
+                setVisibleOffset((prevVisibleOffset) => ([prevVisibleOffset[0], prevVisibleOffset[0]/2]))
+            tmp = window.innerWidth-105
+            
+            setGraphWidth(tmp)
+        }, true)
+    }, [])
+    
+    
     
     useEffect(() => {
         setRegisterButtonText(register.has(selected) ? "Remove" : "Add")
@@ -145,7 +156,7 @@ export function StockGraphBox({
     useEffect(() => {
         let tmp = document.getElementById(`barchart-scrollable-${barchartId}`).offsetWidth
         if (tmp < 530) 
-            tmp = window.innerWidth-30
+            tmp = window.innerWidth-105
         setGraphWidth(tmp)
     }, [])
     
@@ -371,10 +382,32 @@ export function StockGraphBox({
           </button>
         </div>
     )
+
+    const calcAverage = (slicedData) => {
+        if (slicedData === undefined)
+            return
+        
+        
+        let [avg, num] = [0, 0]
+        console.log("CALC AVERAGE")
+        const newData = slicedData.map((trade) => {
+            if (trade === undefined)
+                return
+            
+            [avg, num] = getWeightedAverage(trade, avg, num, avgWeight)
+            return {
+                ...trade,
+                Average: avg
+            }
+        })
+
+        return newData
+    }
+
     
     const MainGraph = () => {
-        let slicedStockData = getSlicedStockData(stockData.data, visibleOffset)
-        
+        let slicedStockData = calcAverage(getSlicedStockData(stockData.data, visibleOffset))
+               
         if (chartType == "line"){
             return ( // linechart when zoomed out
                 <>
@@ -486,6 +519,7 @@ export function StockGraphBox({
               margin={{
                   top: 20,
                   bottom: 385,
+                  left: 40
               }}>
               
               <Tooltip />
@@ -498,29 +532,36 @@ export function StockGraphBox({
             </BarChart>
         )
     }
+
+    const getWidth = () => {
+        let tmp = document.getElementById(`barchart-scrollable-${barchartId}`).offsetWidth
+        if (tmp < 530) 
+            tmp = window.innerWidth-105
+        setGraphWidth(tmp)
+    }
     
     // ====== avg ======
-    useEffect(() => {
-        if (fetchingStatus || !showAverage)
-            return
+    // useEffect(() => {
+    //     if (fetchingStatus || !showAverage)
+    //         return
         
-        if (stockData === undefined)
-            return
+    //     if (stockData === undefined)
+    //         return
        
         
-        let [avg, num] = [0, 0]
-        
-        const newData = stockData.data.map((trade) => {
-            [avg, num] = getWeightedAverage(trade, avg, num, avgWeight)
-            
-            return {
-                ...trade,
-                Average: avg
-            }
-        })
+    //     let [avg, num] = [0, 0]
+    //     console.log("CALC AVERAGE")
+    //     const newData = stockData.data.map((trade) => {
+    //         [avg, num] = getWeightedAverage(trade, avg, num, avgWeight)
+    //         return {
+    //             ...trade,
+    //             Average: avg
+    //         }
+    //     })
 
-        setStockData({...stockData, data: newData})
-    }, [fetchingStatus, avgWeight, showAverage])
+    //     setStockData({...stockData, data: newData})
+    // }, [fetchingStatus, avgWeight, showAverage])
+
     
     if (!visibility) {
         return (
@@ -536,7 +577,7 @@ export function StockGraphBox({
           <div
             className='barchart-wrapper'
             id={`barchart-scrollable-${barchartId}`}
-            style={{height: "0px"}}
+            style={{marginBottom:"-80px", padding:"0px"}}
           >
             {/* <GraphScrollListener */}
             {/*   barchartId={barchartId} */}
@@ -546,26 +587,29 @@ export function StockGraphBox({
             {/*   setVisibleOffset={setVisibleOffset} */}
             {/* /> */}
             <StockPreview stockData={stockData}/>
-            {/* <GraphControls2 /> */}
+            <GraphControls2 />
             {/* <GraphZoomButton /> */}
             {/* <LoadingSpinny status={fetchingStatus}/> */}
 
-            <div   id={`barchart-scrollable-${barchartId}`}>
-            {/*   <ComposedChart */}
-            {/*     className="barchart-chart" */}
-            {/*     height={graphHeight} */}
-            {/*     width={graphWidth} */}
-            {/*     data={null} */}
-            {/*     margin={{ */}
-            {/*         top: 20, */}
-            {/*         bottom: 385, */}
-            {/*     }}> */}
-
-            {/*     <XAxis height={80} angle={-45} textAnchor='end'/> */}
-            {/*     <YAxis type="number" /> */}
-            {/*     <CartesianGrid strokeDasharray="3 3" /> */}
-            {/*   </ComposedChart> */}
-            {/* {/\*   {/\\* <GraphControls /> *\\/} *\/} */}
+            <div
+              id={`barchart-scrollable-${barchartId}`}          
+            >
+              <h3 id="select-prompt" style={selected ? {display: "none"} : {}}>↓ Select Stock ↓</h3>
+              <ComposedChart
+                className="barchart-chart"
+                height={graphHeight}
+                width={graphWidth}
+                data={null}
+                
+                margin={{
+                    top: 20,
+                    left: -50,
+                    bottom: 70,
+                }}>
+                <XAxis height={80} angle={-45} textAnchor='end'/>
+                <YAxis type="number" />
+                <CartesianGrid strokeDasharray="3 3" />
+              </ComposedChart>
             </div>
           </div>
       )        
@@ -587,7 +631,7 @@ export function StockGraphBox({
               <MainGraph />
               <VolumeGraph />
           </div>
-
+          {/* <getWidth /> */}
         </div>
         
     )

@@ -127,12 +127,13 @@ export function StockGraphBox({
     const [chartType, setChartType] = useState("bar")
 
     const [graphWidth, setGraphWidth] = useState(600)
-    const [graphHeight, setGraphHeight] = useState(500)
+    const [graphHeight, setGraphHeight] = useState(570)
 
     window.addEventListener('resize', function(event) {
         let tmp = document.getElementById(`barchart-scrollable-${barchartId}`).offsetWidth
-        if (tmp < 530) 
-            tmp = window.innerWidth-10
+        if (tmp < 530)
+            setVisibleOffset((prevVisibleOffset) => ([prevVisibleOffset[0], prevVisibleOffset[0]/2]))
+            tmp = window.innerWidth-30
         
         setGraphWidth(tmp)
     }, true)
@@ -144,7 +145,7 @@ export function StockGraphBox({
     useEffect(() => {
         let tmp = document.getElementById(`barchart-scrollable-${barchartId}`).offsetWidth
         if (tmp < 530) 
-            tmp = window.innerWidth-10
+            tmp = window.innerWidth-30
         setGraphWidth(tmp)
     }, [])
     

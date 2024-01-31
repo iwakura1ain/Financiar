@@ -285,6 +285,33 @@
   height: 450px;
 }
 
+@media (max-width: 762px) {
+  .barchart-chart-wrapper{
+    margin-left: -200px;
+  }
+}
+
+@media (max-width: 590px) {
+  .barchart-chart-wrapper{
+    margin-left: -180px;
+  }
+}
+@media (max-width: 450px) {
+  .barchart-chart-wrapper{
+    margin-left: -160px;
+  }
+}
+@media (max-width: 350px) {
+  .barchart-chart-wrapper{
+    margin-left: -140px;
+  }
+}
+@media (max-width: 290px) {
+  .barchart-chart-wrapper{
+    margin-left: -120px;
+  }
+}
+
 
 
 
@@ -657,6 +684,7 @@ input {
     box-shadow: none;
     top: 30px;
   }
+
 }
 
 .double-searchbar-form > form{
@@ -761,6 +789,12 @@ input {
 .stock-items {
   margin-top: 70px;
 }
+@media (max-width: 827px) {
+
+  .stock-items {
+    margin-top: 100px;
+  }
+}
 
 #testimonials {
   width: 80%;
@@ -805,36 +839,39 @@ input {
   z-index: 3;
 }
 
-.testimonials-box:hover {
-  outline: 1px solid #0095f7;
-  z-index: 9;
-  background-color: #ffffff;
-  height: fit-content;
-  position: absolute;
-  transition: 0.3s ease-out;
-  
-  .testimonials-button {
-    height: fit-content;
-    transition: 0.3s;
-  }
 
-  .testimonials-desc {
-    color: #778694d7;
-    line-height: 1.5;
-    margin: 8px 0px 2px 0px;
-    white-space:inherit;
-    /* padding: 0px; */
-    overflow: unset;
-    height:100%;
-    white-space:inherit;
-    /* display: -webkit-box;
-       -webkit-line-clamp: 3;
-       -webkit-box-orient: vertical; */
-    display: block;
-    transition: 0.3s;
+
+@media (hover: hover) and (pointer: fine) {
+  .testimonials-box:hover {
+    outline: 1px solid #0095f7;
+    z-index: 9;
+    background-color: #ffffff;
+    height: fit-content;
+    position: absolute;
+    transition: 0.3s ease-out;
+    
+    .testimonials-button {
+      height: fit-content;
+      transition: 0.3s;
+    }
+
+    .testimonials-desc {
+      color: #778694d7;
+      line-height: 1.5;
+      margin: 8px 0px 2px 0px;
+      white-space:inherit;
+      /* padding: 0px; */
+      overflow: unset;
+      height:100%;
+      white-space:inherit;
+      /* display: -webkit-box;
+	 -webkit-line-clamp: 3;
+	 -webkit-box-orient: vertical; */
+      display: block;
+      transition: 0.3s;
+    }
   }
 }
-
 /* before: .testimonials-box i */
 .testimonials-box i {
   color: #ffffff;
